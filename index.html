@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bai Luxe Candle Co. | Hand-poured candles</title>
+  <meta name="description" content="Bai Luxe Candle Co. hand-poured, clean-burning candles made in small batches in Phoenix, Arizona." />
+
+  <style>
+    :root{
+      --bg: #fbfaf8;
+      --paper: #ffffff;
+      --ink: #141414;
+      --muted: rgba(20,20,20,.70);
+      --line: rgba(20,20,20,.12);
+      --shadow: 0 16px 40px rgba(0,0,0,.06);
+      --radius: 18px;
+      --max: 1100px;
+      --pad: clamp(18px, 2.5vw, 28px);
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ margin:0; padding:0; background:var(--bg); color:var(--ink); }
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      letter-spacing: .01em;
+      line-height: 1.45;
+    }
+    a{ color:inherit; text-decoration: none; }
+    img{ max-width:100%; display:block; }
+
+    /* Layout helpers */
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+    .section{ padding: clamp(44px, 7vw, 86px) 0; }
+    .grid{ display:grid; gap: clamp(16px, 2vw, 24px); }
+    .card{
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    /* Header */
+    header{
+      position: sticky;
+      top:0;
+      z-index: 50;
+      background: rgba(251,250,248,.78);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 180px;
+    }
+    .mark{
+      width: 34px; height: 34px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      display:grid; place-items:center;
+      background: #fff;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing:.12em;
+    }
+    .brandname{
+      font-weight: 600;
+      letter-spacing: .10em;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    nav a{
+      font-size: 13px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
+    nav a:hover{ background: rgba(20,20,20,.05); color: var(--ink); }
+
+    .cta{
+      display:flex; gap: 10px; align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      font-size: 13px;
+      letter-spacing:.02em;
+      background: #fff;
+    }
+    .btn.primary{
+      background: var(--ink);
+      color: #fff;
+      border-color: rgba(20,20,20,.9);
+    }
+    .btn:hover{ transform: translateY(-1px); transition: .12s ease; }
+
+    /* Hero */
+    .hero{
+      padding: clamp(46px, 7vw, 88px) 0 clamp(24px, 4vw, 50px);
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: clamp(18px, 3vw, 34px);
+      align-items: stretch;
+    }
+    @media (max-width: 900px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .brand{ min-width:auto; }
+      nav{ display:none; } /* keep simple for mobile */
+    }
+
+    .heroMedia{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: var(--shadow);
+      min-height: 420px;
+    }
+    .heroMedia img{
+      width:100%; height:100%;
+      object-fit: cover;
+      aspect-ratio: 16 / 10;
+    }
+
+    .heroCopy{
+      padding: clamp(18px, 2.4vw, 26px);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.6);
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 420px;
+    }
+    .kicker{
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    h1{
+      margin: 6px 0 0;
+      font-weight: 520;
+      letter-spacing: -.02em;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.08;
+    }
+    .sub{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 48ch;
+    }
+    .heroActions{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .metaRow{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+      margin-top: 8px;
+    }
+    .meta{
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .meta .t{ font-size: 12px; letter-spacing:.12em; text-transform: uppercase; color: var(--muted); }
+    .meta .v{ margin-top: 6px; font-size: 13px; }
+
+    /* Editorial pause */
+    .pause{
+      padding: 34px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.35);
+    }
+    .pause p{
+      margin: 0;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Featured products */
+    .sectionTitle{
+      display:flex;
+      align-items:flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-weight: 520;
+      letter-spacing: -.01em;
+      font-size: clamp(18px, 2vw, 24px);
+    }
+    .sectionTitle .hint{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 60ch;
+    }
+
+    .products{
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 900px){
+      .products{ grid-template-columns: 1fr; }
+    }
+    .prod img{
+      width:100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background:#fff;
+    }
+    .prodBody{ padding: 14px 14px 16px; }
+    .prodTop{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .prodName{
+      font-weight: 560;
+      font-size: 14px;
+      letter-spacing:.01em;
+    }
+    .price{
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .note{
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .pillRow{ display:flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .pill{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.8);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Split editorial */
+    .split{
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+    @media (max-width: 900px){
+      .split{ grid-template-columns: 1fr; }
+    }
+    .splitMedia{
+      min-height: 420px;
+    }
+    .splitMedia img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+    }
+    .splitCopy{
+      padding: clamp(18px, 2.4vw, 26px);
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+    .splitCopy h3{
+      margin:0;
+      font-weight: 520;
+      font-size: 22px;
+      letter-spacing: -.01em;
+    }
+    .splitCopy p{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 62ch;
+    }
+
+    /* Dark mood section */
+    .mood{
+      background: #0f0f10;
+      color: #f3f3f3;
+      border-top: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .mood .card{ background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.10); box-shadow:none; }
+    .mood .kicker, .mood .hint, .mood .splitCopy p{ color: rgba(255,255,255,.72); }
+    .mood .btn{ background: transparent; color:#fff; border-color: rgba(255,255,255,.18); }
+    .mood .btn.primary{ background:#fff; color:#111; border-color:#fff; }
+
+    /* FAQ */
+    details{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      padding: 12px 14px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight: 540;
+      font-size: 14px;
+      list-style:none;
+    }
+    details p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 75ch;
+    }
+
+    /* Footer */
+    footer{
+      padding: 42px 0;
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,.35);
+    }
+    .footGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+    }
+    @media (max-width: 900px){
+      .footGrid{ grid-template-columns: 1fr; }
+    }
+    .footSmall{ color: var(--muted); font-size: 13px; }
+    .footLinks{ display:flex; flex-wrap: wrap; gap: 10px; justify-content:flex-start; }
+    .footLinks a{ font-size: 13px; color: var(--muted); padding: 8px 10px; border-radius: 10px; }
+    .footLinks a:hover{ background: rgba(20,20,20,.05); color: var(--ink); }
+
+    /* Smooth scroll */
+    html{ scroll-behavior: smooth; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <div class="mark">BL</div>
+          <div class="brandname">Bai Luxe Candle Co.</div>
+        </div>
+
+        <nav aria-label="Primary">
+          <a href="#shop">Shop</a>
+          <a href="#about">About</a>
+          <a href="#quality">Quality</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="cta">
+          <a class="btn" href="https://www.bailuxeonlineshop.com" target="_blank" rel="noopener">Current site</a>
+          <a class="btn primary" href="https://etsy.com/" target="_blank" rel="noopener">Shop now</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div class="heroMedia">
+            <!-- Replace hero.jpg with your image -->
+            <img src="images/hero.jpg" alt="Bai Luxe candle on a calm, neutral background" />
+          </div>
+
+          <div class="heroCopy">
+            <div>
+              <div class="kicker">Hand-poured, Phoenix, AZ</div>
+              <h1>Candles for calm, comfort, and everyday rituals.</h1>
+              <p class="sub">
+                Small-batch candles made with a clean-burning para-soy blend, quality wicks, and thoughtfully blended fragrances.
+              </p>
+
+              <div class="heroActions">
+                <a class="btn primary" href="#shop">Shop featured</a>
+                <a class="btn" href="#about">About the brand</a>
+              </div>
+            </div>
+
+            <div class="metaRow" aria-label="Key points">
+              <div class="meta">
+                <div class="t">Wax</div>
+                <div class="v">IGI 6006 para-soy blend</div>
+              </div>
+              <div class="meta">
+                <div class="t">Wick</div>
+                <div class="v">HTP series, clean burn</div>
+              </div>
+              <div class="meta">
+                <div class="t">Batch</div>
+                <div class="v">Poured in small runs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAUSE -->
+    <section class="pause">
+      <div class="wrap">
+        <p>Small batch, clean burning, thoughtfully made.</p>
+      </div>
+    </section>
+
+    <!-- SHOP -->
+    <section id="shop" class="section">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <h2>Featured candles</h2>
+          <p class="hint">Keep the grid small. Luxury feels curated, not crowded.</p>
+        </div>
+
+        <div class="grid products">
+          <!-- Product 1 -->
+          <article class="card prod">
+            <img src="images/product-1.jpg" alt="Candle product image 1" />
+            <div class="prodBody">
+              <div class="prodTop">
+                <div class="prodName">Amber Woods</div>
+                <div class="price">$22</div>
+              </div>
+              <p class="note">Warm amber, soft woods, clean finish.</p>
+              <div class="pillRow">
+                <span class="pill">6 oz</span>
+                <span class="pill">Strong throw</span>
+                <span class="pill">Giftable</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product 2 -->
+          <article class="card prod">
+            <img src="images/product-2.jpg" alt="Candle product image 2" />
+            <div class="prodBody">
+              <div class="prodTop">
+                <div class="prodName">Vanilla Luxe</div>
+                <div class="price">$22</div>
+              </div>
+              <p class="note">Creamy vanilla, smooth warmth, cozy mood.</p>
+              <div class="pillRow">
+                <span class="pill">6 oz</span>
+                <span class="pill">Clean burn</span>
+                <span class="pill">Best seller</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product 3 -->
+          <article class="card prod">
+            <img src="images/product-3.jpg" alt="Candle product image 3" />
+            <div class="prodBody">
+              <div class="prodTop">
+                <div class="prodName">Lush Eucalyptus</div>
+                <div class="price">$22</div>
+              </div>
+              <p class="note">Fresh, spa-clean, airy and bright.</p>
+              <div class="pillRow">
+                <span class="pill">6 oz</span>
+                <span class="pill">Fresh</span>
+                <span class="pill">Everyday</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" href="https://etsy.com/" target="_blank" rel="noopener">Shop on Etsy</a>
+          <a class="btn" href="#contact">Wholesale or bulk</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SPLIT -->
+    <section id="about" class="section">
+      <div class="wrap">
+        <div class="grid split">
+          <div class="card splitMedia">
+            <img src="images/about.jpg" alt="Brand lifestyle image" />
+          </div>
+          <div class="card splitCopy">
+            <div class="kicker">About</div>
+            <h3>Intentional scents, poured with care.</h3>
+            <p>
+              Bai Luxe Candle Co. creates small-batch candles designed to make your space feel grounded and inviting.
+              We focus on performance, clean burn, and scent profiles that feel elevated without being overpowering.
+            </p>
+            <p>
+              Based in Phoenix, Arizona. Made in small runs, so each pour stays consistent.
+            </p>
+            <div style="margin-top:6px;">
+              <a class="btn primary" href="https://etsy.com/" target="_blank" rel="noopener">Shop now</a>
+              <a class="btn" href="#quality">See materials</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DARK MOOD QUALITY -->
+    <section id="quality" class="section mood">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <h2>Quality, without the noise</h2>
+          <p class="hint">Short statements. Clean spacing. Let the work speak.</p>
+        </div>
+
+        <div class="grid" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="card" style="padding:16px;">
+            <div class="kicker">Wax blend</div>
+            <p style="margin:10px 0 0; color: rgba(255,255,255,.75); font-size:14px;">
+              IGI 6006 para-soy blend for a smooth, consistent burn.
+            </p>
+          </div>
+          <div class="card" style="padding:16px;">
+            <div class="kicker">Wick</div>
+            <p style="margin:10px 0 0; color: rgba(255,255,255,.75); font-size:14px;">
+              HTP series wicks selected for clean performance.
+            </p>
+          </div>
+          <div class="card" style="padding:16px;">
+            <div class="kicker">Fragrance</div>
+            <p style="margin:10px 0 0; color: rgba(255,255,255,.75); font-size:14px;">
+              High-quality fragrance oils, blended for strong throw and balance.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" href="#faq">Read candle care</a>
+          <a class="btn" href="#contact">Questions</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <h2>FAQ</h2>
+          <p class="hint">Keep answers short and confident.</p>
+        </div>
+
+        <div class="grid" style="grid-template-columns: 1fr; gap: 12px;">
+          <details>
+            <summary>How long does a 6 oz candle burn?</summary>
+            <p>Put your typical range here, for example 25 to 35 hours, depending on burn habits and environment.</p>
+          </details>
+          <details>
+            <summary>How strong is the scent throw?</summary>
+            <p>Describe honestly, for example, designed for a noticeable scent in small to medium spaces with proper candle care.</p>
+          </details>
+          <details>
+            <summary>Candle care tips</summary>
+            <p>Trim wick to about 1/4 inch. Let the first burn melt edge-to-edge to reduce tunneling. Keep away from drafts.</p>
+          </details>
+          <details>
+            <summary>Shipping and returns</summary>
+            <p>Add your policy here. For example, returns accepted within 14 days unused. Damaged items replaced with photo proof.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="wrap">
+        <div class="grid split">
+          <div class="card splitCopy">
+            <div class="kicker">Contact</div>
+            <h3>Wholesale, bulk, and questions</h3>
+            <p>
+              Email: <a href="mailto:yourname@yourdomain.com" style="text-decoration:underline;">yourname@yourdomain.com</a><br />
+              Instagram: <a href="https://instagram.com/" target="_blank" rel="noopener" style="text-decoration:underline;">@bailuxecandleco</a>
+            </p>
+            <p>
+              If you are ordering gifts or event quantities, include your date and quantity in the message.
+            </p>
+            <div style="margin-top:6px;">
+              <a class="btn primary" href="mailto:yourname@yourdomain.com">Email us</a>
+              <a class="btn" href="https://etsy.com/" target="_blank" rel="noopener">Shop Etsy</a>
+            </div>
+          </div>
+          <div class="card splitMedia">
+            <img src="images/contact.jpg" alt="Candle lifestyle image for contact section" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footGrid">
+        <div>
+          <div class="brandname" style="font-size:12px;">Bai Luxe Candle Co.</div>
+          <p class="footSmall" style="margin:10px 0 0;">
+            Hand-poured, small-batch candles. Phoenix, Arizona.
+          </p>
+          <p class="footSmall" style="margin:10px 0 0;">
+            © <span id="y"></span> Bai Luxe Candle Co. All rights reserved.
+          </p>
+        </div>
+        <div class="footLinks" aria-label="Footer links">
+          <a href="#shop">Shop</a>
+          <a href="#about">About</a>
+          <a href="#quality">Quality</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+          <a href="https://etsy.com/" target="_blank" rel="noopener">Etsy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
