@@ -1,253 +1,273 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Bai Luxe Candle Co.</title>
+<meta name="description" content="Bai Luxe Candle Co. hand-poured candles, clean-burning, small-batch." />
+
+<!-- Luxury-ish type pairing (serif + clean sans). If fonts fail, it still works. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#fbfaf8;
+  --bg:#fbf7ef;         /* Jo Malone-like cream */
   --paper:#ffffff;
-  --ink:#141414;
-  --mut:rgba(20,20,20,.68);
-  --line:rgba(20,20,20,.12);
-  --shadow:0 18px 50px rgba(0,0,0,.06);
-  --max:1120px;
-  --r:18px;
+  --ink:#111111;
+  --mut:rgba(17,17,17,.68);
+  --line:rgba(17,17,17,.14);
+  --max:1160px;
+  --pad:clamp(16px, 2.5vw, 28px);
 }
 
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
-  background:var(--bg);
-  color:var(--ink);
-  font:14px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial;
-}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+body{font:14px/1.55 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 
-.wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.rule{border-top:1px solid var(--line)}
+.k{letter-spacing:.22em;text-transform:uppercase;font-size:11px;color:var(--mut)}
+.serif{font-family:"Cormorant Garamond", Georgia, "Times New Roman", serif}
 
-nav{
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:rgba(251,250,248,.90);
+header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(251,247,239,.92);
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
-.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
-
-.brand{display:flex;align-items:center;gap:10px;min-width:220px}
+.nav{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:14px 0;
+}
+.brand{display:flex; align-items:center; gap:10px; min-width:200px}
 .brand img{
-  width:36px;height:36px;
+  width:34px; height:34px;
   border-radius:999px;
   border:1px solid var(--line);
   background:#fff;
   padding:5px;
   object-fit:contain;
 }
-.brand b{
+.brand b{letter-spacing:.20em;text-transform:uppercase;font-size:12px}
+
+.menu{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
+.menu a{padding:8px 10px;border-radius:999px;color:var(--mut)}
+.menu a:hover{background:rgba(17,17,17,.05);color:var(--ink)}
+
+.cta{display:flex; gap:10px; align-items:center}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:10px 14px;
+  border:1px solid var(--ink);
+  background:transparent;
+  font-size:12px;
   letter-spacing:.18em;
   text-transform:uppercase;
-  font-size:12px;
 }
+.btn.fill{background:var(--ink);color:#fff}
 
-.links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.links a{
-  padding:8px 10px;
-  border-radius:999px;
-  color:var(--mut);
-}
-.links a:hover{background:rgba(20,20,20,.05);color:var(--ink)}
-
-.cta{display:flex;gap:10px;align-items:center}
-.btn{
-  padding:10px 14px;
-  border-radius:999px;
-  border:1px solid var(--line);
-  background:#fff;
-  font-size:13px;
-}
-.btn.primary{
-  background:var(--ink);
-  color:#fff;
-  border-color:rgba(20,20,20,.85);
-}
-
-.section{padding:42px 0}
-.grid{display:grid;gap:16px}
-
-.heroGrid{grid-template-columns:1.2fr .8fr;align-items:stretch}
-@media(max-width:900px){
-  .heroGrid{grid-template-columns:1fr}
-  .links{display:none}
+@media (max-width:900px){
+  .menu{display:none}
   .brand{min-width:auto}
 }
 
-.card{
-  background:var(--paper);
+.hero{padding:38px 0 22px}
+.heroGrid{
+  display:grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: clamp(14px, 2.5vw, 26px);
+  align-items:stretch;
+}
+@media (max-width:900px){ .heroGrid{grid-template-columns:1fr} }
+
+.heroImg{
   border:1px solid var(--line);
-  border-radius:var(--r);
-  overflow:hidden;
-  box-shadow:var(--shadow);
+  background:var(--paper);
 }
+.heroImg img{width:100%;aspect-ratio:16/10;object-fit:cover}
 
-.heroImg img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  aspect-ratio:16/10;
-}
-
-.side{padding:18px}
-.k{
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  font-size:11px;
-  color:var(--mut);
+.heroCopy{
+  border:1px solid var(--line);
+  background:var(--paper);
+  padding: clamp(16px, 2.5vw, 24px);
+  display:flex; flex-direction:column; justify-content:center;
 }
 h1{
   margin:10px 0 0;
-  font-weight:560;
-  letter-spacing:-.02em;
-  line-height:1.06;
-  font-size:clamp(26px,3vw,40px);
+  font-size: clamp(34px, 3.6vw, 54px);
+  line-height:1.02;
+  font-weight:600;
 }
-p{margin:10px 0 0;color:var(--mut);max-width:62ch}
-
-.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.heroCopy p{
+  margin:12px 0 0;
+  color:var(--mut);
+  max-width:60ch;
+}
+.heroActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
 
 .pause{
-  margin-top:16px;
-  padding:12px 14px;
-  border-radius:14px;
-  border:1px solid var(--line);
-  background:rgba(20,20,20,.02);
-  display:flex;
-  gap:14px;
-  flex-wrap:wrap;
+  padding:16px 0;
 }
-.pause span{
+.pause .wrap{
+  display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
   color:var(--mut);
-  letter-spacing:.14em;
+  letter-spacing:.18em;
   text-transform:uppercase;
   font-size:11px;
 }
 
-.head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:12px;
-  margin-bottom:14px;
+.section{padding:34px 0}
+.sectionHead{
+  display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
+  padding-bottom:14px;
 }
-.head h2{
+.sectionHead h2{
   margin:0;
-  font-weight:560;
-  font-size:12px;
-  letter-spacing:.20em;
+  font-size:13px;
+  letter-spacing:.22em;
   text-transform:uppercase;
+  font-weight:500;
 }
-.head small{color:var(--mut)}
+.sectionHead small{color:var(--mut)}
 
-.products{grid-template-columns:repeat(3,1fr)}
-@media(max-width:900px){.products{grid-template-columns:1fr}}
+.products{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap: 18px;
+}
+@media (max-width:900px){ .products{grid-template-columns:1fr} }
 
+.prod{
+  border:1px solid var(--line);
+  background:var(--paper);
+}
 .prod img{width:100%;aspect-ratio:4/5;object-fit:cover}
-.prod .b{padding:14px}
-.prod .top{display:flex;justify-content:space-between;gap:10px}
-.prod .name{font-weight:600}
-.prod .price{color:var(--mut)}
-.prod .note{margin:8px 0 0;color:var(--mut)}
+.prodBody{
+  padding:14px 14px 16px;
+  border-top:1px solid var(--line);
+}
+.prodTop{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.prodName{font-weight:500}
+.price{color:var(--mut)}
+.note{margin:8px 0 0;color:var(--mut);font-size:13px}
 
-.split{grid-template-columns:1fr 1fr;align-items:stretch}
-@media(max-width:900px){.split{grid-template-columns:1fr}}
-.copy{padding:18px;display:flex;flex-direction:column;justify-content:center}
+.split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  align-items:stretch;
+}
+@media (max-width:900px){ .split{grid-template-columns:1fr} }
+.block{
+  border:1px solid var(--line);
+  background:var(--paper);
+}
+.blockImg img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.blockCopy{padding:18px}
+.blockCopy h3{
+  margin:10px 0 0;
+  font-size:32px;
+  line-height:1.05;
+  font-weight:600;
+}
+.blockCopy p{margin:12px 0 0;color:var(--mut);max-width:62ch}
 
 footer{
-  padding:28px 0;
+  padding:26px 0;
   border-top:1px solid var(--line);
-  background:rgba(255,255,255,.45);
+  color:var(--mut);
 }
 </style>
 </head>
 
 <body>
-<nav>
-  <div class="wrap bar">
+<header>
+  <div class="wrap nav">
     <div class="brand">
       <img src="606ccae6-6c10-4beb-8bee-3e73232d2aa9.png" alt="Bai Luxe logo">
       <b>Bai Luxe Candle Co.</b>
     </div>
 
-    <div class="links">
+    <nav class="menu" aria-label="Primary">
       <a href="#shop">Shop</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-    </div>
+    </nav>
 
     <div class="cta">
       <a class="btn" href="https://www.bailuxeonlineshop.com" target="_blank" rel="noopener">Current</a>
-      <a class="btn primary" href="#" target="_blank" rel="noopener">Shop Now</a>
+      <a class="btn fill" href="#" target="_blank" rel="noopener">Shop</a>
     </div>
   </div>
-</nav>
+</header>
 
-<section class="section">
-  <div class="wrap grid heroGrid">
-    <div class="card heroImg">
+<section class="hero">
+  <div class="wrap heroGrid">
+    <div class="heroImg">
       <img src="ChatGPT%20Image%20Jul%2021,%202025,%2003_21_45%20PM.png" alt="Featured candle">
     </div>
 
-    <div class="card side">
+    <div class="heroCopy">
       <div class="k">Hand-poured, small batch</div>
-      <h1>Candles that elevate your space, quietly.</h1>
-      <p>Clean-burning candles, curated scents, simple presentation. No clutter, just product.</p>
-
-      <div class="row">
-        <a class="btn primary" href="#shop">View Featured</a>
+      <h1 class="serif">The candle that sets the room.</h1>
+      <p>Clean-burning candles with curated scent profiles. Minimal design, product-forward presentation.</p>
+      <div class="heroActions">
+        <a class="btn fill" href="#shop">Shop featured</a>
         <a class="btn" href="#about">About</a>
       </div>
+    </div>
+  </div>
 
-      <div class="pause">
-        <span>Clean burn</span>
-        <span>Strong throw</span>
-        <span>Giftable</span>
-      </div>
+  <div class="pause rule">
+    <div class="wrap">
+      <span>Clean burn</span>
+      <span>Strong throw</span>
+      <span>Giftable</span>
     </div>
   </div>
 </section>
 
 <section id="shop" class="section">
   <div class="wrap">
-    <div class="head">
+    <div class="sectionHead">
       <h2>Featured</h2>
-      <small>Keep it curated, not crowded</small>
+      <small>Curated selection, minimal copy</small>
     </div>
 
-    <div class="grid products">
-      <article class="card prod">
+    <div class="products">
+      <article class="prod">
         <img src="ChatGPT%20Image%20Jul%2014,%202025,%2010_04_12%20AM.png" alt="Royal Cotton candle">
-        <div class="b">
-          <div class="top"><div class="name">Royal Cotton</div><div class="price">$22</div></div>
+        <div class="prodBody">
+          <div class="prodTop">
+            <div class="prodName">Royal Cotton</div>
+            <div class="price">$22</div>
+          </div>
           <div class="note">Fresh linen, soft musk, clean finish.</div>
         </div>
       </article>
 
-      <article class="card prod">
+      <article class="prod">
         <img src="Flaming_Rose_Edited.jpg" alt="Flaming Rose candle">
-        <div class="b">
-          <div class="top"><div class="name">Flaming Rose</div><div class="price">$22</div></div>
+        <div class="prodBody">
+          <div class="prodTop">
+            <div class="prodName">Flaming Rose</div>
+            <div class="price">$22</div>
+          </div>
           <div class="note">Velvet rose, warm glow, romantic edge.</div>
         </div>
       </article>
 
-      <article class="card prod">
+      <article class="prod">
         <img src="ChatGPT%20Image%20Jul%2011,%202025,%2012_02_53%20PM.png" alt="Aqua Noir Man candle">
-        <div class="b">
-          <div class="top"><div class="name">Aqua Noir Man</div><div class="price">$22</div></div>
+        <div class="prodBody">
+          <div class="prodTop">
+            <div class="prodName">Aqua Noir Man</div>
+            <div class="price">$22</div>
+          </div>
           <div class="note">Citrus, woods, amber, clean depth.</div>
         </div>
       </article>
@@ -256,17 +276,17 @@ footer{
 </section>
 
 <section id="about" class="section">
-  <div class="wrap grid split">
-    <div class="card heroImg">
+  <div class="wrap split">
+    <div class="block blockImg">
       <img src="ChatGPT%20Image%20Jul%2014,%202025,%2010_45_30%20AM.png" alt="Candle image">
     </div>
 
-    <div class="card copy">
+    <div class="block blockCopy">
       <div class="k">About</div>
-      <h1 style="font-size:28px;margin-top:10px">Made with intention, not noise.</h1>
-      <p>Bai Luxe Candle Co. focuses on clean visuals, bold scent profiles, and a premium burn experience, with a simple site that lets the product lead.</p>
-      <div class="row">
-        <a class="btn primary" href="#" target="_blank" rel="noopener">Shop Now</a>
+      <h3 class="serif">Understated, intentional, clean.</h3>
+      <p>Bai Luxe Candle Co. focuses on scent, burn quality, and a quiet aesthetic that lets the product speak.</p>
+      <div class="heroActions">
+        <a class="btn fill" href="#" target="_blank" rel="noopener">Shop</a>
         <a class="btn" href="#contact">Contact</a>
       </div>
     </div>
@@ -276,13 +296,11 @@ footer{
 <footer id="contact">
   <div class="wrap">
     <div class="k">Contact</div>
-    <p style="margin-top:8px">Email, yourname@yourdomain.com, Instagram, @bailuxecandleco</p>
+    <p>Email: yourname@yourdomain.com, Instagram: @bailuxecandleco</p>
     <p>© <span id="y"></span> Bai Luxe Candle Co.</p>
   </div>
 </footer>
 
-<script>
-document.getElementById("y").textContent = new Date().getFullYear();
-</script>
+<script>document.getElementById("y").textContent=new Date().getFullYear();</script>
 </body>
 </html>
