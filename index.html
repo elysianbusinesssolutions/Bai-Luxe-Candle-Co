@@ -4,69 +4,62 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Bai Luxe Candle Co.</title>
-<meta name="description" content="Bai Luxe Candle Co. hand-poured candles, clean-burning, small-batch." />
+<meta name="description" content="Handcrafted luxury scented candles, Phoenix, Arizona. Premium wax, fine fragrances, custom labels, and soulful storytelling." />
 
-<!-- Luxury-ish type pairing (serif + clean sans). If fonts fail, it still works. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#fbf7ef;         /* Jo Malone-like cream */
+  --bg:#fbf7ef;          /* warm cream */
   --paper:#ffffff;
   --ink:#111111;
   --mut:rgba(17,17,17,.68);
   --line:rgba(17,17,17,.14);
-  --max:1160px;
-  --pad:clamp(16px, 2.5vw, 28px);
+  --max:1180px;
+  --pad:clamp(16px,2.6vw,28px);
 }
 
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
-body{font:14px/1.55 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial}
+body{font:14px/1.6 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial}
 a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
+img,video{display:block;max-width:100%}
 
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
 .rule{border-top:1px solid var(--line)}
-.k{letter-spacing:.22em;text-transform:uppercase;font-size:11px;color:var(--mut)}
-.serif{font-family:"Cormorant Garamond", Georgia, "Times New Roman", serif}
+.serif{font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif}
+.k{letter-spacing:.24em;text-transform:uppercase;font-size:11px;color:var(--mut)}
 
 header{
-  position:sticky; top:0; z-index:50;
+  position:sticky;top:0;z-index:50;
   background:rgba(251,247,239,.92);
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
 .nav{
-  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
   padding:14px 0;
 }
-.brand{display:flex; align-items:center; gap:10px; min-width:200px}
+.brand{display:flex;align-items:center;gap:10px;min-width:220px}
 .brand img{
-  width:34px; height:34px;
-  border-radius:999px;
+  width:34px;height:34px;border-radius:999px;
   border:1px solid var(--line);
-  background:#fff;
-  padding:5px;
-  object-fit:contain;
+  background:#fff;padding:5px;object-fit:contain;
 }
-.brand b{letter-spacing:.20em;text-transform:uppercase;font-size:12px}
+.brand b{letter-spacing:.22em;text-transform:uppercase;font-size:12px}
 
-.menu{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
+.menu{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 .menu a{padding:8px 10px;border-radius:999px;color:var(--mut)}
 .menu a:hover{background:rgba(17,17,17,.05);color:var(--ink)}
 
-.cta{display:flex; gap:10px; align-items:center}
+.cta{display:flex;gap:10px;align-items:center}
 .btn{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:10px 14px;
-  border:1px solid var(--ink);
-  background:transparent;
-  font-size:12px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:10px 14px;border:1px solid var(--ink);
+  background:transparent;font-size:12px;
+  letter-spacing:.18em;text-transform:uppercase;
 }
 .btn.fill{background:var(--ink);color:#fff}
 
@@ -75,81 +68,106 @@ header{
   .brand{min-width:auto}
 }
 
-.hero{padding:38px 0 22px}
-.heroGrid{
-  display:grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap: clamp(14px, 2.5vw, 26px);
-  align-items:stretch;
-}
-@media (max-width:900px){ .heroGrid{grid-template-columns:1fr} }
+.section{padding:34px 0}
+.grid{display:grid;gap:18px}
+.two{grid-template-columns:1.12fr .88fr;align-items:stretch}
+@media (max-width:900px){.two{grid-template-columns:1fr}}
 
-.heroImg{
-  border:1px solid var(--line);
+.card{
   background:var(--paper);
+  border:1px solid var(--line);
 }
-.heroImg img{width:100%;aspect-ratio:16/10;object-fit:cover}
 
+.hero{
+  padding:22px 0 0;
+}
+.heroFrame{
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#000;
+  min-height: 520px;
+}
+.heroVideo{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  min-height:520px;
+  filter:saturate(1.05) contrast(1.02);
+}
+.heroOverlay{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg, rgba(251,247,239,.92) 0%, rgba(251,247,239,.74) 46%, rgba(251,247,239,.18) 100%);
+}
 .heroCopy{
-  border:1px solid var(--line);
-  background:var(--paper);
-  padding: clamp(16px, 2.5vw, 24px);
-  display:flex; flex-direction:column; justify-content:center;
+  position:absolute;left:0;top:0;bottom:0;
+  width:min(560px, 92vw);
+  padding: clamp(18px, 2.8vw, 28px);
+  display:flex;flex-direction:column;justify-content:center;
+  gap:10px;
 }
 h1{
-  margin:10px 0 0;
-  font-size: clamp(34px, 3.6vw, 54px);
+  margin:0;
+  font-size:clamp(42px,4.6vw,64px);
   line-height:1.02;
   font-weight:600;
 }
-.heroCopy p{
-  margin:12px 0 0;
-  color:var(--mut);
-  max-width:60ch;
-}
-.heroActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+.heroCopy p{margin:8px 0 0;color:var(--mut);max-width:60ch}
+.heroActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 
-.pause{
-  padding:16px 0;
+.ambient{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
 }
-.pause .wrap{
-  display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
-  color:var(--mut);
-  letter-spacing:.18em;
+.blob{
+  position:absolute;border-radius:999px;
+  background:radial-gradient(circle at 30% 30%, rgba(200,162,74,.25), rgba(200,162,74,0));
+  width:520px;height:520px;filter:blur(12px);
+  animation:float 12s ease-in-out infinite;
+  opacity:.55;
+}
+.blob.b2{
+  background:radial-gradient(circle at 40% 40%, rgba(17,17,17,.10), rgba(17,17,17,0));
+  width:620px;height:620px;animation-duration:16s;opacity:.45;
+}
+@keyframes float{
+  0%{transform:translate(-6%, -2%)}
+  50%{transform:translate(6%, 4%)}
+  100%{transform:translate(-6%, -2%)}
+}
+
+.marquee{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.45);
+  overflow:hidden;
+}
+.track{
+  display:flex;
+  gap:36px;
+  padding:14px 0;
+  white-space:nowrap;
+  will-change:transform;
+  animation:scroll 18s linear infinite;
+  color:rgba(17,17,17,.72);
+  letter-spacing:.22em;
   text-transform:uppercase;
   font-size:11px;
 }
-
-.section{padding:34px 0}
-.sectionHead{
-  display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
-  padding-bottom:14px;
+.track span{display:inline-flex;align-items:center;gap:10px}
+.dot{width:6px;height:6px;border-radius:999px;background:rgba(17,17,17,.30);display:inline-block}
+@keyframes scroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
 }
-.sectionHead h2{
-  margin:0;
-  font-size:13px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  font-weight:500;
-}
-.sectionHead small{color:var(--mut)}
 
 .products{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap: 18px;
+  gap:18px;
 }
-@media (max-width:900px){ .products{grid-template-columns:1fr} }
-
-.prod{
-  border:1px solid var(--line);
-  background:var(--paper);
-}
+@media (max-width:900px){.products{grid-template-columns:1fr}}
 .prod img{width:100%;aspect-ratio:4/5;object-fit:cover}
-.prodBody{
-  padding:14px 14px 16px;
-  border-top:1px solid var(--line);
-}
+.prodBody{padding:14px 14px 16px;border-top:1px solid var(--line)}
 .prodTop{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
 .prodName{font-weight:500}
 .price{color:var(--mut)}
@@ -161,25 +179,28 @@ h1{
   gap:18px;
   align-items:stretch;
 }
-@media (max-width:900px){ .split{grid-template-columns:1fr} }
-.block{
-  border:1px solid var(--line);
-  background:var(--paper);
-}
+@media (max-width:900px){.split{grid-template-columns:1fr}}
 .blockImg img{width:100%;aspect-ratio:4/3;object-fit:cover}
 .blockCopy{padding:18px}
-.blockCopy h3{
-  margin:10px 0 0;
-  font-size:32px;
-  line-height:1.05;
-  font-weight:600;
+.blockCopy h2{margin:10px 0 0;font-size:40px;line-height:1.03;font-weight:600}
+.blockCopy p{margin:12px 0 0;color:var(--mut);max-width:65ch}
+.small{font-size:13px}
+
+.motionRow{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
 }
-.blockCopy p{margin:12px 0 0;color:var(--mut);max-width:62ch}
+@media (max-width:900px){.motionRow{grid-template-columns:1fr}}
+.mediaBox{border:1px solid var(--line);background:var(--paper);overflow:hidden}
+.mediaBox img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.mediaBox video{width:100%;height:auto}
 
 footer{
   padding:26px 0;
   border-top:1px solid var(--line);
   color:var(--mut);
+  background:rgba(255,255,255,.45);
 }
 </style>
 </head>
@@ -194,7 +215,8 @@ footer{
 
     <nav class="menu" aria-label="Primary">
       <a href="#shop">Shop</a>
-      <a href="#about">About</a>
+      <a href="#story">Story</a>
+      <a href="#custom">Custom</a>
       <a href="#contact">Contact</a>
     </nav>
 
@@ -205,90 +227,156 @@ footer{
   </div>
 </header>
 
+<!-- HERO: motion + clean -->
 <section class="hero">
-  <div class="wrap heroGrid">
-    <div class="heroImg">
-      <img src="ChatGPT%20Image%20Jul%2021,%202025,%2003_21_45%20PM.png" alt="Featured candle">
-    </div>
+  <div class="wrap">
+    <div class="heroFrame">
+      <video class="heroVideo" autoplay muted loop playsinline preload="metadata">
+        <source src="20250711_1208_Luxurious%20Candle%20Crafting_simple_compose_01jzxe7wfefaas2kvs9yytsmax.mp4" type="video/mp4">
+      </video>
 
-    <div class="heroCopy">
-      <div class="k">Hand-poured, small batch</div>
-      <h1 class="serif">The candle that sets the room.</h1>
-      <p>Clean-burning candles with curated scent profiles. Minimal design, product-forward presentation.</p>
-      <div class="heroActions">
-        <a class="btn fill" href="#shop">Shop featured</a>
-        <a class="btn" href="#about">About</a>
+      <div class="heroOverlay"></div>
+
+      <div class="ambient">
+        <div class="blob" style="left:-140px; top:-120px;"></div>
+        <div class="blob b2" style="right:-220px; bottom:-240px;"></div>
+      </div>
+
+      <div class="heroCopy">
+        <div class="k">Phoenix, Arizona · Founded 2022</div>
+        <h1 class="serif">Bai Luxe Candle Co.</h1>
+        <p>Hand-poured luxury scented candles with premium wax, fine fragrances, and soulful storytelling, designed to turn everyday moments into indulgent rituals.</p>
+        <div class="heroActions">
+          <a class="btn fill" href="#shop">Shop featured</a>
+          <a class="btn" href="#story">Discover the story</a>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="pause rule">
-    <div class="wrap">
-      <span>Clean burn</span>
-      <span>Strong throw</span>
-      <span>Giftable</span>
+  <!-- 95BKLYN-style motion -->
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span><i class="dot"></i> Clean burn</span>
+      <span><i class="dot"></i> Premium wax blend</span>
+      <span><i class="dot"></i> Fine fragrances</span>
+      <span><i class="dot"></i> Custom labels</span>
+      <span><i class="dot"></i> Custom scents</span>
+      <span><i class="dot"></i> Island-inspired storytelling</span>
+
+      <!-- repeat for seamless loop -->
+      <span><i class="dot"></i> Clean burn</span>
+      <span><i class="dot"></i> Premium wax blend</span>
+      <span><i class="dot"></i> Fine fragrances</span>
+      <span><i class="dot"></i> Custom labels</span>
+      <span><i class="dot"></i> Custom scents</span>
+      <span><i class="dot"></i> Island-inspired storytelling</span>
     </div>
   </div>
 </section>
 
+<!-- SHOP -->
 <section id="shop" class="section">
   <div class="wrap">
-    <div class="sectionHead">
-      <h2>Featured</h2>
-      <small>Curated selection, minimal copy</small>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:14px;padding-bottom:14px" class="rule">
+      <div>
+        <div class="k">Featured</div>
+        <div class="serif" style="font-size:34px;line-height:1.05;font-weight:600;margin-top:8px">A curated selection</div>
+      </div>
+      <div class="small" style="color:var(--mut);max-width:44ch">
+        Keep the grid tight. Luxury reads curated, not crowded.
+      </div>
     </div>
 
-    <div class="products">
-      <article class="prod">
-        <img src="ChatGPT%20Image%20Jul%2014,%202025,%2010_04_12%20AM.png" alt="Royal Cotton candle">
+    <div style="padding-top:18px" class="products">
+      <article class="card prod">
+        <img src="ChatGPT%20Image%20Jul%2021,%202025,%2003_21_45%20PM.png" alt="Sugar Loaf Pineapple candle">
         <div class="prodBody">
-          <div class="prodTop">
-            <div class="prodName">Royal Cotton</div>
-            <div class="price">$22</div>
-          </div>
-          <div class="note">Fresh linen, soft musk, clean finish.</div>
+          <div class="prodTop"><div class="prodName">Sugar Loaf Pineapple</div><div class="price">$22</div></div>
+          <div class="note">Tropical fruits, bright citrus, smooth warmth.</div>
         </div>
       </article>
 
-      <article class="prod">
+      <article class="card prod">
         <img src="Flaming_Rose_Edited.jpg" alt="Flaming Rose candle">
         <div class="prodBody">
-          <div class="prodTop">
-            <div class="prodName">Flaming Rose</div>
-            <div class="price">$22</div>
-          </div>
+          <div class="prodTop"><div class="prodName">Flaming Rose</div><div class="price">$22</div></div>
           <div class="note">Velvet rose, warm glow, romantic edge.</div>
         </div>
       </article>
 
-      <article class="prod">
+      <article class="card prod">
         <img src="ChatGPT%20Image%20Jul%2011,%202025,%2012_02_53%20PM.png" alt="Aqua Noir Man candle">
         <div class="prodBody">
-          <div class="prodTop">
-            <div class="prodName">Aqua Noir Man</div>
-            <div class="price">$22</div>
-          </div>
+          <div class="prodTop"><div class="prodName">Aqua Noir Man</div><div class="price">$22</div></div>
           <div class="note">Citrus, woods, amber, clean depth.</div>
         </div>
       </article>
     </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+      <a class="btn fill" href="#" target="_blank" rel="noopener">Shop</a>
+      <a class="btn" href="#custom">Custom orders</a>
+    </div>
   </div>
 </section>
 
-<section id="about" class="section">
+<!-- STORY -->
+<section id="story" class="section">
   <div class="wrap split">
-    <div class="block blockImg">
-      <img src="ChatGPT%20Image%20Jul%2014,%202025,%2010_45_30%20AM.png" alt="Candle image">
+    <div class="card blockImg">
+      <img src="ChatGPT%20Image%20Jul%2022,%202025,%2009_16_33%20AM.png" alt="Lifestyle candle image">
     </div>
 
-    <div class="block blockCopy">
-      <div class="k">About</div>
-      <h3 class="serif">Understated, intentional, clean.</h3>
-      <p>Bai Luxe Candle Co. focuses on scent, burn quality, and a quiet aesthetic that lets the product speak.</p>
-      <div class="heroActions">
-        <a class="btn fill" href="#" target="_blank" rel="noopener">Shop</a>
-        <a class="btn" href="#contact">Contact</a>
+    <div class="card blockCopy">
+      <div class="k">Discover the essence of Bai Luxe Candle Co.</div>
+      <h2 class="serif">Luxury, culture, and calm, poured by hand.</h2>
+      <p>
+        Unveil the story behind our handcrafted luxury scented candles. Founded in Phoenix, Arizona in 2022,
+        each candle is hand-poured with a luxurious blend of premium waxes and fine fragrances, evoking the richness of island sunsets,
+        tropical breezes, and soulful storytelling. Bai Luxe transforms everyday moments into indulgent rituals of beauty and calm.
+      </p>
+      <p class="small">
+        Our collection celebrates individuality, offering custom scents, labels, and designs that reflect your style and memories.
+        From our Caribbean-inspired roots to our meticulous creative process, every Bai Luxe creation is designed to illuminate your world
+        with sophistication, culture, and timeless elegance.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- MOTION STRIP: extra 95BKLYN energy but still clean -->
+<section class="section" style="padding-top:0">
+  <div class="wrap motionRow">
+    <div class="mediaBox">
+      <img src="20250721_2216_Candlelit%20Gaze_simple_compose_01k0r905nwe8f81yz252n8b19y.gif" alt="Candle motion graphic">
+    </div>
+    <div class="mediaBox">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="20250711_1219_Hazel%20Eyes%27%20Candlelight_simple_compose_01jzxev18jeg682c5a92a6bg9m.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM -->
+<section id="custom" class="section">
+  <div class="wrap grid two">
+    <div class="card blockCopy">
+      <div class="k">Custom</div>
+      <h2 class="serif">Make it personal.</h2>
+      <p>
+        Custom scents, labels, and designs that reflect your memories, your style, and your story,
+        created with the same premium materials and meticulous finish.
+      </p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+        <a class="btn fill" href="#contact">Request a custom order</a>
+        <a class="btn" href="#shop">Shop featured</a>
       </div>
+    </div>
+
+    <div class="card blockImg">
+      <img src="ChatGPT%20Image%20Jul%2022,%202025,%2008_33_23%20AM.png" alt="Product image">
     </div>
   </div>
 </section>
@@ -296,7 +384,9 @@ footer{
 <footer id="contact">
   <div class="wrap">
     <div class="k">Contact</div>
-    <p>Email: yourname@yourdomain.com, Instagram: @bailuxecandleco</p>
+    <p style="margin:8px 0 0">
+      Email: yourname@yourdomain.com, Instagram: @bailuxecandleco
+    </p>
     <p>© <span id="y"></span> Bai Luxe Candle Co.</p>
   </div>
 </footer>
