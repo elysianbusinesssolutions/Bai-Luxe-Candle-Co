@@ -6,7 +6,7 @@
   <title>Bai Luxe Candle Co. — Hand-Poured Luxury Scented Candles</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --gold: #D4AF37;
@@ -21,78 +21,68 @@
       --text-light: #9A8E82;
       --border: rgba(212,175,55,0.15);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Jost', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
 
     /* LOADER */
-    #loader { position: fixed; inset: 0; z-index: 9000; background: var(--white); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity .7s, visibility .7s; }
+    #loader { position: fixed; inset: 0; z-index: 9000; background: var(--charcoal); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity .7s, visibility .7s; }
     #loader.gone { opacity: 0; visibility: hidden; }
-    .ld-logo { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; border: 1px solid var(--border); margin-bottom: 1.4rem; }
-    .ld-logo img { width: 100%; height: 100%; object-fit: cover; }
-    .ld-text { font-family: 'Playfair Display', serif; font-size: .9rem; letter-spacing: .3em; color: var(--gold-dark); animation: pulse 1.5s ease infinite; }
-    .ld-bar { width: 0; height: 1px; margin-top: 1.2rem; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: grow 2s ease forwards; }
+    .ld-img { width: 54px; height: 54px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(212,175,55,.4); margin-bottom: 1.4rem; }
+    .ld-img img { width: 100%; height: 100%; object-fit: cover; }
+    .ld-text { font-family: 'Playfair Display', serif; font-size: .9rem; letter-spacing: .3em; color: var(--gold); animation: pulse 1.5s ease infinite; }
+    .ld-bar { width: 0; height: 1px; margin-top: 1.2rem; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: barGrow 2s ease forwards; }
     @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:1} }
-    @keyframes grow { to { width: 130px; } }
+    @keyframes barGrow { to { width: 130px; } }
 
     /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 4rem; transition: all .4s; }
-    nav.stuck { background: rgba(255,255,255,.97); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 1rem 4rem; box-shadow: 0 2px 20px rgba(0,0,0,.04); }
+    nav.stuck { background: rgba(255,255,255,.97); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 1rem 4rem; box-shadow: 0 2px 16px rgba(0,0,0,.05); }
     .nav-logo { display: flex; align-items: center; gap: .8rem; text-decoration: none; }
-    .nav-logo img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(212,175,55,.3); }
-    .nav-name { font-family: 'Playfair Display', serif; font-size: .95rem; letter-spacing: .12em; color: var(--white); transition: color .4s; }
+    .nav-logo img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(212,175,55,.35); }
+    .nav-name { font-family: 'Playfair Display', serif; font-size: .95rem; letter-spacing: .1em; color: var(--white); transition: color .4s; }
     nav.stuck .nav-name { color: var(--text); }
     .nav-name em { color: var(--gold-light); font-style: italic; }
     nav.stuck .nav-name em { color: var(--gold); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.75); text-decoration: none; transition: color .3s; position: relative; }
+    .nav-links a { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.8); text-decoration: none; transition: color .3s; position: relative; }
     nav.stuck .nav-links a { color: var(--text-light); }
     .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width .3s; }
     .nav-links a:hover { color: var(--gold-light); }
     nav.stuck .nav-links a:hover { color: var(--gold); }
     .nav-links a:hover::after { width: 100%; }
-    .nav-cta { font-family: 'Jost', sans-serif; font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.5); color: var(--white); padding: .6rem 1.4rem; text-decoration: none; position: relative; overflow: hidden; transition: all .35s; }
+    .nav-cta { font-family: 'Jost', sans-serif; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.5); color: var(--white); padding: .6rem 1.4rem; text-decoration: none; position: relative; overflow: hidden; transition: all .35s; }
     nav.stuck .nav-cta { border-color: var(--gold); color: var(--gold-dark); }
     .nav-cta::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: translateX(-101%); transition: transform .35s ease; }
     .nav-cta span { position: relative; z-index: 1; transition: color .35s; }
     .nav-cta:hover::before { transform: translateX(0); }
     .nav-cta:hover span { color: var(--charcoal); }
 
-    /* ===== HERO ===== */
+    /* HERO */
     .hero { position: relative; width: 100%; height: 100vh; min-height: 640px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
     .hero-bg { position: absolute; inset: 0; z-index: 1; }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-    .hero-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to bottom, rgba(16,12,6,.5) 0%, rgba(16,12,6,.35) 45%, rgba(16,12,6,.6) 100%); }
-
-    /* Warm candlelight glow only — no sparks */
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .hero-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to bottom, rgba(16,12,6,.48) 0%, rgba(16,12,6,.32) 45%, rgba(16,12,6,.58) 100%); }
     .candle-glow { position: absolute; z-index: 3; pointer-events: none; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(255,175,40,.12) 0%, rgba(255,120,20,.06) 35%, rgba(212,175,55,.03) 55%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: flicker 5s ease-in-out infinite; }
-    @keyframes flicker { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.8} 30%{transform:translate(-50%,-51%) scale(1.04);opacity:1} 65%{transform:translate(-50%,-50%) scale(.97);opacity:.75} }
+    @keyframes flicker { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.8} 35%{transform:translate(-50%,-51%) scale(1.04);opacity:1} 65%{transform:translate(-50%,-50%) scale(.97);opacity:.75} }
 
-    /* HERO CONTENT */
     .hero-content { position: relative; z-index: 10; text-align: center; padding: 0 2rem; width: 100%; max-width: 860px; display: flex; flex-direction: column; align-items: center; }
-
-    .hero-eyebrow { font-family: 'Jost', sans-serif; font-size: .58rem; letter-spacing: .35em; text-transform: uppercase; color: rgba(212,175,55,.85); margin-bottom: 1.8rem; opacity: 0; animation: fadeUp .9s .5s ease forwards; }
-
-    .hero-brand { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(3rem, 6.5vw, 7rem); color: var(--white); letter-spacing: .08em; margin-bottom: .4rem; opacity: 0; animation: fadeUp .9s .7s ease forwards; }
-
-    .hero-brand-sub { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 2.5vw, 2rem); font-style: italic; font-weight: 400; color: var(--gold-light); letter-spacing: .06em; margin-bottom: 2rem; opacity: 0; animation: fadeUp .9s .85s ease forwards; }
-
-    .hero-sub { font-size: .82rem; line-height: 1.95; color: rgba(255,255,255,.58); max-width: 460px; margin-bottom: 2.5rem; font-weight: 300; letter-spacing: .03em; opacity: 0; animation: fadeUp .9s 1s ease forwards; }
-
+    .hero-eyebrow { font-family: 'Jost', sans-serif; font-size: .58rem; letter-spacing: .35em; text-transform: uppercase; color: rgba(212,175,55,.9); margin-bottom: 1.6rem; opacity: 0; animation: fadeUp .9s .5s ease forwards; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(3rem, 7vw, 7.5rem); color: var(--white); letter-spacing: .05em; line-height: 1.1; margin-bottom: .6rem; opacity: 0; animation: fadeUp .9s .7s ease forwards; }
+    .hero-tagline { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 2vw, 1.6rem); font-style: italic; color: var(--gold-light); letter-spacing: .05em; margin-bottom: 1.8rem; opacity: 0; animation: fadeUp .9s .85s ease forwards; }
+    .hero-sub { font-size: .82rem; line-height: 1.95; color: rgba(255,255,255,.58); max-width: 460px; margin-bottom: 2.5rem; font-weight: 300; opacity: 0; animation: fadeUp .9s 1s ease forwards; }
     .hero-btns { display: flex; gap: 1.2rem; align-items: center; justify-content: center; opacity: 0; animation: fadeUp .9s 1.15s ease forwards; }
 
-    .btn-gold { display: inline-block; position: relative; overflow: hidden; padding: 1rem 2.6rem; font-family: 'Jost', sans-serif; font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--charcoal); background: var(--gold); text-decoration: none; border: none; cursor: pointer; font-weight: 500; transition: all .35s; }
+    .btn-gold { display: inline-block; position: relative; overflow: hidden; padding: 1rem 2.6rem; font-family: 'Jost', sans-serif; font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--charcoal); background: var(--gold); text-decoration: none; border: none; cursor: pointer; font-weight: 500; transition: color .35s; }
     .btn-gold::before { content: ''; position: absolute; inset: 0; background: var(--white); transform: translateX(-101%); transition: transform .4s ease; }
     .btn-gold:hover::before { transform: translateX(0); }
     .btn-gold span { position: relative; z-index: 1; }
 
-    .btn-outline { font-family: 'Jost', sans-serif; font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.8); text-decoration: none; border: 1px solid rgba(255,255,255,.35); padding: 1rem 2.2rem; transition: all .35s; }
+    .btn-outline { font-family: 'Jost', sans-serif; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.8); text-decoration: none; border: 1px solid rgba(255,255,255,.35); padding: 1rem 2.2rem; transition: all .35s; }
     .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); }
 
-    /* Scroll hint */
     .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .5rem; z-index: 10; opacity: 0; animation: fadeUp 1s 1.5s ease forwards; }
-    .sh-label { font-size: .44rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.3); font-family: 'Jost', sans-serif; }
+    .sh-text { font-family: 'Jost', sans-serif; font-size: .44rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.3); }
     .sh-line { width: 1px; height: 32px; background: linear-gradient(180deg, rgba(212,175,55,.7), transparent); animation: drip 2s ease infinite; }
     @keyframes drip { 0%,100%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform-origin:bottom} }
 
@@ -105,16 +95,13 @@
 
     /* SHARED */
     .wrap { max-width: 1280px; margin: 0 auto; padding: 0 4rem; }
-
     .sec-label { font-family: 'Jost', sans-serif; font-size: .52rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: .9rem; display: flex; align-items: center; gap: .8rem; }
     .sec-label::before { content: ''; width: 18px; height: 1px; background: var(--gold); display: block; }
-
     .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.2rem; }
     .sec-title em { font-style: italic; color: var(--gold); }
-
     .rule { width: 40px; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); margin: 1.2rem 0; }
 
-    .btn-dark { display: inline-block; position: relative; overflow: hidden; padding: .95rem 2.3rem; font-family: 'Jost', sans-serif; font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--white); background: var(--charcoal); text-decoration: none; border: none; cursor: pointer; }
+    .btn-dark { display: inline-block; position: relative; overflow: hidden; padding: .95rem 2.3rem; font-family: 'Jost', sans-serif; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--white); background: var(--charcoal); text-decoration: none; border: none; cursor: pointer; }
     .btn-dark::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: translateX(-101%); transition: transform .4s ease; }
     .btn-dark:hover::before { transform: translateX(0); }
     .btn-dark:hover { color: var(--charcoal); }
@@ -129,7 +116,6 @@
     .collection { padding: 6rem 0; }
     .col-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
     .col-sub { font-size: .78rem; line-height: 1.9; color: var(--text-light); font-weight: 300; max-width: 320px; }
-
     .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
     .g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 1.5rem; }
 
@@ -141,13 +127,12 @@
 
     .pci { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--cream); }
     .pci img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; display: block; }
-
     .pcb { position: absolute; inset: 0; pointer-events: none; }
     .pcb::before, .pcb::after { content: ''; position: absolute; opacity: 0; transition: opacity .35s; }
     .pcb::before { top: 8px; left: 8px; width: 16px; height: 16px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
     .pcb::after { bottom: 8px; right: 8px; width: 16px; height: 16px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
 
-    .pc-tag { position: absolute; top: .85rem; left: .85rem; z-index: 5; font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .12em; text-transform: uppercase; background: var(--gold); color: var(--charcoal); padding: .28rem .65rem; font-weight: 500; }
+    .pc-tag { position: absolute; top: .85rem; left: .85rem; z-index: 5; font-family: 'Jost', sans-serif; font-size: .48rem; letter-spacing: .12em; text-transform: uppercase; background: var(--gold); color: var(--charcoal); padding: .28rem .65rem; font-weight: 500; }
     .pc-tag.dk { background: rgba(22,20,14,.9); color: var(--gold-light); border: 1px solid rgba(212,175,55,.3); }
 
     .pc-info { padding: 1.1rem 0 0; border-top: 1px solid var(--border); }
@@ -155,10 +140,9 @@
     .pc-notes { font-size: .66rem; color: var(--text-light); line-height: 1.6; margin-bottom: .85rem; font-weight: 300; }
     .pc-foot { display: flex; justify-content: space-between; align-items: center; }
     .pc-price { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold); font-weight: 400; }
-    .pca { font-family: 'Jost', sans-serif; font-size: .52rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); display: flex; align-items: center; gap: .4rem; transition: color .3s; }
+    .pca { font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); display: flex; align-items: center; gap: .4rem; transition: color .3s; }
     .pca::after { content: '→'; transition: transform .3s; }
     .pc:hover .pca { color: var(--gold); }
-
     .col-foot { text-align: center; margin-top: 3.5rem; }
 
     /* BANNER */
@@ -166,7 +150,7 @@
     .banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.42); display: block; }
     .banner-glow { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255,175,40,.1) 0%, transparent 65%); }
     .banner-inner { position: relative; z-index: 5; text-align: center; color: var(--white); padding: 0 2rem; max-width: 680px; }
-    .banner-eyebrow { font-family: 'Jost', sans-serif; font-size: .52rem; letter-spacing: .32em; text-transform: uppercase; color: rgba(212,175,55,.85); margin-bottom: 1rem; }
+    .banner-eyebrow { font-family: 'Jost', sans-serif; font-size: .52rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(212,175,55,.85); margin-bottom: 1rem; }
     .banner-inner .sec-title { color: var(--white); }
     .banner-sub { font-size: .8rem; color: rgba(255,255,255,.55); max-width: 420px; margin: 0 auto 2rem; font-weight: 300; line-height: 1.9; }
 
@@ -179,12 +163,12 @@
     .story-fade { position: absolute; inset: 0; background: linear-gradient(to right, transparent 55%, var(--offwhite)); }
     .story-quote { position: absolute; bottom: 2rem; left: 1.5rem; right: 1.5rem; background: rgba(255,255,255,.93); backdrop-filter: blur(8px); padding: 1.5rem; border-left: 2px solid var(--gold); }
     .story-quote blockquote { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; line-height: 1.6; color: var(--text); }
-    .story-quote cite { display: block; margin-top: .5rem; font-size: .56rem; letter-spacing: .18em; color: var(--gold-dark); font-style: normal; font-family: 'Jost', sans-serif; text-transform: uppercase; }
+    .story-quote cite { display: block; margin-top: .5rem; font-family: 'Jost', sans-serif; font-size: .56rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-dark); font-style: normal; }
     .story-body { padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
     .story-p { font-size: .82rem; line-height: 2.1; color: var(--text-mid); font-weight: 300; margin-bottom: 1.2rem; }
     .story-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
     .sn { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--gold); display: block; font-weight: 300; line-height: 1; }
-    .sl { font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); margin-top: .25rem; display: block; font-family: 'Jost', sans-serif; }
+    .sl { font-family: 'Jost', sans-serif; font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); margin-top: .25rem; display: block; }
 
     /* CUSTOM */
     .custom-section { background: var(--charcoal); text-align: center; position: relative; overflow: hidden; }
@@ -197,7 +181,7 @@
     .custom-sub { font-size: .8rem; line-height: 1.9; color: rgba(255,255,255,.38); max-width: 460px; margin: 0 auto 3rem; font-weight: 300; }
     .custom-icons { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
     .ci { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
-    .ci-icon { width: 48px; height: 48px; border: 1px solid rgba(212,175,55,.22); display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: all .4s; color: rgba(212,175,55,.6); }
+    .ci-icon { width: 48px; height: 48px; border: 1px solid rgba(212,175,55,.22); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: rgba(212,175,55,.6); transition: all .4s; }
     .ci:hover .ci-icon { border-color: var(--gold); background: rgba(212,175,55,.07); color: var(--gold); }
     .ci-lbl { font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.3); }
 
@@ -235,7 +219,7 @@
     /* FOOTER */
     footer { background: var(--charcoal); padding: 4rem 4rem 2rem; }
     .fgrid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; max-width: 1280px; margin: 0 auto; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.05); }
-    .fb { font-family: 'Playfair Display', serif; font-size: 1.1rem; letter-spacing: .08em; color: var(--white); margin-bottom: .8rem; }
+    .fb { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--white); margin-bottom: .8rem; }
     .fb em { color: var(--gold); font-style: italic; }
     .ft { font-size: .72rem; color: rgba(255,255,255,.28); line-height: 1.9; max-width: 220px; }
     .fc h4 { font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
@@ -246,10 +230,9 @@
     .fbot { display: flex; justify-content: space-between; align-items: center; padding-top: 1.6rem; max-width: 1280px; margin: 0 auto; }
     .fcopy { font-size: .62rem; color: rgba(255,255,255,.15); }
     .fsoc { display: flex; gap: 1.3rem; }
-    .fsoc a { font-size: .52rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.22); text-decoration: none; transition: color .3s; font-family: 'Jost', sans-serif; }
+    .fsoc a { font-family: 'Jost', sans-serif; font-size: .52rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.22); text-decoration: none; transition: color .3s; }
     .fsoc a:hover { color: var(--gold); }
 
-    /* ANIMATIONS */
     @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity .85s ease, transform .85s ease; }
     .reveal.on { opacity: 1; transform: translateY(0); }
@@ -273,12 +256,11 @@
 <body>
 
   <div id="loader">
-    <div class="ld-logo"><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/IMG_20250731_061403_476.webp" alt="Bai Luxe"/></div>
+    <div class="ld-img"><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/IMG_20250731_061403_476.webp" alt="Bai Luxe"/></div>
     <div class="ld-text">Bai Luxe Candle Co.</div>
     <div class="ld-bar"></div>
   </div>
 
-  <!-- NAV -->
   <nav id="nav">
     <a href="#top" class="nav-logo">
       <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/IMG_20250731_061403_476.webp" alt="Bai Luxe"/>
@@ -293,39 +275,35 @@
     <a href="#collection" class="nav-cta"><span>Shop Now</span></a>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO — using your uploaded GIF -->
   <section class="hero" id="top">
     <div class="hero-bg">
-      <img src="hero.gif" alt="Bai Luxe"/>
+      <img src="20250721_2259_Blend%20Video_blend_01k0rbdcfgfvcarscap16ae663.gif" alt="Bai Luxe"/>
     </div>
     <div class="hero-overlay"></div>
     <div class="candle-glow"></div>
-
     <div class="hero-content">
       <div class="hero-eyebrow">Phoenix, Arizona &nbsp;·&nbsp; Founded 2022</div>
-      <h1 class="hero-brand">Bai Luxe Candle Co.</h1>
-      <p class="hero-brand-sub">Hand-Poured Luxury Scented Candles</p>
+      <h1 class="hero-title">Bai Luxe Candle Co.</h1>
+      <p class="hero-tagline">Hand-Poured Luxury Scented Candles</p>
       <p class="hero-sub">Inspired by the warmth of the Caribbean. Each flame is a moment worth savoring.</p>
       <div class="hero-btns">
         <a href="#collection" class="btn-gold"><span>Shop the Collection</span></a>
         <a href="#story" class="btn-outline">Our Story</a>
       </div>
     </div>
-
     <div class="scroll-hint">
-      <span class="sh-label">Scroll</span>
+      <span class="sh-text">Scroll</span>
       <div class="sh-line"></div>
     </div>
   </section>
 
-  <!-- MARQUEE -->
   <div class="marquee">
     <div class="mtrack">
-      <span>Hand-Poured</span><span class="gem">◆</span><span>Premium Para-Soy Blend</span><span class="gem">◆</span><span>Fine Fragrances</span><span class="gem">◆</span><span>Custom Labels & Scents</span><span class="gem">◆</span><span>Caribbean Inspired</span><span class="gem">◆</span><span>Luxury Scented Candles</span><span class="gem">◆</span><span>Phoenix, Arizona</span><span class="gem">◆</span><span>Hand-Poured</span><span class="gem">◆</span><span>Premium Para-Soy Blend</span><span class="gem">◆</span><span>Fine Fragrances</span><span class="gem">◆</span><span>Custom Labels & Scents</span><span class="gem">◆</span><span>Caribbean Inspired</span><span class="gem">◆</span><span>Luxury Scented Candles</span><span class="gem">◆</span><span>Phoenix, Arizona</span><span class="gem">◆</span>
+      <span>Hand-Poured</span><span class="gem">◆</span><span>Premium Para-Soy Blend</span><span class="gem">◆</span><span>Fine Fragrances</span><span class="gem">◆</span><span>Custom Labels & Scents</span><span class="gem">◆</span><span>Caribbean Inspired</span><span class="gem">◆</span><span>Luxury Scented Candles</span><span class="gem">◆</span><span>Phoenix, Arizona</span><span class="gem">◆</span><span>Hand-Poured</span><span class="gem">◆</span><span>Premium Para-Soy Blend</span><span class="gem">◆</span><span>Fine Fragrances</span><span class="gem">◆</span><span>Custom Labels & Scents</span><span class="gem">◆</span><span class="gem">◆</span><span>Caribbean Inspired</span><span class="gem">◆</span><span>Luxury Scented Candles</span><span class="gem">◆</span><span>Phoenix, Arizona</span><span class="gem">◆</span>
     </div>
   </div>
 
-  <!-- COLLECTION -->
   <div id="collection">
     <div class="wrap">
       <div class="collection">
@@ -338,55 +316,38 @@
           </div>
           <a href="https://www.etsy.com" target="_blank" class="btn-link">View All</a>
         </div>
-
         <div class="g3">
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
-            <div class="pci"><div class="pcb"></div>
-            <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT%20Image%20Jul%2021,%202025,%2003_21_45%20PM.png" alt="Sugar Loaf Pineapple"/>
-            <span class="pc-tag">Bestseller</span></div>
+            <div class="pci"><div class="pcb"></div><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT_Image_Jul_21__2025__03_21_45_PM.png" alt="Sugar Loaf Pineapple"/><span class="pc-tag">Bestseller</span></div>
             <div class="pc-info"><h3 class="pc-name">Sugar Loaf Pineapple</h3><p class="pc-notes">Tropical fruits & rum · Tangerine, orange peel & lemon · Sweet pineapple</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d2">
-            <div class="pci"><div class="pcb"></div>
-            <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/Flaming_Rose_Edited.jpg" alt="Flaming Rose"/>
-            <span class="pc-tag">Fan Favorite</span></div>
+            <div class="pci"><div class="pcb"></div><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/Flaming_Rose_Edited.jpg" alt="Flaming Rose"/><span class="pc-tag">Fan Favorite</span></div>
             <div class="pc-info"><h3 class="pc-name">Flaming Rose</h3><p class="pc-notes">Ozone & green leaves · Rose, carnation & lily of the valley · Ylang ylang</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d3">
-            <div class="pci"><div class="pcb"></div>
-            <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT%20Image%20Jul%2011,%202025,%2012_02_53%20PM.png" alt="Aqua Noir Man"/>
-            <span class="pc-tag dk">For Him</span></div>
+            <div class="pci"><div class="pcb"></div><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT_Image_Jul_11__2025__12_02_53_PM.png" alt="Aqua Noir Man"/><span class="pc-tag dk">For Him</span></div>
             <div class="pc-info"><h3 class="pc-name">Aqua Noir Man</h3><p class="pc-notes">Mandarin, bergamot & lemon · Jasmine & lilies · Rosewood, amber & musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
         </div>
-
         <div class="g4">
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
-            <div class="pci"><div class="pcb"></div>
-            <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT%20Image%20Jul%2014,%202025,%2010_45_30%20AM.png" alt="Alpha Male"/>
-            <span class="pc-tag dk">For Him</span></div>
+            <div class="pci"><div class="pcb"></div><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT_Image_Jul_14__2025__10_45_30_AM.png" alt="Alpha Male"/><span class="pc-tag dk">For Him</span></div>
             <div class="pc-info"><h3 class="pc-name">Alpha Male</h3><p class="pc-notes">Bold citrus · Bamboo & lilies · Amber, patchouli & musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d2">
-            <div class="pci"><div class="pcb"></div>
-            <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT%20Image%20Jul%2014,%202025,%2010_04_12%20AM.png" alt="Royal Cotton"/>
-            <span class="pc-tag">Clean & Fresh</span></div>
+            <div class="pci"><div class="pcb"></div><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT_Image_Jul_14__2025__10_04_12_AM.png" alt="Royal Cotton"/><span class="pc-tag">Clean & Fresh</span></div>
             <div class="pc-info"><h3 class="pc-name">Royal Cotton</h3><p class="pc-notes">Fresh cotton & clean air · Ozone, linen & cotton blossom · Lily & white musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d3">
-            <div class="pci"><div class="pcb"></div>
-            <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT%20Image%20Jul%2022,%202025,%2008_55_22%20AM.png" alt="Pu$$y Magnet"/>
-            <span class="pc-tag">Bold</span></div>
+            <div class="pci"><div class="pcb"></div><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT_Image_Jul_22__2025__08_55_22_AM.png" alt="Pu$$y Magnet"/><span class="pc-tag">Bold</span></div>
             <div class="pc-info"><h3 class="pc-name">Pu$$y Magnet</h3><p class="pc-notes">Sultry lavender, rosemary & lemon verbea · Cool coriander · Leather & vetiver</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d4">
-            <div class="pci"><div class="pcb"></div>
-            <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT%20Image%20Jul%2022,%202025,%2008_33_23%20AM.png" alt="Rainbow Collection"/>
-            <span class="pc-tag">Limited</span></div>
+            <div class="pci"><div class="pcb"></div><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT_Image_Jul_22__2025__08_33_23_AM.png" alt="Rainbow Collection"/><span class="pc-tag">Limited</span></div>
             <div class="pc-info"><h3 class="pc-name">Rainbow Collection</h3><p class="pc-notes">Vibrant layered candles · Bold rainbow colors · Custom scents available</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
         </div>
-
         <div class="col-foot reveal">
           <a href="https://www.etsy.com" target="_blank" class="btn-dark"><span>Shop All Candles</span></a>
         </div>
@@ -394,7 +355,6 @@
     </div>
   </div>
 
-  <!-- BANNER -->
   <div class="banner reveal">
     <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/Flaming_Rose_Edited.jpg" alt="Bai Luxe"/>
     <div class="banner-glow"></div>
@@ -406,11 +366,10 @@
     </div>
   </div>
 
-  <!-- STORY -->
   <div class="story-wrap" id="story">
     <div class="story">
       <div class="story-img">
-        <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT%20Image%20Jul%2021,%202025,%2003_21_45%20PM.png" alt="Bai Luxe candle"/>
+        <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT_Image_Jul_21__2025__03_21_45_PM.png" alt="Bai Luxe"/>
         <div class="story-fade"></div>
         <div class="story-quote reveal">
           <blockquote>"Every candle is a ritual. Every scent, a moment worth savoring."</blockquote>
@@ -433,13 +392,12 @@
     </div>
   </div>
 
-  <!-- CUSTOM -->
   <div class="custom-section" id="custom">
     <div class="custom-inner">
       <div class="sec-label reveal">Custom Orders</div>
       <h2 class="sec-title reveal">Make It <em>Uniquely</em> Yours</h2>
       <div class="rule reveal" style="margin:1.2rem auto;"></div>
-      <p class="custom-sub reveal">Custom scents, labels, and designs crafted with the same premium materials — perfect for gifts, weddings, and events.</p>
+      <p class="custom-sub reveal">Custom scents, labels, and designs — perfect for gifts, weddings, and events.</p>
       <div class="custom-icons reveal">
         <div class="ci"><div class="ci-icon">✦</div><span class="ci-lbl">Custom Scents</span></div>
         <div class="ci"><div class="ci-icon">◈</div><span class="ci-lbl">Custom Labels</span></div>
@@ -451,7 +409,6 @@
     </div>
   </div>
 
-  <!-- VALUES -->
   <div class="values-wrap">
     <div class="values-inner">
       <div class="values-head reveal">
@@ -467,7 +424,6 @@
     </div>
   </div>
 
-  <!-- CONTACT -->
   <div class="contact-wrap" id="contact">
     <div class="contact">
       <div class="cl reveal">
@@ -491,7 +447,6 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <div class="fgrid">
       <div>
