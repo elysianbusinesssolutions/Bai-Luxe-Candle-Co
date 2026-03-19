@@ -1,1251 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bai Luxe Candle Co. — Hand-Poured Luxury Scented Candles</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --gold: #B8922A;
-      --gold-light: #D4AE58;
-      --gold-pale: #F0E0B8;
-      --gold-dark: #8A6A18;
-      --cream: #FAF6EF;
-      --warm-white: #FFFCF7;
-      --charcoal: #1A1612;
-      --charcoal-mid: #2A2420;
-      --stone: #7A6E62;
-      --linen: #EDE5D8;
-      /* NEW LIGHT PALETTE */
-      --bg-main: #FAF6EF;
-      --bg-section: #F5EFE4;
-      --bg-accent: #EDE5D8;
-      --text-dark: #1A1612;
-      --text-mid: #4A4038;
-      --text-light: #8A7E72;
+      --gold: #D4AF37;
+      --gold-light: #F0D060;
+      --gold-dark: #A88A20;
+      --white: #FFFFFF;
+      --offwhite: #FAFAF8;
+      --cream: #F5F0E8;
+      --charcoal: #16140E;
+      --text: #1A1612;
+      --text-mid: #5A5248;
+      --text-light: #9A8E82;
+      --border: rgba(212,175,55,0.15);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Jost', sans-serif;
-      background: var(--bg-main);
-      color: var(--text-dark);
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* CUSTOM CURSOR */
-    .cursor {
-      position: fixed;
-      width: 10px;
-      height: 10px;
-      background: var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s;
-      mix-blend-mode: difference;
-    }
-
-    .cursor-follower {
-      position: fixed;
-      width: 36px;
-      height: 36px;
-      border: 1px solid rgba(184,146,42,0.6);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: all 0.15s ease;
-    }
-
-    /* GRAIN OVERLAY */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      pointer-events: none;
-      opacity: 0.03;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    }
+    body { font-family: 'Jost', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
 
     /* LOADER */
-    .loader {
-      position: fixed;
-      inset: 0;
-      z-index: 9000;
-      background: var(--bg-main);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.8s ease, visibility 0.8s;
-    }
-
-    .loader.hidden { opacity: 0; visibility: hidden; }
-
-    .loader-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      letter-spacing: 0.4em;
-      color: var(--gold);
-      margin-bottom: 2rem;
-      animation: loaderPulse 1.5s ease infinite;
-    }
-
-    .loader-line {
-      width: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      animation: loaderLine 2s ease forwards;
-    }
-
-    @keyframes loaderPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
-    @keyframes loaderLine { to { width: 200px; } }
+    #loader { position: fixed; inset: 0; z-index: 9000; background: var(--white); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity .7s, visibility .7s; }
+    #loader.gone { opacity: 0; visibility: hidden; }
+    .ld-logo { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; border: 1px solid var(--border); margin-bottom: 1.4rem; }
+    .ld-logo img { width: 100%; height: 100%; object-fit: cover; }
+    .ld-text { font-family: 'Playfair Display', serif; font-size: .9rem; letter-spacing: .3em; color: var(--gold-dark); animation: pulse 1.5s ease infinite; }
+    .ld-bar { width: 0; height: 1px; margin-top: 1.2rem; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: grow 2s ease forwards; }
+    @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+    @keyframes grow { to { width: 130px; } }
 
     /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 500;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.6rem 5rem;
-      transition: all 0.4s ease;
-    }
-
-    nav.scrolled {
-      background: rgba(250,246,239,0.97);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(184,146,42,0.25);
-      padding: 1.1rem 5rem;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      text-decoration: none;
-      z-index: 10;
-    }
-
-    .nav-logo img {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid rgba(201,168,76,0.4);
-    }
-
-    .nav-logo-text {
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
-      letter-spacing: 0.2em;
-      color: var(--text-dark);
-    }
-
-    .nav-logo-text span { color: var(--gold); }
-
-    .nav-links { display: flex; gap: 3rem; list-style: none; }
-
-    .nav-links a {
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--text-light);
-      text-decoration: none;
-      transition: color 0.3s;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--gold);
-      transition: width 0.3s;
-    }
-
-    .nav-links a:hover { color: var(--gold); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 4rem; transition: all .4s; }
+    nav.stuck { background: rgba(255,255,255,.97); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 1rem 4rem; box-shadow: 0 2px 20px rgba(0,0,0,.04); }
+    .nav-logo { display: flex; align-items: center; gap: .8rem; text-decoration: none; }
+    .nav-logo img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(212,175,55,.3); }
+    .nav-name { font-family: 'Playfair Display', serif; font-size: .95rem; letter-spacing: .12em; color: var(--white); transition: color .4s; }
+    nav.stuck .nav-name { color: var(--text); }
+    .nav-name em { color: var(--gold-light); font-style: italic; }
+    nav.stuck .nav-name em { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.75); text-decoration: none; transition: color .3s; position: relative; }
+    nav.stuck .nav-links a { color: var(--text-light); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width .3s; }
+    .nav-links a:hover { color: var(--gold-light); }
+    nav.stuck .nav-links a:hover { color: var(--gold); }
     .nav-links a:hover::after { width: 100%; }
-
-    .nav-cta {
-      font-family: 'Cinzel', serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      border: 1px solid rgba(201,168,76,0.5);
-      padding: 0.7rem 1.6rem;
-      text-decoration: none;
-      transition: all 0.4s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .nav-cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--gold);
-      transform: translateX(-100%);
-      transition: transform 0.4s ease;
-    }
-
+    .nav-cta { font-family: 'Jost', sans-serif; font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.5); color: var(--white); padding: .6rem 1.4rem; text-decoration: none; position: relative; overflow: hidden; transition: all .35s; }
+    nav.stuck .nav-cta { border-color: var(--gold); color: var(--gold-dark); }
+    .nav-cta::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: translateX(-101%); transition: transform .35s ease; }
+    .nav-cta span { position: relative; z-index: 1; transition: color .35s; }
     .nav-cta:hover::before { transform: translateX(0); }
-    .nav-cta span { position: relative; z-index: 1; transition: color 0.4s; }
-    .nav-cta:hover span { color: var(--warm-white); }
+    .nav-cta:hover span { color: var(--charcoal); }
 
-    /* HERO */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: var(--bg-main);
-    }
+    /* ===== HERO ===== */
+    .hero { position: relative; width: 100%; height: 100vh; min-height: 640px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .hero-bg { position: absolute; inset: 0; z-index: 1; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .hero-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to bottom, rgba(16,12,6,.5) 0%, rgba(16,12,6,.35) 45%, rgba(16,12,6,.6) 100%); }
 
-    /* Animated gold particles */
-    .particles {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
+    /* Warm candlelight glow only — no sparks */
+    .candle-glow { position: absolute; z-index: 3; pointer-events: none; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(255,175,40,.12) 0%, rgba(255,120,20,.06) 35%, rgba(212,175,55,.03) 55%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: flicker 5s ease-in-out infinite; }
+    @keyframes flicker { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.8} 30%{transform:translate(-50%,-51%) scale(1.04);opacity:1} 65%{transform:translate(-50%,-50%) scale(.97);opacity:.75} }
 
-    .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: var(--gold);
-      border-radius: 50%;
-      opacity: 0;
-      animation: particleFloat var(--dur, 8s) var(--delay, 0s) infinite ease-in-out;
-    }
+    /* HERO CONTENT */
+    .hero-content { position: relative; z-index: 10; text-align: center; padding: 0 2rem; width: 100%; max-width: 860px; display: flex; flex-direction: column; align-items: center; }
 
-    @keyframes particleFloat {
-      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-      10% { opacity: 0.6; }
-      90% { opacity: 0.3; }
-      100% { transform: translateY(-20vh) translateX(var(--drift, 30px)); opacity: 0; }
-    }
+    .hero-eyebrow { font-family: 'Jost', sans-serif; font-size: .58rem; letter-spacing: .35em; text-transform: uppercase; color: rgba(212,175,55,.85); margin-bottom: 1.8rem; opacity: 0; animation: fadeUp .9s .5s ease forwards; }
 
-    /* Gold radial glow */
-    .hero-glow {
-      position: absolute;
-      width: 800px;
-      height: 800px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
-      top: 50%;
-      left: 30%;
-      transform: translate(-50%, -50%);
-      animation: glowPulse 6s ease infinite;
-      pointer-events: none;
-    }
+    .hero-brand { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(3rem, 6.5vw, 7rem); color: var(--white); letter-spacing: .08em; margin-bottom: .4rem; opacity: 0; animation: fadeUp .9s .7s ease forwards; }
 
-    @keyframes glowPulse {
-      0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; }
-      50% { transform: translate(-50%,-50%) scale(1.15); opacity: 1; }
-    }
+    .hero-brand-sub { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 2.5vw, 2rem); font-style: italic; font-weight: 400; color: var(--gold-light); letter-spacing: .06em; margin-bottom: 2rem; opacity: 0; animation: fadeUp .9s .85s ease forwards; }
 
-    .hero-content {
-      position: relative;
-      z-index: 10;
-      padding: 0 5rem;
-      padding-top: 100px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      width: 100%;
-    }
+    .hero-sub { font-size: .82rem; line-height: 1.95; color: rgba(255,255,255,.58); max-width: 460px; margin-bottom: 2.5rem; font-weight: 300; letter-spacing: .03em; opacity: 0; animation: fadeUp .9s 1s ease forwards; }
 
-    .hero-left {}
+    .hero-btns { display: flex; gap: 1.2rem; align-items: center; justify-content: center; opacity: 0; animation: fadeUp .9s 1.15s ease forwards; }
 
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-family: 'Cinzel', serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: slideUp 1s 0.5s ease forwards;
-    }
+    .btn-gold { display: inline-block; position: relative; overflow: hidden; padding: 1rem 2.6rem; font-family: 'Jost', sans-serif; font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--charcoal); background: var(--gold); text-decoration: none; border: none; cursor: pointer; font-weight: 500; transition: all .35s; }
+    .btn-gold::before { content: ''; position: absolute; inset: 0; background: var(--white); transform: translateX(-101%); transition: transform .4s ease; }
+    .btn-gold:hover::before { transform: translateX(0); }
+    .btn-gold span { position: relative; z-index: 1; }
 
-    .hero-tag::before, .hero-tag::after {
-      content: '';
-      display: block;
-      width: 24px;
-      height: 1px;
-      background: var(--gold);
-    }
+    .btn-outline { font-family: 'Jost', sans-serif; font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.8); text-decoration: none; border: 1px solid rgba(255,255,255,.35); padding: 1rem 2.2rem; transition: all .35s; }
+    .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); }
 
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(4rem, 7vw, 7.5rem);
-      font-weight: 300;
-      line-height: 0.95;
-      letter-spacing: -0.01em;
-      color: var(--text-dark);
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: slideUp 1s 0.7s ease forwards;
-    }
-
-    .hero h1 .gold-word {
-      color: var(--gold);
-      font-style: italic;
-      display: block;
-    }
-
-    .hero h1 .outline-word {
-      -webkit-text-stroke: 1px rgba(255,253,249,0.3);
-      color: transparent;
-      display: block;
-    }
-
-    .hero-sub {
-      font-size: 0.82rem;
-      line-height: 2;
-      color: var(--text-light);
-      max-width: 400px;
-      margin-bottom: 3rem;
-      font-weight: 300;
-      letter-spacing: 0.05em;
-      opacity: 0;
-      animation: slideUp 1s 0.9s ease forwards;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-      opacity: 0;
-      animation: slideUp 1s 1.1s ease forwards;
-    }
-
-    .btn-luxury {
-      display: inline-block;
-      position: relative;
-      padding: 1.1rem 2.8rem;
-      font-family: 'Cinzel', serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--charcoal);
-      background: var(--gold);
-      overflow: hidden;
-      transition: all 0.4s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-luxury::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--gold-light);
-      transform: translateX(-100%) skewX(-10deg);
-      transition: transform 0.4s ease;
-    }
-
-    .btn-luxury:hover::before { transform: translateX(0) skewX(0); }
-    .btn-luxury span { position: relative; z-index: 1; }
-
-    .btn-outline {
-      font-family: 'Cinzel', serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: rgba(255,253,249,0.6);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      transition: color 0.3s;
-    }
-
-    .btn-outline::after {
-      content: '→';
-      transition: transform 0.3s;
-    }
-
-    .btn-outline:hover { color: var(--gold); }
-    .btn-outline:hover::after { transform: translateX(4px); }
-
-    /* Hero right - floating candle showcase */
-    .hero-right {
-      position: relative;
-      height: 600px;
-      opacity: 0;
-      animation: slideUp 1.2s 1s ease forwards;
-    }
-
-    .hero-candle-main {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 320px;
-      height: 420px;
-      border-radius: 4px;
-      overflow: hidden;
-      animation: floatCandle 6s ease-in-out infinite;
-    }
-
-    .hero-candle-main img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    @keyframes floatCandle {
-      0%,100% { transform: translate(-50%,-50%) translateY(0); }
-      50% { transform: translate(-50%,-50%) translateY(-16px); }
-    }
-
-    .hero-candle-accent {
-      position: absolute;
-      width: 160px;
-      height: 210px;
-      overflow: hidden;
-      border-radius: 4px;
-      animation: floatCandle 7s 1s ease-in-out infinite;
-    }
-
-    .hero-candle-accent img { width: 100%; height: 100%; object-fit: cover; }
-    .hero-candle-accent.left { top: 10%; left: -5%; }
-    .hero-candle-accent.right { bottom: 8%; right: -5%; animation-delay: 2s; }
-
-    /* Gold frame around main candle */
-    .hero-candle-main::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border: 1px solid rgba(201,168,76,0.3);
-      z-index: 10;
-      pointer-events: none;
-    }
-
-    /* Floating gold orbs */
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,168,76,0.2), transparent 70%);
-      animation: orbFloat var(--dur) var(--delay) ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes orbFloat {
-      0%,100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-20px) scale(1.1); }
-    }
-
-    /* DIVIDER */
-    .gold-line-divider {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 3rem 5rem;
-      background: var(--bg-section);
-    }
-
-    .gold-line-divider::before, .gold-line-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
-    }
-
-    .divider-emblem {
-      font-family: 'Cinzel', serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      color: var(--gold-dark);
-      white-space: nowrap;
-    }
+    /* Scroll hint */
+    .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .5rem; z-index: 10; opacity: 0; animation: fadeUp 1s 1.5s ease forwards; }
+    .sh-label { font-size: .44rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.3); font-family: 'Jost', sans-serif; }
+    .sh-line { width: 1px; height: 32px; background: linear-gradient(180deg, rgba(212,175,55,.7), transparent); animation: drip 2s ease infinite; }
+    @keyframes drip { 0%,100%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform-origin:bottom} }
 
     /* MARQUEE */
-    .marquee-strip {
-      background: linear-gradient(90deg, var(--linen), var(--bg-accent), var(--linen));
-      padding: 1.2rem 0;
-      overflow: hidden;
-      white-space: nowrap;
-      border-top: 1px solid rgba(184,146,42,0.15);
-      border-bottom: 1px solid rgba(201,168,76,0.1);
-    }
+    .marquee { background: var(--charcoal); padding: .9rem 0; overflow: hidden; white-space: nowrap; }
+    .mtrack { display: inline-block; animation: mscroll 32s linear infinite; }
+    .mtrack span { font-family: 'Jost', sans-serif; font-size: .52rem; letter-spacing: .24em; text-transform: uppercase; color: rgba(212,175,55,.55); padding: 0 2rem; }
+    .mtrack .gem { color: var(--gold); padding: 0; font-size: .38rem; }
+    @keyframes mscroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-    .marquee-inner { display: inline-block; animation: marquee 35s linear infinite; }
-    .marquee-inner span { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(140,100,20,0.7); padding: 0 3rem; }
-    .marquee-inner span.diamond { color: var(--gold); padding: 0; font-size: 0.5rem; }
-    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    /* SHARED */
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 0 4rem; }
 
-    /* SECTIONS */
-    section { padding: 8rem 5rem; }
+    .sec-label { font-family: 'Jost', sans-serif; font-size: .52rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: .9rem; display: flex; align-items: center; gap: .8rem; }
+    .sec-label::before { content: ''; width: 18px; height: 1px; background: var(--gold); display: block; }
 
-    .section-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold-dark);
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
+    .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.2rem; }
+    .sec-title em { font-style: italic; color: var(--gold); }
 
-    .section-eyebrow::before {
-      content: '';
-      display: block;
-      width: 28px;
-      height: 1px;
-      background: var(--gold);
-    }
+    .rule { width: 40px; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); margin: 1.2rem 0; }
 
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.5rem, 4vw, 4rem);
-      font-weight: 300;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-    }
+    .btn-dark { display: inline-block; position: relative; overflow: hidden; padding: .95rem 2.3rem; font-family: 'Jost', sans-serif; font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--white); background: var(--charcoal); text-decoration: none; border: none; cursor: pointer; }
+    .btn-dark::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: translateX(-101%); transition: transform .4s ease; }
+    .btn-dark:hover::before { transform: translateX(0); }
+    .btn-dark:hover { color: var(--charcoal); }
+    .btn-dark span { position: relative; z-index: 1; }
 
-    .section-title em { font-style: italic; color: var(--gold); }
-
-    .gold-rule {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      margin: 1.5rem 0;
-    }
+    .btn-link { font-family: 'Jost', sans-serif; font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); text-decoration: none; display: flex; align-items: center; gap: .4rem; transition: color .3s; }
+    .btn-link::after { content: '→'; transition: transform .3s; }
+    .btn-link:hover { color: var(--gold); }
+    .btn-link:hover::after { transform: translateX(4px); }
 
     /* COLLECTION */
-    .collection {
-      background: linear-gradient(180deg, var(--bg-main) 0%, var(--bg-section) 50%, var(--bg-main) 100%);
-      position: relative;
-    }
+    .collection { padding: 6rem 0; }
+    .col-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
+    .col-sub { font-size: .78rem; line-height: 1.9; color: var(--text-light); font-weight: 300; max-width: 320px; }
 
-    .collection::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
-    }
+    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 1.5rem; }
 
-    .collection-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 5rem;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
+    .pc { display: block; text-decoration: none; color: inherit; }
+    .pc:hover .pci img { transform: scale(1.05); }
+    .pc:hover .pc-name { color: var(--gold); }
+    .pc:hover .pca::after { transform: translateX(4px); }
+    .pc:hover .pcb::before, .pc:hover .pcb::after { opacity: 1; }
 
-    .collection-subtitle {
-      font-size: 0.8rem;
-      line-height: 1.9;
-      color: var(--text-light);
-      max-width: 400px;
-      font-weight: 300;
-      letter-spacing: 0.04em;
-    }
+    .pci { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--cream); }
+    .pci img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; display: block; }
 
-    /* PRODUCT GRID */
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 2rem; }
+    .pcb { position: absolute; inset: 0; pointer-events: none; }
+    .pcb::before, .pcb::after { content: ''; position: absolute; opacity: 0; transition: opacity .35s; }
+    .pcb::before { top: 8px; left: 8px; width: 16px; height: 16px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+    .pcb::after { bottom: 8px; right: 8px; width: 16px; height: 16px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
 
-    .product-card {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      position: relative;
-      group: true;
-    }
+    .pc-tag { position: absolute; top: .85rem; left: .85rem; z-index: 5; font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .12em; text-transform: uppercase; background: var(--gold); color: var(--charcoal); padding: .28rem .65rem; font-weight: 500; }
+    .pc-tag.dk { background: rgba(22,20,14,.9); color: var(--gold-light); border: 1px solid rgba(212,175,55,.3); }
 
-    .product-img-wrap {
-      position: relative;
-      aspect-ratio: 2/3;
-      overflow: hidden;
-      background: var(--linen);
-    }
+    .pc-info { padding: 1.1rem 0 0; border-top: 1px solid var(--border); }
+    .pc-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: .2rem; transition: color .3s; }
+    .pc-notes { font-size: .66rem; color: var(--text-light); line-height: 1.6; margin-bottom: .85rem; font-weight: 300; }
+    .pc-foot { display: flex; justify-content: space-between; align-items: center; }
+    .pc-price { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold); font-weight: 400; }
+    .pca { font-family: 'Jost', sans-serif; font-size: .52rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); display: flex; align-items: center; gap: .4rem; transition: color .3s; }
+    .pca::after { content: '→'; transition: transform .3s; }
+    .pc:hover .pca { color: var(--gold); }
 
-    .product-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      filter: brightness(0.9);
-    }
+    .col-foot { text-align: center; margin-top: 3.5rem; }
 
-    .product-card:hover .product-img-wrap img {
-      transform: scale(1.07);
-      filter: brightness(1);
-    }
+    /* BANNER */
+    .banner { position: relative; height: 480px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.42); display: block; }
+    .banner-glow { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255,175,40,.1) 0%, transparent 65%); }
+    .banner-inner { position: relative; z-index: 5; text-align: center; color: var(--white); padding: 0 2rem; max-width: 680px; }
+    .banner-eyebrow { font-family: 'Jost', sans-serif; font-size: .52rem; letter-spacing: .32em; text-transform: uppercase; color: rgba(212,175,55,.85); margin-bottom: 1rem; }
+    .banner-inner .sec-title { color: var(--white); }
+    .banner-sub { font-size: .8rem; color: rgba(255,255,255,.55); max-width: 420px; margin: 0 auto 2rem; font-weight: 300; line-height: 1.9; }
 
-    /* Gold corner accents */
-    .product-img-wrap::before,
-    .product-img-wrap::after {
-      content: '';
-      position: absolute;
-      z-index: 10;
-      pointer-events: none;
-      transition: opacity 0.4s;
-      opacity: 0;
-    }
-
-    .product-img-wrap::before {
-      top: 8px; left: 8px;
-      width: 20px; height: 20px;
-      border-top: 1px solid var(--gold);
-      border-left: 1px solid var(--gold);
-    }
-
-    .product-img-wrap::after {
-      bottom: 8px; right: 8px;
-      width: 20px; height: 20px;
-      border-bottom: 1px solid var(--gold);
-      border-right: 1px solid var(--gold);
-    }
-
-    .product-card:hover .product-img-wrap::before,
-    .product-card:hover .product-img-wrap::after { opacity: 1; }
-
-    .product-tag {
-      position: absolute;
-      top: 1rem; left: 1rem;
-      font-family: 'Cinzel', serif;
-      font-size: 0.5rem;
-      letter-spacing: 0.2em;
-      color: var(--charcoal);
-      background: var(--gold);
-      padding: 0.3rem 0.7rem;
-      z-index: 5;
-    }
-
-    .product-tag.dark { background: rgba(26,22,18,0.85); color: var(--gold-light); border: 1px solid rgba(184,146,42,0.3); }
-
-    /* Gold shimmer overlay on hover */
-    .product-shimmer {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(45deg, transparent 40%, rgba(201,168,76,0.08) 50%, transparent 60%);
-      background-size: 200% 200%;
-      z-index: 5;
-      opacity: 0;
-      transition: opacity 0.4s;
-      pointer-events: none;
-      animation: shimmer 2s linear infinite;
-    }
-
-    .product-card:hover .product-shimmer { opacity: 1; }
-    @keyframes shimmer { to { background-position: 200% 200%; } }
-
-    .product-info {
-      padding: 1.5rem 0 0;
-      border-top: 1px solid rgba(201,168,76,0.1);
-      margin-top: 0;
-    }
-
-    .product-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
-      font-weight: 400;
-      color: var(--text-dark);
-      margin-bottom: 0.3rem;
-      letter-spacing: 0.02em;
-      transition: color 0.3s;
-    }
-
-    .product-card:hover .product-name { color: var(--gold); }
-
-    .product-notes {
-      font-size: 0.7rem;
-      color: var(--text-light);
-      font-weight: 300;
-      letter-spacing: 0.06em;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .product-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .product-price {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      color: var(--gold);
-      font-weight: 400;
-    }
-
-    .product-cta {
-      font-family: 'Cinzel', serif;
-      font-size: 0.52rem;
-      letter-spacing: 0.2em;
-      color: var(--text-light);
-      transition: color 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .product-cta::after { content: '→'; transition: transform 0.3s; }
-    .product-card:hover .product-cta { color: var(--gold); }
-    .product-card:hover .product-cta::after { transform: translateX(4px); }
-
-    .collection-footer { text-align: center; margin-top: 5rem; }
-
-    /* STORY SECTION */
-    .story {
-      background: var(--bg-section);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      padding: 0;
-      position: relative;
-    }
-
-    .story::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
-    }
-
-    .story-visual {
-      position: relative;
-      min-height: 700px;
-      overflow: hidden;
-    }
-
-    .story-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 8s ease;
-    }
-
-    .story-visual:hover img { transform: scale(1.05); }
-
-    .story-visual-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, transparent 50%, var(--bg-section));
-    }
-
-    /* Floating quote card over image */
-    .story-quote-card {
-      position: absolute;
-      bottom: 3rem;
-      left: 2.5rem;
-      right: 2.5rem;
-      background: rgba(250,246,239,0.92);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(184,146,42,0.25);
-      padding: 2rem;
-    }
-
-    .story-quote-card blockquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-style: italic;
-      color: var(--text-dark);
-      line-height: 1.5;
-    }
-
-    .story-quote-card cite {
-      display: block;
-      margin-top: 0.8rem;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      font-style: normal;
-    }
-
-    .story-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 6rem 5rem;
-      background: var(--bg-section);
-    }
-
-    .story-text {
-      font-size: 0.88rem;
-      line-height: 2;
-      color: var(--text-mid);
-      font-weight: 300;
-      letter-spacing: 0.03em;
-      margin-bottom: 1.5rem;
-    }
-
-    .story-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 3rem;
-      padding-top: 3rem;
-      border-top: 1px solid rgba(184,146,42,0.2);
-    }
-
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      font-weight: 300;
-      color: var(--gold);
-      display: block;
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-light);
-      margin-top: 0.4rem;
-      display: block;
-    }
+    /* STORY */
+    .story-wrap { background: var(--offwhite); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .story { display: grid; grid-template-columns: 1fr 1fr; max-width: 1280px; margin: 0 auto; }
+    .story-img { position: relative; min-height: 580px; overflow: hidden; }
+    .story-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 8s ease; }
+    .story-img:hover img { transform: scale(1.03); }
+    .story-fade { position: absolute; inset: 0; background: linear-gradient(to right, transparent 55%, var(--offwhite)); }
+    .story-quote { position: absolute; bottom: 2rem; left: 1.5rem; right: 1.5rem; background: rgba(255,255,255,.93); backdrop-filter: blur(8px); padding: 1.5rem; border-left: 2px solid var(--gold); }
+    .story-quote blockquote { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; line-height: 1.6; color: var(--text); }
+    .story-quote cite { display: block; margin-top: .5rem; font-size: .56rem; letter-spacing: .18em; color: var(--gold-dark); font-style: normal; font-family: 'Jost', sans-serif; text-transform: uppercase; }
+    .story-body { padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+    .story-p { font-size: .82rem; line-height: 2.1; color: var(--text-mid); font-weight: 300; margin-bottom: 1.2rem; }
+    .story-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+    .sn { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--gold); display: block; font-weight: 300; line-height: 1; }
+    .sl { font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); margin-top: .25rem; display: block; font-family: 'Jost', sans-serif; }
 
     /* CUSTOM */
-    .custom {
-      background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-section) 50%, var(--bg-main) 100%);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .custom::before {
-      content: 'BAI LUXE';
-      position: absolute;
-      font-family: 'Cinzel', serif;
-      font-size: 20vw;
-      font-weight: 600;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(184,146,42,0.06);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      white-space: nowrap;
-      letter-spacing: 0.1em;
-    }
-
-    .custom-inner { position: relative; z-index: 5; }
-
-    .custom-desc {
-      font-size: 0.88rem;
-      line-height: 1.9;
-      color: var(--text-light);
-      max-width: 540px;
-      margin: 0 auto 4rem;
-      font-weight: 300;
-    }
-
-    .custom-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 2rem;
-      margin-bottom: 4rem;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .custom-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .custom-icon {
-      width: 56px;
-      height: 56px;
-      border: 1px solid rgba(184,146,42,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      position: relative;
-      transition: all 0.4s;
-    }
-
-    .custom-icon::before {
-      content: '';
-      position: absolute;
-      inset: 3px;
-      border: 1px solid rgba(201,168,76,0.1);
-      transition: all 0.4s;
-    }
-
-    .custom-item:hover .custom-icon {
-      border-color: var(--gold);
-      background: rgba(184,146,42,0.08);
-    }
-
-    .custom-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.55rem;
-      letter-spacing: 0.18em;
-      color: var(--text-light);
-    }
+    .custom-section { background: var(--charcoal); text-align: center; position: relative; overflow: hidden; }
+    .custom-section::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,175,40,.05) 0%, transparent 65%); pointer-events: none; z-index: 1; }
+    .custom-inner { position: relative; z-index: 5; padding: 6rem 4rem; max-width: 860px; margin: 0 auto; }
+    .custom-section .sec-label { color: rgba(212,175,55,.65); justify-content: center; }
+    .custom-section .sec-label::before { background: rgba(212,175,55,.65); }
+    .custom-section .sec-title { color: var(--white); }
+    .custom-section .rule { margin: 1.2rem auto; }
+    .custom-sub { font-size: .8rem; line-height: 1.9; color: rgba(255,255,255,.38); max-width: 460px; margin: 0 auto 3rem; font-weight: 300; }
+    .custom-icons { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
+    .ci { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
+    .ci-icon { width: 48px; height: 48px; border: 1px solid rgba(212,175,55,.22); display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: all .4s; color: rgba(212,175,55,.6); }
+    .ci:hover .ci-icon { border-color: var(--gold); background: rgba(212,175,55,.07); color: var(--gold); }
+    .ci-lbl { font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.3); }
 
     /* VALUES */
-    .values {
-      background: var(--bg-main);
-      position: relative;
-    }
-
-    .values::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
-    }
-
-    .values-header {
-      text-align: center;
-      margin-bottom: 5rem;
-    }
-
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-    }
-
-    .value-item {
-      padding: 3rem 2.5rem;
-      border-right: 1px solid rgba(184,146,42,0.12);
-      position: relative;
-      transition: background 0.4s;
-    }
-
-    .value-item:last-child { border-right: none; }
-    .value-item:hover { background: rgba(184,146,42,0.04); }
-
-    .value-item::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.5s ease;
-    }
-
-    .value-item:hover::before { transform: scaleX(1); }
-
-    .value-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.5rem;
-      color: rgba(184,146,42,0.12);
-      font-weight: 300;
-      line-height: 1;
-      display: block;
-      margin-bottom: 1rem;
-    }
-
-    .value-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      color: var(--text-dark);
-      margin-bottom: 0.8rem;
-    }
-
-    .value-desc {
-      font-size: 0.76rem;
-      color: var(--text-light);
-      line-height: 1.9;
-      font-weight: 300;
-    }
+    .values-wrap { background: var(--white); border-top: 1px solid var(--border); }
+    .values-inner { max-width: 1280px; margin: 0 auto; padding: 6rem 4rem; }
+    .values-head { text-align: center; margin-bottom: 4rem; }
+    .vgrid { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--border); }
+    .vi { padding: 2.5rem 1.8rem; border-right: 1px solid var(--border); position: relative; transition: background .35s; }
+    .vi:last-child { border-right: none; }
+    .vi:hover { background: rgba(212,175,55,.02); }
+    .vi::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .5s; }
+    .vi:hover::before { transform: scaleX(1); }
+    .vi-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; color: rgba(212,175,55,.1); font-weight: 300; display: block; line-height: 1; margin-bottom: .7rem; }
+    .vi-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--text); margin-bottom: .5rem; }
+    .vi-desc { font-size: .71rem; color: var(--text-light); line-height: 1.9; font-weight: 300; }
 
     /* CONTACT */
-    .contact {
-      background: var(--bg-section);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      padding: 0;
-      position: relative;
-    }
-
-    .contact::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
-    }
-
-    .contact-left {
-      padding: 7rem 5rem;
-      background: linear-gradient(135deg, var(--bg-section), var(--linen));
-      border-right: 1px solid rgba(184,146,42,0.15);
-    }
-
-    .contact-info { margin-top: 2.5rem; }
-
-    .contact-detail {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      margin-bottom: 1.2rem;
-      padding-bottom: 1.2rem;
-      border-bottom: 1px solid rgba(184,146,42,0.12);
-    }
-
-    .contact-detail-icon {
-      width: 36px;
-      height: 36px;
-      border: 1px solid rgba(201,168,76,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      flex-shrink: 0;
-    }
-
-    .contact-detail-text {
-      font-size: 0.78rem;
-      color: var(--text-mid);
-      letter-spacing: 0.04em;
-      font-weight: 300;
-    }
-
-    .contact-right { padding: 7rem 5rem; }
-
-    .form-group { margin-bottom: 1.5rem; }
-
-    .form-group label {
-      display: block;
-      font-family: 'Cinzel', serif;
-      font-size: 0.55rem;
-      letter-spacing: 0.25em;
-      color: var(--text-light);
-      margin-bottom: 0.6rem;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      background: rgba(255,252,247,0.8);
-      border: none;
-      border-bottom: 1px solid rgba(184,146,42,0.3);
-      padding: 0.9rem 0;
-      font-family: 'Jost', sans-serif;
-      font-size: 0.85rem;
-      color: var(--text-dark);
-      outline: none;
-      transition: border-color 0.3s;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus { border-color: var(--gold); }
-
-    .form-group select option { background: var(--bg-section); }
-    .form-group textarea { resize: vertical; min-height: 100px; }
+    .contact-wrap { background: var(--cream); border-top: 1px solid var(--border); }
+    .contact { display: grid; grid-template-columns: 1fr 1fr; max-width: 1280px; margin: 0 auto; }
+    .cl { padding: 6rem 4rem; border-right: 1px solid var(--border); }
+    .cr { padding: 6rem 4rem; }
+    .cinfo { margin-top: 1.8rem; }
+    .cd { display: flex; align-items: center; gap: .9rem; padding: .9rem 0; border-bottom: 1px solid var(--border); }
+    .cd:last-child { border-bottom: none; }
+    .cd-icon { width: 30px; height: 30px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: .75rem; flex-shrink: 0; }
+    .cd-text { font-size: .74rem; color: var(--text-mid); font-weight: 300; }
+    .fg { margin-bottom: 1.4rem; }
+    .fg label { display: block; font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-light); margin-bottom: .5rem; }
+    .fg input, .fg textarea, .fg select { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(212,175,55,.2); padding: .7rem 0; font-family: 'Jost', sans-serif; font-size: .82rem; color: var(--text); outline: none; transition: border-color .3s; }
+    .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--gold); }
+    .fg select option { background: var(--cream); }
+    .fg textarea { resize: vertical; min-height: 85px; }
 
     /* FOOTER */
-    footer {
-      background: var(--charcoal);
-      padding: 5rem 5rem 3rem;
-      position: relative;
-    }
-
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
-    }
-
-    .footer-top {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 4rem;
-      padding-bottom: 4rem;
-      border-bottom: 1px solid rgba(255,253,249,0.04);
-    }
-
-    .footer-brand {
-      font-family: 'Cinzel', serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.15em;
-      color: var(--warm-white);
-      margin-bottom: 1rem;
-    }
-
-    .footer-brand span { color: var(--gold); }
-
-    .footer-tagline {
-      font-size: 0.78rem;
-      color: rgba(255,253,249,0.35);
-      line-height: 1.9;
-      font-weight: 300;
-      max-width: 260px;
-    }
-
-    .footer-col h4 {
-      font-family: 'Cinzel', serif;
-      font-size: 0.55rem;
-      letter-spacing: 0.28em;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-    }
-
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 0.8rem; }
-    .footer-col ul li a {
-      font-size: 0.78rem;
-      color: rgba(255,253,249,0.4);
-      text-decoration: none;
-      transition: color 0.3s;
-      letter-spacing: 0.04em;
-    }
-    .footer-col ul li a:hover { color: var(--gold-light); }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 2.5rem;
-    }
-
-    .footer-copy { font-size: 0.7rem; color: rgba(255,253,249,0.25); letter-spacing: 0.08em; }
-
-    .footer-social { display: flex; gap: 1.5rem; }
-    .footer-social a {
-      font-family: 'Cinzel', serif;
-      font-size: 0.55rem;
-      letter-spacing: 0.18em;
-      color: rgba(255,253,249,0.35);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .footer-social a:hover { color: var(--gold); }
+    footer { background: var(--charcoal); padding: 4rem 4rem 2rem; }
+    .fgrid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; max-width: 1280px; margin: 0 auto; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .fb { font-family: 'Playfair Display', serif; font-size: 1.1rem; letter-spacing: .08em; color: var(--white); margin-bottom: .8rem; }
+    .fb em { color: var(--gold); font-style: italic; }
+    .ft { font-size: .72rem; color: rgba(255,255,255,.28); line-height: 1.9; max-width: 220px; }
+    .fc h4 { font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+    .fc ul { list-style: none; }
+    .fc li { margin-bottom: .65rem; }
+    .fc a { font-size: .72rem; color: rgba(255,255,255,.28); text-decoration: none; transition: color .3s; }
+    .fc a:hover { color: var(--gold-light); }
+    .fbot { display: flex; justify-content: space-between; align-items: center; padding-top: 1.6rem; max-width: 1280px; margin: 0 auto; }
+    .fcopy { font-size: .62rem; color: rgba(255,255,255,.15); }
+    .fsoc { display: flex; gap: 1.3rem; }
+    .fsoc a { font-size: .52rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.22); text-decoration: none; transition: color .3s; font-family: 'Jost', sans-serif; }
+    .fsoc a:hover { color: var(--gold); }
 
     /* ANIMATIONS */
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .85s ease, transform .85s ease; }
+    .reveal.on { opacity: 1; transform: translateY(0); }
+    .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s}
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
-    }
-
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-
-    /* SCROLL INDICATOR */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 3rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      z-index: 10;
-      opacity: 0;
-      animation: slideUp 1s 1.5s ease forwards;
-    }
-
-    .scroll-indicator span {
-      font-family: 'Cinzel', serif;
-      font-size: 0.5rem;
-      letter-spacing: 0.3em;
-      color: rgba(255,253,249,0.3);
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(180deg, var(--gold), transparent);
-      animation: scrollDrop 2s ease infinite;
-    }
-
-    @keyframes scrollDrop {
-      0%,100% { transform: scaleY(0); transform-origin: top; opacity: 1; }
-      50% { transform: scaleY(1); transform-origin: top; }
-      51% { transform-origin: bottom; }
-      100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 1100px) {
-      .grid-3 { grid-template-columns: repeat(2, 1fr); }
-      .grid-4 { grid-template-columns: repeat(2, 1fr); }
-      .values-grid { grid-template-columns: repeat(2, 1fr); }
-      .custom-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 2rem; }
+    @media (max-width: 1100px) { .g3{grid-template-columns:repeat(2,1fr)} .g4{grid-template-columns:repeat(2,1fr)} .vgrid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width: 800px) {
+      nav, nav.stuck { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
-      .hero-content { grid-template-columns: 1fr; padding: 0 2rem; }
-      .hero-right { display: none; }
-      section { padding: 5rem 2rem; }
+      .wrap { padding: 0 1.5rem; }
       .story { grid-template-columns: 1fr; }
-      .story-visual { min-height: 350px; }
-      .story-content { padding: 4rem 2rem; }
+      .story-img { min-height: 300px; }
+      .story-body { padding: 3rem 1.5rem; }
       .contact { grid-template-columns: 1fr; }
-      .contact-left, .contact-right { padding: 4rem 2rem; }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-      .gold-line-divider { padding: 2rem; }
+      .cl, .cr { padding: 3rem 1.5rem; }
+      .fgrid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .values-inner, .custom-inner { padding: 4rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- CURSOR -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-follower" id="cursorFollower"></div>
-
-  <!-- LOADER -->
-  <div class="loader" id="loader">
-    <div class="loader-logo">BAI LUXE CANDLE CO.</div>
-    <div class="loader-line"></div>
+  <div id="loader">
+    <div class="ld-logo"><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/IMG_20250731_061403_476.webp" alt="Bai Luxe"/></div>
+    <div class="ld-text">Bai Luxe Candle Co.</div>
+    <div class="ld-bar"></div>
   </div>
 
   <!-- NAV -->
   <nav id="nav">
-    <a href="#" class="nav-logo">
-      <img src="IMG_20250731_061403_476.webp" alt="Bai Luxe" />
-      <span class="nav-logo-text">Bai <span>Luxe</span></span>
+    <a href="#top" class="nav-logo">
+      <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/IMG_20250731_061403_476.webp" alt="Bai Luxe"/>
+      <span class="nav-name">Bai <em>Luxe</em></span>
     </a>
     <ul class="nav-links">
       <li><a href="#collection">Collection</a></li>
@@ -1257,351 +294,217 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero" id="hero">
-    <!-- Particles -->
-    <div class="particles" id="particles"></div>
-
-    <!-- Gold glow -->
-    <div class="hero-glow"></div>
+  <section class="hero" id="top">
+    <div class="hero-bg">
+      <img src="hero.gif" alt="Bai Luxe"/>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="candle-glow"></div>
 
     <div class="hero-content">
-      <div class="hero-left">
-        <div class="hero-tag">Phoenix, Arizona &nbsp;·&nbsp; Founded 2022</div>
-        <h1>
-          <span>Illuminate</span>
-          <span class="gold-word">Every</span>
-          <span class="outline-word">Moment.</span>
-        </h1>
-        <p class="hero-sub">Hand-poured luxury scented candles rooted in Caribbean heritage and Jamaican warmth. Each flame is a story of island sunsets, tropical breezes, and soulful memory poured in wax.</p>
-        <div class="hero-actions">
-          <a href="#collection" class="btn-luxury"><span>Explore Collection</span></a>
-          <a href="#story" class="btn-outline">Discover Our Story</a>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <!-- Floating orbs -->
-        <div class="orb" style="width:300px;height:300px;top:20%;left:15%;--dur:8s;--delay:0s;"></div>
-        <div class="orb" style="width:200px;height:200px;bottom:10%;right:10%;--dur:10s;--delay:2s;"></div>
-
-        <!-- Accent candles -->
-        <div class="hero-candle-accent left">
-          <img src="Flaming_Rose_Edited.jpg" alt="Flaming Rose" />
-        </div>
-
-        <!-- Main candle -->
-        <div class="hero-candle-main">
-          <img src="ChatGPT_Image_Jul_21__2025__03_21_45_PM.png" alt="Sugar Loaf Pineapple" />
-        </div>
-
-        <!-- Right accent -->
-        <div class="hero-candle-accent right">
-          <img src="ChatGPT_Image_Jul_11__2025__12_02_53_PM.png" alt="Aqua Noir" />
-        </div>
+      <div class="hero-eyebrow">Phoenix, Arizona &nbsp;·&nbsp; Founded 2022</div>
+      <h1 class="hero-brand">Bai Luxe Candle Co.</h1>
+      <p class="hero-brand-sub">Hand-Poured Luxury Scented Candles</p>
+      <p class="hero-sub">Inspired by the warmth of the Caribbean. Each flame is a moment worth savoring.</p>
+      <div class="hero-btns">
+        <a href="#collection" class="btn-gold"><span>Shop the Collection</span></a>
+        <a href="#story" class="btn-outline">Our Story</a>
       </div>
     </div>
 
-    <div class="scroll-indicator">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
+    <div class="scroll-hint">
+      <span class="sh-label">Scroll</span>
+      <div class="sh-line"></div>
     </div>
   </section>
 
-  <!-- GOLD DIVIDER -->
-  <div class="gold-line-divider">
-    <div class="divider-emblem">✦ &nbsp; Handcrafted Para-Soy Blend &nbsp; ✦ &nbsp; Fine Fragrances &nbsp; ✦ &nbsp; Caribbean Inspired &nbsp; ✦</div>
-  </div>
-
   <!-- MARQUEE -->
-  <div class="marquee-strip">
-    <div class="marquee-inner">
-      <span>Hand-Poured</span><span class="diamond">◆</span>
-      <span>Premium Para-Soy Blend</span><span class="diamond">◆</span>
-      <span>Fine Fragrances</span><span class="diamond">◆</span>
-      <span>Custom Labels & Scents</span><span class="diamond">◆</span>
-      <span>Caribbean Inspired</span><span class="diamond">◆</span>
-      <span>Soulful Storytelling</span><span class="diamond">◆</span>
-      <span>Luxury Scented Candles</span><span class="diamond">◆</span>
-      <span>Phoenix, Arizona</span><span class="diamond">◆</span>
-      <span>Hand-Poured</span><span class="diamond">◆</span>
-      <span>Premium Para-Soy Blend</span><span class="diamond">◆</span>
-      <span>Fine Fragrances</span><span class="diamond">◆</span>
-      <span>Custom Labels & Scents</span><span class="diamond">◆</span>
-      <span>Caribbean Inspired</span><span class="diamond">◆</span>
-      <span>Soulful Storytelling</span><span class="diamond">◆</span>
-      <span>Luxury Scented Candles</span><span class="diamond">◆</span>
-      <span>Phoenix, Arizona</span><span class="diamond">◆</span>
+  <div class="marquee">
+    <div class="mtrack">
+      <span>Hand-Poured</span><span class="gem">◆</span><span>Premium Para-Soy Blend</span><span class="gem">◆</span><span>Fine Fragrances</span><span class="gem">◆</span><span>Custom Labels & Scents</span><span class="gem">◆</span><span>Caribbean Inspired</span><span class="gem">◆</span><span>Luxury Scented Candles</span><span class="gem">◆</span><span>Phoenix, Arizona</span><span class="gem">◆</span><span>Hand-Poured</span><span class="gem">◆</span><span>Premium Para-Soy Blend</span><span class="gem">◆</span><span>Fine Fragrances</span><span class="gem">◆</span><span>Custom Labels & Scents</span><span class="gem">◆</span><span>Caribbean Inspired</span><span class="gem">◆</span><span>Luxury Scented Candles</span><span class="gem">◆</span><span>Phoenix, Arizona</span><span class="gem">◆</span>
     </div>
   </div>
 
   <!-- COLLECTION -->
-  <section class="collection" id="collection">
-    <div class="collection-header reveal">
-      <div>
-        <div class="section-eyebrow">The Collection</div>
-        <h2 class="section-title">Curated <em>Luxury</em><br>Scents</h2>
-        <div class="gold-rule"></div>
-        <p class="collection-subtitle">Each candle is a sensory journey — limited inventory, poured by hand in Phoenix, Arizona.</p>
+  <div id="collection">
+    <div class="wrap">
+      <div class="collection">
+        <div class="col-head reveal">
+          <div>
+            <div class="sec-label">The Collection</div>
+            <h2 class="sec-title">Curated <em>Luxury</em> Scents</h2>
+            <div class="rule"></div>
+            <p class="col-sub">Limited inventory, poured by hand in Phoenix, Arizona.</p>
+          </div>
+          <a href="https://www.etsy.com" target="_blank" class="btn-link">View All</a>
+        </div>
+
+        <div class="g3">
+          <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
+            <div class="pci"><div class="pcb"></div>
+            <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT%20Image%20Jul%2021,%202025,%2003_21_45%20PM.png" alt="Sugar Loaf Pineapple"/>
+            <span class="pc-tag">Bestseller</span></div>
+            <div class="pc-info"><h3 class="pc-name">Sugar Loaf Pineapple</h3><p class="pc-notes">Tropical fruits & rum · Tangerine, orange peel & lemon · Sweet pineapple</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+          </a>
+          <a href="https://www.etsy.com" target="_blank" class="pc reveal d2">
+            <div class="pci"><div class="pcb"></div>
+            <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/Flaming_Rose_Edited.jpg" alt="Flaming Rose"/>
+            <span class="pc-tag">Fan Favorite</span></div>
+            <div class="pc-info"><h3 class="pc-name">Flaming Rose</h3><p class="pc-notes">Ozone & green leaves · Rose, carnation & lily of the valley · Ylang ylang</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+          </a>
+          <a href="https://www.etsy.com" target="_blank" class="pc reveal d3">
+            <div class="pci"><div class="pcb"></div>
+            <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT%20Image%20Jul%2011,%202025,%2012_02_53%20PM.png" alt="Aqua Noir Man"/>
+            <span class="pc-tag dk">For Him</span></div>
+            <div class="pc-info"><h3 class="pc-name">Aqua Noir Man</h3><p class="pc-notes">Mandarin, bergamot & lemon · Jasmine & lilies · Rosewood, amber & musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+          </a>
+        </div>
+
+        <div class="g4">
+          <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
+            <div class="pci"><div class="pcb"></div>
+            <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT%20Image%20Jul%2014,%202025,%2010_45_30%20AM.png" alt="Alpha Male"/>
+            <span class="pc-tag dk">For Him</span></div>
+            <div class="pc-info"><h3 class="pc-name">Alpha Male</h3><p class="pc-notes">Bold citrus · Bamboo & lilies · Amber, patchouli & musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+          </a>
+          <a href="https://www.etsy.com" target="_blank" class="pc reveal d2">
+            <div class="pci"><div class="pcb"></div>
+            <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT%20Image%20Jul%2014,%202025,%2010_04_12%20AM.png" alt="Royal Cotton"/>
+            <span class="pc-tag">Clean & Fresh</span></div>
+            <div class="pc-info"><h3 class="pc-name">Royal Cotton</h3><p class="pc-notes">Fresh cotton & clean air · Ozone, linen & cotton blossom · Lily & white musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+          </a>
+          <a href="https://www.etsy.com" target="_blank" class="pc reveal d3">
+            <div class="pci"><div class="pcb"></div>
+            <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT%20Image%20Jul%2022,%202025,%2008_55_22%20AM.png" alt="Pu$$y Magnet"/>
+            <span class="pc-tag">Bold</span></div>
+            <div class="pc-info"><h3 class="pc-name">Pu$$y Magnet</h3><p class="pc-notes">Sultry lavender, rosemary & lemon verbea · Cool coriander · Leather & vetiver</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+          </a>
+          <a href="https://www.etsy.com" target="_blank" class="pc reveal d4">
+            <div class="pci"><div class="pcb"></div>
+            <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT%20Image%20Jul%2022,%202025,%2008_33_23%20AM.png" alt="Rainbow Collection"/>
+            <span class="pc-tag">Limited</span></div>
+            <div class="pc-info"><h3 class="pc-name">Rainbow Collection</h3><p class="pc-notes">Vibrant layered candles · Bold rainbow colors · Custom scents available</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+          </a>
+        </div>
+
+        <div class="col-foot reveal">
+          <a href="https://www.etsy.com" target="_blank" class="btn-dark"><span>Shop All Candles</span></a>
+        </div>
       </div>
-      <a href="https://www.etsy.com" target="_blank" class="btn-outline">View Full Shop</a>
     </div>
+  </div>
 
-    <div class="grid-3">
-      <a href="https://www.etsy.com" target="_blank" class="product-card reveal reveal-delay-1">
-        <div class="product-img-wrap">
-          <img src="ChatGPT_Image_Jul_21__2025__03_21_45_PM.png" alt="Sugar Loaf Pineapple" />
-          <span class="product-tag">Bestseller</span>
-          <div class="product-shimmer"></div>
-        </div>
-        <div class="product-info">
-          <h3 class="product-name">Sugar Loaf Pineapple</h3>
-          <p class="product-notes">Tropical fruits & rum · Juicy tangerine, orange peel & lemon · Sweet pineapple</p>
-          <div class="product-footer"><span class="product-price">$22</span><span class="product-cta">Shop Now</span></div>
-        </div>
-      </a>
-
-      <a href="https://www.etsy.com" target="_blank" class="product-card reveal reveal-delay-2">
-        <div class="product-img-wrap">
-          <img src="Flaming_Rose_Edited.jpg" alt="Flaming Rose" />
-          <span class="product-tag">Fan Favorite</span>
-          <div class="product-shimmer"></div>
-        </div>
-        <div class="product-info">
-          <h3 class="product-name">Flaming Rose</h3>
-          <p class="product-notes">Ozone & green leaves · Rose, carnation & lily of the valley · Ylang ylang</p>
-          <div class="product-footer"><span class="product-price">$22</span><span class="product-cta">Shop Now</span></div>
-        </div>
-      </a>
-
-      <a href="https://www.etsy.com" target="_blank" class="product-card reveal reveal-delay-3">
-        <div class="product-img-wrap">
-          <img src="ChatGPT_Image_Jul_11__2025__12_02_53_PM.png" alt="Aqua Noir Man" />
-          <span class="product-tag dark">For Him</span>
-          <div class="product-shimmer"></div>
-        </div>
-        <div class="product-info">
-          <h3 class="product-name">Aqua Noir Man</h3>
-          <p class="product-notes">Mandarin, bergamot & lemon · Age blossom, jasmine & lilies · Rosewood, amber & musk</p>
-          <div class="product-footer"><span class="product-price">$22</span><span class="product-cta">Shop Now</span></div>
-        </div>
-      </a>
+  <!-- BANNER -->
+  <div class="banner reveal">
+    <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/Flaming_Rose_Edited.jpg" alt="Bai Luxe"/>
+    <div class="banner-glow"></div>
+    <div class="banner-inner">
+      <div class="banner-eyebrow">Custom Orders</div>
+      <h2 class="sec-title">Make It <em>Uniquely</em> Yours</h2>
+      <p class="banner-sub">Custom scents, labels, and designs for gifts, events, and celebrations.</p>
+      <a href="#custom" class="btn-gold"><span>Request Custom Order</span></a>
     </div>
-
-    <div class="grid-4">
-      <a href="https://www.etsy.com" target="_blank" class="product-card reveal reveal-delay-1">
-        <div class="product-img-wrap">
-          <img src="ChatGPT_Image_Jul_14__2025__10_45_30_AM.png" alt="Alpha Male" />
-          <span class="product-tag dark">For Him</span>
-          <div class="product-shimmer"></div>
-        </div>
-        <div class="product-info">
-          <h3 class="product-name">Alpha Male</h3>
-          <p class="product-notes">Bold citrus · Bamboo, accord & lilies · Amber, patchouli & musk</p>
-          <div class="product-footer"><span class="product-price">$22</span><span class="product-cta">Shop Now</span></div>
-        </div>
-      </a>
-
-      <a href="https://www.etsy.com" target="_blank" class="product-card reveal reveal-delay-2">
-        <div class="product-img-wrap">
-          <img src="ChatGPT_Image_Jul_14__2025__10_04_12_AM.png" alt="Royal Cotton" />
-          <span class="product-tag">Clean & Fresh</span>
-          <div class="product-shimmer"></div>
-        </div>
-        <div class="product-info">
-          <h3 class="product-name">Royal Cotton</h3>
-          <p class="product-notes">Fresh cotton & clean air · Ozone, soft linen & cotton blossom · Lily, jasmine & white musk</p>
-          <div class="product-footer"><span class="product-price">$22</span><span class="product-cta">Shop Now</span></div>
-        </div>
-      </a>
-
-      <a href="https://www.etsy.com" target="_blank" class="product-card reveal reveal-delay-3">
-        <div class="product-img-wrap">
-          <img src="ChatGPT_Image_Jul_22__2025__08_55_22_AM.png" alt="Pu$$y Magnet" />
-          <span class="product-tag">Bold</span>
-          <div class="product-shimmer"></div>
-        </div>
-        <div class="product-info">
-          <h3 class="product-name">Pu$$y Magnet</h3>
-          <p class="product-notes">Sultry lavender, rosemary & lemon verbea · Cool coriander · Leather, amber & vetiver</p>
-          <div class="product-footer"><span class="product-price">$22</span><span class="product-cta">Shop Now</span></div>
-        </div>
-      </a>
-
-      <a href="https://www.etsy.com" target="_blank" class="product-card reveal reveal-delay-4">
-        <div class="product-img-wrap">
-          <img src="ChatGPT_Image_Jul_22__2025__08_33_23_AM.png" alt="Rainbow Collection" />
-          <span class="product-tag">Limited</span>
-          <div class="product-shimmer"></div>
-        </div>
-        <div class="product-info">
-          <h3 class="product-name">Rainbow Collection</h3>
-          <p class="product-notes">Vibrant layered candles · Bold rainbow colors · Custom scents available</p>
-          <div class="product-footer"><span class="product-price">$22</span><span class="product-cta">Shop Now</span></div>
-        </div>
-      </a>
-    </div>
-
-    <div class="collection-footer reveal">
-      <a href="https://www.etsy.com" target="_blank" class="btn-luxury"><span>Shop All Candles</span></a>
-    </div>
-  </section>
+  </div>
 
   <!-- STORY -->
-  <div class="story" id="story">
-    <div class="story-visual">
-      <img src="ChatGPT_Image_Jul_22__2025__09_16_33_AM.png" alt="Bai Luxe story" />
-      <div class="story-visual-overlay"></div>
-      <div class="story-quote-card reveal">
-        <blockquote>"Every candle is a ritual.<br>Every scent, a memory poured in wax."</blockquote>
-        <cite>— C. Ferguson, Founder</cite>
+  <div class="story-wrap" id="story">
+    <div class="story">
+      <div class="story-img">
+        <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT%20Image%20Jul%2021,%202025,%2003_21_45%20PM.png" alt="Bai Luxe candle"/>
+        <div class="story-fade"></div>
+        <div class="story-quote reveal">
+          <blockquote>"Every candle is a ritual. Every scent, a moment worth savoring."</blockquote>
+          <cite>— C. Ferguson, Founder</cite>
+        </div>
       </div>
-    </div>
-
-    <div class="story-content reveal">
-      <div class="section-eyebrow">Our Story</div>
-      <h2 class="section-title">Rooted in<br><em>Island Soul</em></h2>
-      <div class="gold-rule"></div>
-      <p class="story-text">Founded in Phoenix, Arizona in 2022 by C. Ferguson, Bai Luxe Candle Co. draws inspiration from the vibrant spirit of the Caribbean and the deep warmth of Jamaican heritage.</p>
-      <p class="story-text">Each candle is hand-poured with a luxurious blend of premium para-soy waxes and fine fragrances — evoking island sunsets, tropical breezes, and soulful storytelling. Bai Luxe transforms everyday moments into indulgent rituals of beauty and calm.</p>
-      <p class="story-text">Our collection celebrates individuality — offering custom scents, labels, and designs that reflect your style and memories. Every Bai Luxe creation is designed to illuminate your world with sophistication, culture, and timeless elegance.</p>
-      <div class="story-stats">
-        <div>
-          <span class="stat-num">2022</span>
-          <span class="stat-label">Founded</span>
-        </div>
-        <div>
-          <span class="stat-num">7+</span>
-          <span class="stat-label">Signature Scents</span>
-        </div>
-        <div>
-          <span class="stat-num">100%</span>
-          <span class="stat-label">Hand-Poured</span>
+      <div class="story-body reveal">
+        <div class="sec-label">Our Story</div>
+        <h2 class="sec-title">Crafted with <em>Soul</em></h2>
+        <div class="rule"></div>
+        <p class="story-p">Founded in Phoenix, Arizona in 2022, Bai Luxe Candle Co. was born from a love of fragrance, culture, and the art of creating something beautiful by hand.</p>
+        <p class="story-p">Each candle is hand-poured with a luxurious blend of premium para-soy waxes and fine fragrances — designed to transform everyday moments into something worth remembering.</p>
+        <p class="story-p">We celebrate individuality through custom scents and designs, making every Bai Luxe creation as unique as the person burning it.</p>
+        <div class="story-stats">
+          <div><span class="sn">2022</span><span class="sl">Founded</span></div>
+          <div><span class="sn">7+</span><span class="sl">Signature Scents</span></div>
+          <div><span class="sn">100%</span><span class="sl">Hand-Poured</span></div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- CUSTOM -->
-  <section class="custom" id="custom">
+  <div class="custom-section" id="custom">
     <div class="custom-inner">
-      <div class="section-eyebrow" style="justify-content:center;">Custom Orders</div>
-      <h2 class="section-title reveal">Make It <em>Uniquely</em> Yours</h2>
-      <div class="gold-rule" style="margin:1.5rem auto;"></div>
-      <p class="custom-desc reveal">Custom scents, labels, and designs that reflect your memories, your style, and your story — crafted with the same premium materials and meticulous finish. Perfect for gifts, weddings, events, and celebrations.</p>
-      <div class="custom-grid reveal">
-        <div class="custom-item"><div class="custom-icon">✦</div><span class="custom-label">Custom Scents</span></div>
-        <div class="custom-item"><div class="custom-icon">◈</div><span class="custom-label">Custom Labels</span></div>
-        <div class="custom-item"><div class="custom-icon">◇</div><span class="custom-label">Gift Sets</span></div>
-        <div class="custom-item"><div class="custom-icon">✿</div><span class="custom-label">Bulk Orders</span></div>
-        <div class="custom-item"><div class="custom-icon">❋</div><span class="custom-label">Event Favors</span></div>
+      <div class="sec-label reveal">Custom Orders</div>
+      <h2 class="sec-title reveal">Make It <em>Uniquely</em> Yours</h2>
+      <div class="rule reveal" style="margin:1.2rem auto;"></div>
+      <p class="custom-sub reveal">Custom scents, labels, and designs crafted with the same premium materials — perfect for gifts, weddings, and events.</p>
+      <div class="custom-icons reveal">
+        <div class="ci"><div class="ci-icon">✦</div><span class="ci-lbl">Custom Scents</span></div>
+        <div class="ci"><div class="ci-icon">◈</div><span class="ci-lbl">Custom Labels</span></div>
+        <div class="ci"><div class="ci-icon">◇</div><span class="ci-lbl">Gift Sets</span></div>
+        <div class="ci"><div class="ci-icon">✿</div><span class="ci-lbl">Bulk Orders</span></div>
+        <div class="ci"><div class="ci-icon">❋</div><span class="ci-lbl">Event Favors</span></div>
       </div>
-      <a href="#contact" class="btn-luxury reveal"><span>Request Custom Order</span></a>
+      <a href="#contact" class="btn-gold reveal"><span>Request Custom Order</span></a>
     </div>
-  </section>
+  </div>
 
   <!-- VALUES -->
-  <section class="values">
-    <div class="values-header reveal">
-      <div class="section-eyebrow" style="justify-content:center;">Why Bai Luxe</div>
-      <h2 class="section-title">The <em>Difference</em> Is<br>in the Detail</h2>
-    </div>
-    <div class="values-grid">
-      <div class="value-item reveal reveal-delay-1">
-        <span class="value-num">01</span>
-        <h3 class="value-title">Premium Para-Soy Blend</h3>
-        <p class="value-desc">A luxurious wax blend chosen for clean burn, exceptional scent throw, and beautiful texture in every pour.</p>
+  <div class="values-wrap">
+    <div class="values-inner">
+      <div class="values-head reveal">
+        <div class="sec-label" style="justify-content:center;">Why Bai Luxe</div>
+        <h2 class="sec-title">The <em>Difference</em> Is in the Detail</h2>
       </div>
-      <div class="value-item reveal reveal-delay-2">
-        <span class="value-num">02</span>
-        <h3 class="value-title">Fine Fragrances</h3>
-        <p class="value-desc">Curated fragrance oils chosen to evoke memory, emotion, and the richness of island life.</p>
-      </div>
-      <div class="value-item reveal reveal-delay-3">
-        <span class="value-num">03</span>
-        <h3 class="value-title">Hand-Poured</h3>
-        <p class="value-desc">Every single candle is poured by hand in small batches for quality, care, and intention.</p>
-      </div>
-      <div class="value-item reveal reveal-delay-4">
-        <span class="value-num">04</span>
-        <h3 class="value-title">Cultural Roots</h3>
-        <p class="value-desc">Born from Caribbean heritage and Jamaican warmth — every scent carries a story worth telling.</p>
+      <div class="vgrid">
+        <div class="vi reveal d1"><span class="vi-num">01</span><h3 class="vi-title">Premium Para-Soy Blend</h3><p class="vi-desc">A luxurious wax blend chosen for clean burn, exceptional scent throw, and beautiful texture.</p></div>
+        <div class="vi reveal d2"><span class="vi-num">02</span><h3 class="vi-title">Fine Fragrances</h3><p class="vi-desc">Curated fragrance oils chosen to evoke memory, emotion, and the beauty of the moment.</p></div>
+        <div class="vi reveal d3"><span class="vi-num">03</span><h3 class="vi-title">Hand-Poured</h3><p class="vi-desc">Every candle is poured by hand in small batches for quality, care, and intention.</p></div>
+        <div class="vi reveal d4"><span class="vi-num">04</span><h3 class="vi-title">Crafted with Soul</h3><p class="vi-desc">Born from a love of fragrance and culture — every scent carries a story worth telling.</p></div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- CONTACT -->
-  <div class="contact" id="contact">
-    <div class="contact-left reveal">
-      <div class="section-eyebrow">Get In Touch</div>
-      <h2 class="section-title">Let's Create<br><em>Something</em><br>Beautiful</h2>
-      <div class="gold-rule"></div>
-      <div class="contact-info">
-        <div class="contact-detail">
-          <div class="contact-detail-icon">📧</div>
-          <span class="contact-detail-text">Support@bailuxeonlineshop.com</span>
-        </div>
-        <div class="contact-detail">
-          <div class="contact-detail-icon">📷</div>
-          <span class="contact-detail-text">@bailuxe_official</span>
-        </div>
-        <div class="contact-detail">
-          <div class="contact-detail-icon">🌐</div>
-          <span class="contact-detail-text">bailuxeonlineshop.com</span>
-        </div>
-        <div class="contact-detail" style="border:none;">
-          <div class="contact-detail-icon">📍</div>
-          <span class="contact-detail-text">Phoenix, Arizona</span>
+  <div class="contact-wrap" id="contact">
+    <div class="contact">
+      <div class="cl reveal">
+        <div class="sec-label">Get In Touch</div>
+        <h2 class="sec-title">Let's Create<br><em>Something</em> Beautiful</h2>
+        <div class="rule"></div>
+        <div class="cinfo">
+          <div class="cd"><div class="cd-icon">📧</div><span class="cd-text">Support@bailuxeonlineshop.com</span></div>
+          <div class="cd"><div class="cd-icon">📷</div><span class="cd-text">@bailuxe_official</span></div>
+          <div class="cd"><div class="cd-icon">🌐</div><span class="cd-text">bailuxeonlineshop.com</span></div>
+          <div class="cd"><div class="cd-icon">📍</div><span class="cd-text">Phoenix, Arizona</span></div>
         </div>
       </div>
-    </div>
-
-    <div class="contact-right reveal">
-      <div class="form-group"><label>Your Name</label><input type="text" placeholder="Full name" /></div>
-      <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com" /></div>
-      <div class="form-group">
-        <label>Inquiry Type</label>
-        <select><option>Custom Order</option><option>Bulk / Wholesale</option><option>Gift Sets</option><option>Event Favors</option><option>General Question</option></select>
+      <div class="cr reveal">
+        <div class="fg"><label>Your Name</label><input type="text" placeholder="Full name"/></div>
+        <div class="fg"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
+        <div class="fg"><label>Inquiry Type</label><select><option>Custom Order</option><option>Bulk / Wholesale</option><option>Gift Sets</option><option>Event Favors</option><option>General Question</option></select></div>
+        <div class="fg"><label>Message</label><textarea placeholder="Tell us what you're looking for..."></textarea></div>
+        <button type="button" class="btn-dark" style="margin-top:.5rem;"><span>Send Message</span></button>
       </div>
-      <div class="form-group"><label>Message</label><textarea placeholder="Tell us what you're looking for..."></textarea></div>
-      <button type="button" class="btn-luxury" style="margin-top:0.5rem;"><span>Send Message</span></button>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-top">
+    <div class="fgrid">
       <div>
-        <p class="footer-brand">Bai <span>Luxe</span> Candle Co.</p>
-        <p class="footer-tagline">Hand-poured luxury scented candles rooted in Caribbean heritage and Jamaican warmth. Phoenix, Arizona. Founded 2022.</p>
+        <p class="fb">Bai <em>Luxe</em> Candle Co.</p>
+        <p class="ft">Hand-poured luxury scented candles. Phoenix, Arizona. Founded 2022.</p>
       </div>
-      <div class="footer-col">
-        <h4>Shop</h4>
-        <ul>
-          <li><a href="https://www.etsy.com" target="_blank">All Candles</a></li>
-          <li><a href="https://www.etsy.com" target="_blank">Bestsellers</a></li>
-          <li><a href="#custom">Custom Orders</a></li>
-          <li><a href="https://www.etsy.com" target="_blank">Gift Sets</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#story">Our Story</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="mailto:Support@bailuxeonlineshop.com">Email Us</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Follow</h4>
-        <ul>
-          <li><a href="https://www.instagram.com/bailuxe_official/" target="_blank">Instagram</a></li>
-          <li><a href="https://www.facebook.com/profile.php?id=100084534348188" target="_blank">Facebook</a></li>
-        </ul>
-      </div>
+      <div class="fc"><h4>Shop</h4><ul><li><a href="https://www.etsy.com" target="_blank">All Candles</a></li><li><a href="https://www.etsy.com" target="_blank">Bestsellers</a></li><li><a href="#custom">Custom Orders</a></li><li><a href="https://www.etsy.com" target="_blank">Gift Sets</a></li></ul></div>
+      <div class="fc"><h4>Company</h4><ul><li><a href="#story">Our Story</a></li><li><a href="#contact">Contact</a></li><li><a href="mailto:Support@bailuxeonlineshop.com">Email Us</a></li></ul></div>
+      <div class="fc"><h4>Follow</h4><ul><li><a href="https://www.instagram.com/bailuxe_official/" target="_blank">Instagram</a></li><li><a href="https://www.facebook.com/profile.php?id=100084534348188" target="_blank">Facebook</a></li></ul></div>
     </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2025 Bai Luxe Candle Co. All rights reserved.</p>
-      <div class="footer-social">
+    <div class="fbot">
+      <p class="fcopy">© 2025 Bai Luxe Candle Co. All rights reserved.</p>
+      <div class="fsoc">
         <a href="https://www.instagram.com/bailuxe_official/" target="_blank">Instagram</a>
         <a href="https://www.facebook.com/profile.php?id=100084534348188" target="_blank">Facebook</a>
         <a href="mailto:Support@bailuxeonlineshop.com">Email</a>
@@ -1610,86 +513,10 @@
   </footer>
 
   <script>
-    // LOADER
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
-      }, 2000);
-    });
-
-    // CUSTOM CURSOR
-    const cursor = document.getElementById('cursor');
-    const follower = document.getElementById('cursorFollower');
-    let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
-
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top = mouseY + 'px';
-    });
-
-    function animateFollower() {
-      followerX += (mouseX - followerX) * 0.12;
-      followerY += (mouseY - followerY) * 0.12;
-      follower.style.left = followerX + 'px';
-      follower.style.top = followerY + 'px';
-      requestAnimationFrame(animateFollower);
-    }
-    animateFollower();
-
-    // Cursor scale on hover
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        follower.style.transform = 'translate(-50%, -50%) scale(1.8)';
-        follower.style.borderColor = 'rgba(201,168,76,0.8)';
-      });
-      el.addEventListener('mouseleave', () => {
-        follower.style.transform = 'translate(-50%, -50%) scale(1)';
-        follower.style.borderColor = 'rgba(201,168,76,0.5)';
-      });
-    });
-
-    // NAV SCROLL
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    });
-
-    // PARTICLES
-    const particlesContainer = document.getElementById('particles');
-    for (let i = 0; i < 40; i++) {
-      const p = document.createElement('div');
-      p.classList.add('particle');
-      p.style.left = Math.random() * 100 + '%';
-      p.style.setProperty('--dur', (6 + Math.random() * 10) + 's');
-      p.style.setProperty('--delay', (Math.random() * 8) + 's');
-      p.style.setProperty('--drift', ((Math.random() - 0.5) * 80) + 'px');
-      p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
-      p.style.opacity = Math.random() * 0.6;
-      particlesContainer.appendChild(p);
-    }
-
-    // SCROLL REVEAL
-    const reveals = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    reveals.forEach(el => revealObserver.observe(el));
-
-    // Parallax on hero
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const heroGlow = document.querySelector('.hero-glow');
-      if (heroGlow) {
-        heroGlow.style.transform = `translate(-50%, calc(-50% + ${scrollY * 0.3}px))`;
-      }
-    });
+    window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('gone'), 1800));
+    window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('stuck', scrollY > 50));
+    const ro = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); }), {threshold:.1});
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
   </script>
 </body>
 </html>
