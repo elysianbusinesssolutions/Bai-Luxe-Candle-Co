@@ -58,32 +58,31 @@
     .nav-cta:hover::before { transform: translateX(0); }
     .nav-cta:hover span { color: var(--charcoal); }
 
-    /* HERO */
-    .hero { position: relative; width: 100%; height: 100vh; min-height: 640px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    /* HERO — shorter than before */
+    .hero { position: relative; width: 100%; height: 70vh; min-height: 500px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
     .hero-bg { position: absolute; inset: 0; z-index: 1; }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-    .hero-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to bottom, rgba(16,12,6,.48) 0%, rgba(16,12,6,.32) 45%, rgba(16,12,6,.58) 100%); }
-    .candle-glow { position: absolute; z-index: 3; pointer-events: none; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(255,175,40,.12) 0%, rgba(255,120,20,.06) 35%, rgba(212,175,55,.03) 55%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: flicker 5s ease-in-out infinite; }
-    @keyframes flicker { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.8} 35%{transform:translate(-50%,-51%) scale(1.04);opacity:1} 65%{transform:translate(-50%,-50%) scale(.97);opacity:.75} }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+    .hero-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to bottom, rgba(16,12,6,.45) 0%, rgba(16,12,6,.3) 45%, rgba(16,12,6,.55) 100%); }
+    .candle-glow { position: absolute; z-index: 3; pointer-events: none; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(255,175,40,.1) 0%, rgba(255,120,20,.05) 35%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: flicker 5s ease-in-out infinite; }
+    @keyframes flicker { 0%,100%{opacity:.8} 40%{opacity:1} 70%{opacity:.75} }
 
     .hero-content { position: relative; z-index: 10; text-align: center; padding: 0 2rem; width: 100%; max-width: 860px; display: flex; flex-direction: column; align-items: center; }
-    .hero-eyebrow { font-family: 'Jost', sans-serif; font-size: .58rem; letter-spacing: .35em; text-transform: uppercase; color: rgba(212,175,55,.9); margin-bottom: 1.6rem; opacity: 0; animation: fadeUp .9s .5s ease forwards; }
-    .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(3rem, 7vw, 7.5rem); color: var(--white); letter-spacing: .05em; line-height: 1.1; margin-bottom: .6rem; opacity: 0; animation: fadeUp .9s .7s ease forwards; }
-    .hero-tagline { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 2vw, 1.6rem); font-style: italic; color: var(--gold-light); letter-spacing: .05em; margin-bottom: 1.8rem; opacity: 0; animation: fadeUp .9s .85s ease forwards; }
-    .hero-sub { font-size: .82rem; line-height: 1.95; color: rgba(255,255,255,.58); max-width: 460px; margin-bottom: 2.5rem; font-weight: 300; opacity: 0; animation: fadeUp .9s 1s ease forwards; }
+    .hero-eyebrow { font-family: 'Jost', sans-serif; font-size: .58rem; letter-spacing: .35em; text-transform: uppercase; color: rgba(212,175,55,.9); margin-bottom: 1.4rem; opacity: 0; animation: fadeUp .9s .5s ease forwards; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.5rem, 6vw, 6rem); color: var(--white); letter-spacing: .05em; line-height: 1.1; margin-bottom: .5rem; opacity: 0; animation: fadeUp .9s .7s ease forwards; }
+    .hero-tagline { font-family: 'Playfair Display', serif; font-size: clamp(.9rem, 2vw, 1.4rem); font-style: italic; color: var(--gold-light); letter-spacing: .05em; margin-bottom: 1.6rem; opacity: 0; animation: fadeUp .9s .85s ease forwards; }
+    .hero-sub { font-size: .8rem; line-height: 1.9; color: rgba(255,255,255,.55); max-width: 440px; margin-bottom: 2.2rem; font-weight: 300; opacity: 0; animation: fadeUp .9s 1s ease forwards; }
     .hero-btns { display: flex; gap: 1.2rem; align-items: center; justify-content: center; opacity: 0; animation: fadeUp .9s 1.15s ease forwards; }
 
-    .btn-gold { display: inline-block; position: relative; overflow: hidden; padding: 1rem 2.6rem; font-family: 'Jost', sans-serif; font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--charcoal); background: var(--gold); text-decoration: none; border: none; cursor: pointer; font-weight: 500; transition: color .35s; }
+    .btn-gold { display: inline-block; position: relative; overflow: hidden; padding: .9rem 2.4rem; font-family: 'Jost', sans-serif; font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--charcoal); background: var(--gold); text-decoration: none; border: none; cursor: pointer; font-weight: 500; transition: color .35s; }
     .btn-gold::before { content: ''; position: absolute; inset: 0; background: var(--white); transform: translateX(-101%); transition: transform .4s ease; }
     .btn-gold:hover::before { transform: translateX(0); }
     .btn-gold span { position: relative; z-index: 1; }
-
-    .btn-outline { font-family: 'Jost', sans-serif; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.8); text-decoration: none; border: 1px solid rgba(255,255,255,.35); padding: 1rem 2.2rem; transition: all .35s; }
+    .btn-outline { font-family: 'Jost', sans-serif; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.8); text-decoration: none; border: 1px solid rgba(255,255,255,.35); padding: .9rem 2rem; transition: all .35s; }
     .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); }
 
-    .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .5rem; z-index: 10; opacity: 0; animation: fadeUp 1s 1.5s ease forwards; }
+    .scroll-hint { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .4rem; z-index: 10; opacity: 0; animation: fadeUp 1s 1.5s ease forwards; }
     .sh-text { font-family: 'Jost', sans-serif; font-size: .44rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.3); }
-    .sh-line { width: 1px; height: 32px; background: linear-gradient(180deg, rgba(212,175,55,.7), transparent); animation: drip 2s ease infinite; }
+    .sh-line { width: 1px; height: 28px; background: linear-gradient(180deg, rgba(212,175,55,.7), transparent); animation: drip 2s ease infinite; }
     @keyframes drip { 0%,100%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform-origin:bottom} }
 
     /* MARQUEE */
@@ -106,7 +105,6 @@
     .btn-dark:hover::before { transform: translateX(0); }
     .btn-dark:hover { color: var(--charcoal); }
     .btn-dark span { position: relative; z-index: 1; }
-
     .btn-link { font-family: 'Jost', sans-serif; font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); text-decoration: none; display: flex; align-items: center; gap: .4rem; transition: color .3s; }
     .btn-link::after { content: '→'; transition: transform .3s; }
     .btn-link:hover { color: var(--gold); }
@@ -131,10 +129,8 @@
     .pcb::before, .pcb::after { content: ''; position: absolute; opacity: 0; transition: opacity .35s; }
     .pcb::before { top: 8px; left: 8px; width: 16px; height: 16px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
     .pcb::after { bottom: 8px; right: 8px; width: 16px; height: 16px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
-
     .pc-tag { position: absolute; top: .85rem; left: .85rem; z-index: 5; font-family: 'Jost', sans-serif; font-size: .48rem; letter-spacing: .12em; text-transform: uppercase; background: var(--gold); color: var(--charcoal); padding: .28rem .65rem; font-weight: 500; }
     .pc-tag.dk { background: rgba(22,20,14,.9); color: var(--gold-light); border: 1px solid rgba(212,175,55,.3); }
-
     .pc-info { padding: 1.1rem 0 0; border-top: 1px solid var(--border); }
     .pc-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: .2rem; transition: color .3s; }
     .pc-notes { font-size: .66rem; color: var(--text-light); line-height: 1.6; margin-bottom: .85rem; font-weight: 300; }
@@ -146,7 +142,7 @@
     .col-foot { text-align: center; margin-top: 3.5rem; }
 
     /* BANNER */
-    .banner { position: relative; height: 480px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .banner { position: relative; height: 420px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
     .banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.42); display: block; }
     .banner-glow { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255,175,40,.1) 0%, transparent 65%); }
     .banner-inner { position: relative; z-index: 5; text-align: center; color: var(--white); padding: 0 2rem; max-width: 680px; }
@@ -157,7 +153,7 @@
     /* STORY */
     .story-wrap { background: var(--offwhite); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .story { display: grid; grid-template-columns: 1fr 1fr; max-width: 1280px; margin: 0 auto; }
-    .story-img { position: relative; min-height: 580px; overflow: hidden; }
+    .story-img { position: relative; min-height: 520px; overflow: hidden; }
     .story-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 8s ease; }
     .story-img:hover img { transform: scale(1.03); }
     .story-fade { position: absolute; inset: 0; background: linear-gradient(to right, transparent 55%, var(--offwhite)); }
@@ -256,14 +252,14 @@
 <body>
 
   <div id="loader">
-    <div class="ld-img"><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/IMG_20250731_061403_476.webp" alt="Bai Luxe"/></div>
+    <div class="ld-img"><img src="logo.png" alt="Bai Luxe"/></div>
     <div class="ld-text">Bai Luxe Candle Co.</div>
     <div class="ld-bar"></div>
   </div>
 
   <nav id="nav">
     <a href="#top" class="nav-logo">
-      <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/IMG_20250731_061403_476.webp" alt="Bai Luxe"/>
+      <img src="logo.png" alt="Bai Luxe"/>
       <span class="nav-name">Bai <em>Luxe</em></span>
     </a>
     <ul class="nav-links">
@@ -275,11 +271,8 @@
     <a href="#collection" class="nav-cta"><span>Shop Now</span></a>
   </nav>
 
-  <!-- HERO — using your uploaded GIF -->
   <section class="hero" id="top">
-    <div class="hero-bg">
-      <img src="20250721_2259_Blend%20Video_blend_01k0rbdcfgfvcarscap16ae663.gif" alt="Bai Luxe"/>
-    </div>
+    <div class="hero-bg"><img src="hero.gif" alt="Bai Luxe"/></div>
     <div class="hero-overlay"></div>
     <div class="candle-glow"></div>
     <div class="hero-content">
@@ -300,7 +293,7 @@
 
   <div class="marquee">
     <div class="mtrack">
-      <span>Hand-Poured</span><span class="gem">◆</span><span>Premium Para-Soy Blend</span><span class="gem">◆</span><span>Fine Fragrances</span><span class="gem">◆</span><span>Custom Labels & Scents</span><span class="gem">◆</span><span>Caribbean Inspired</span><span class="gem">◆</span><span>Luxury Scented Candles</span><span class="gem">◆</span><span>Phoenix, Arizona</span><span class="gem">◆</span><span>Hand-Poured</span><span class="gem">◆</span><span>Premium Para-Soy Blend</span><span class="gem">◆</span><span>Fine Fragrances</span><span class="gem">◆</span><span>Custom Labels & Scents</span><span class="gem">◆</span><span class="gem">◆</span><span>Caribbean Inspired</span><span class="gem">◆</span><span>Luxury Scented Candles</span><span class="gem">◆</span><span>Phoenix, Arizona</span><span class="gem">◆</span>
+      <span>Hand-Poured</span><span class="gem">◆</span><span>Premium Para-Soy Blend</span><span class="gem">◆</span><span>Fine Fragrances</span><span class="gem">◆</span><span>Custom Labels & Scents</span><span class="gem">◆</span><span>Caribbean Inspired</span><span class="gem">◆</span><span>Luxury Scented Candles</span><span class="gem">◆</span><span>Phoenix, Arizona</span><span class="gem">◆</span><span>Hand-Poured</span><span class="gem">◆</span><span>Premium Para-Soy Blend</span><span class="gem">◆</span><span>Fine Fragrances</span><span class="gem">◆</span><span>Custom Labels & Scents</span><span class="gem">◆</span><span>Caribbean Inspired</span><span class="gem">◆</span><span>Luxury Scented Candles</span><span class="gem">◆</span><span>Phoenix, Arizona</span><span class="gem">◆</span>
     </div>
   </div>
 
@@ -318,33 +311,33 @@
         </div>
         <div class="g3">
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
-            <div class="pci"><div class="pcb"></div><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT_Image_Jul_21__2025__03_21_45_PM.png" alt="Sugar Loaf Pineapple"/><span class="pc-tag">Bestseller</span></div>
+            <div class="pci"><div class="pcb"></div><img src="sugar_loaf.png" alt="Sugar Loaf Pineapple"/><span class="pc-tag">Bestseller</span></div>
             <div class="pc-info"><h3 class="pc-name">Sugar Loaf Pineapple</h3><p class="pc-notes">Tropical fruits & rum · Tangerine, orange peel & lemon · Sweet pineapple</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d2">
-            <div class="pci"><div class="pcb"></div><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/Flaming_Rose_Edited.jpg" alt="Flaming Rose"/><span class="pc-tag">Fan Favorite</span></div>
+            <div class="pci"><div class="pcb"></div><img src="flaming_rose.jpg" alt="Flaming Rose"/><span class="pc-tag">Fan Favorite</span></div>
             <div class="pc-info"><h3 class="pc-name">Flaming Rose</h3><p class="pc-notes">Ozone & green leaves · Rose, carnation & lily of the valley · Ylang ylang</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d3">
-            <div class="pci"><div class="pcb"></div><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT_Image_Jul_11__2025__12_02_53_PM.png" alt="Aqua Noir Man"/><span class="pc-tag dk">For Him</span></div>
+            <div class="pci"><div class="pcb"></div><img src="aqua_noir.png" alt="Aqua Noir Man"/><span class="pc-tag dk">For Him</span></div>
             <div class="pc-info"><h3 class="pc-name">Aqua Noir Man</h3><p class="pc-notes">Mandarin, bergamot & lemon · Jasmine & lilies · Rosewood, amber & musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
         </div>
         <div class="g4">
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
-            <div class="pci"><div class="pcb"></div><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT_Image_Jul_14__2025__10_45_30_AM.png" alt="Alpha Male"/><span class="pc-tag dk">For Him</span></div>
+            <div class="pci"><div class="pcb"></div><img src="alpha_male.png" alt="Alpha Male"/><span class="pc-tag dk">For Him</span></div>
             <div class="pc-info"><h3 class="pc-name">Alpha Male</h3><p class="pc-notes">Bold citrus · Bamboo & lilies · Amber, patchouli & musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d2">
-            <div class="pci"><div class="pcb"></div><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT_Image_Jul_14__2025__10_04_12_AM.png" alt="Royal Cotton"/><span class="pc-tag">Clean & Fresh</span></div>
+            <div class="pci"><div class="pcb"></div><img src="royal_cotton.png" alt="Royal Cotton"/><span class="pc-tag">Clean & Fresh</span></div>
             <div class="pc-info"><h3 class="pc-name">Royal Cotton</h3><p class="pc-notes">Fresh cotton & clean air · Ozone, linen & cotton blossom · Lily & white musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d3">
-            <div class="pci"><div class="pcb"></div><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT_Image_Jul_22__2025__08_55_22_AM.png" alt="Pu$$y Magnet"/><span class="pc-tag">Bold</span></div>
+            <div class="pci"><div class="pcb"></div><img src="pussy_magnet.png" alt="Pu$$y Magnet"/><span class="pc-tag">Bold</span></div>
             <div class="pc-info"><h3 class="pc-name">Pu$$y Magnet</h3><p class="pc-notes">Sultry lavender, rosemary & lemon verbea · Cool coriander · Leather & vetiver</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d4">
-            <div class="pci"><div class="pcb"></div><img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT_Image_Jul_22__2025__08_33_23_AM.png" alt="Rainbow Collection"/><span class="pc-tag">Limited</span></div>
+            <div class="pci"><div class="pcb"></div><img src="rainbow.png" alt="Rainbow Collection"/><span class="pc-tag">Limited</span></div>
             <div class="pc-info"><h3 class="pc-name">Rainbow Collection</h3><p class="pc-notes">Vibrant layered candles · Bold rainbow colors · Custom scents available</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
         </div>
@@ -356,7 +349,7 @@
   </div>
 
   <div class="banner reveal">
-    <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/Flaming_Rose_Edited.jpg" alt="Bai Luxe"/>
+    <img src="flaming_rose.jpg" alt="Bai Luxe"/>
     <div class="banner-glow"></div>
     <div class="banner-inner">
       <div class="banner-eyebrow">Custom Orders</div>
@@ -369,7 +362,7 @@
   <div class="story-wrap" id="story">
     <div class="story">
       <div class="story-img">
-        <img src="https://elysianbusinesssolutions.github.io/Bai-Luxe-Candle-Co/ChatGPT_Image_Jul_21__2025__03_21_45_PM.png" alt="Bai Luxe"/>
+        <img src="lifestyle.png" alt="Bai Luxe"/>
         <div class="story-fade"></div>
         <div class="story-quote reveal">
           <blockquote>"Every candle is a ritual. Every scent, a moment worth savoring."</blockquote>
