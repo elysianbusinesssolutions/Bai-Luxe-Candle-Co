@@ -8,66 +8,116 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    /* ... all your CSS from the original file ... */
+    :root {
+      --gold: #D4AF37;
+      --gold-light: #F0D060;
+      --gold-dark: #A88A20;
+      --white: #FFFFFF;
+      --offwhite: #FAFAF8;
+      --cream: #F5F0E8;
+      --charcoal: #16140E;
+      --text: #1A1612;
+      --text-mid: #5A5248;
+      --text-light: #9A8E82;
+      --border: rgba(212,175,55,0.15);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+    /* LOADER */
+    #loader { position: fixed; inset: 0; z-index: 9000; background: var(--charcoal); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity .7s, visibility .7s; }
+    #loader.gone { opacity: 0; visibility: hidden; }
+    .ld-img { width: 54px; height: 54px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(212,175,55,.4); margin-bottom: 1.4rem; }
+    .ld-img img { width: 100%; height: 100%; object-fit: cover; }
+    .ld-text { font-family: 'Playfair Display', serif; font-size: .9rem; letter-spacing: .3em; color: var(--gold); animation: pulse 1.5s ease infinite; }
+    .ld-bar { width: 0; height: 1px; margin-top: 1.2rem; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: barGrow 2s ease forwards; }
+    @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+    @keyframes barGrow { to { width: 130px; } }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 4rem; transition: all .4s; }
+    nav.stuck { background: rgba(255,255,255,.97); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 1rem 4rem; box-shadow: 0 2px 16px rgba(0,0,0,.05); }
+    .nav-logo { display: flex; align-items: center; gap: .8rem; text-decoration: none; }
+    .nav-logo img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(212,175,55,.35); }
+    .nav-name { font-family: 'Playfair Display', serif; font-size: .95rem; letter-spacing: .1em; color: var(--white); transition: color .4s; }
+    nav.stuck .nav-name { color: var(--text); }
+    .nav-name em { color: var(--gold-light); font-style: italic; }
+    nav.stuck .nav-name em { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.8); text-decoration: none; transition: color .3s; position: relative; }
+    nav.stuck .nav-links a { color: var(--text-light); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width .3s; }
+    .nav-links a:hover { color: var(--gold-light); }
+    nav.stuck .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { font-family: 'Jost', sans-serif; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.5); color: var(--white); padding: .6rem 1.4rem; text-decoration: none; position: relative; overflow: hidden; transition: all .35s; }
+    nav.stuck .nav-cta { border-color: var(--gold); color: var(--gold-dark); }
+    .nav-cta::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: translateX(-101%); transition: transform .35s ease; }
+    .nav-cta span { position: relative; z-index: 1; transition: color .35s; }
+    .nav-cta:hover::before { transform: translateX(0); }
+    .nav-cta:hover span { color: var(--charcoal); }
+
+    /* HERO */
+    .hero { position: relative; width: 100%; height: 70vh; min-height: 500px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .hero-bg { position: absolute; inset: 0; z-index: 1; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+    .hero-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to bottom, rgba(16,12,6,.45) 0%, rgba(16,12,6,.3) 45%, rgba(16,12,6,.55) 100%); }
+    .candle-glow { position: absolute; z-index: 3; pointer-events: none; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(255,175,40,.1) 0%, rgba(255,120,20,.05) 35%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: flicker 5s ease-in-out infinite; }
+    @keyframes flicker { 0%,100%{opacity:.8} 40%{opacity:1} 70%{opacity:.75} }
+
+    .hero-content { position: relative; z-index: 10; text-align: center; padding: 0 2rem; width: 100%; max-width: 860px; display: flex; flex-direction: column; align-items: center; }
+    .hero-eyebrow { font-family: 'Jost', sans-serif; font-size: .58rem; letter-spacing: .35em; text-transform: uppercase; color: rgba(212,175,55,.9); margin-bottom: 1.4rem; opacity: 0; animation: fadeUp .9s .5s ease forwards; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.5rem, 6vw, 6rem); color: var(--white); letter-spacing: .05em; line-height: 1.1; margin-bottom: .5rem; opacity: 0; animation: fadeUp .9s .7s ease forwards; }
+    .hero-tagline { font-family: 'Playfair Display', serif; font-size: clamp(.9rem, 2vw, 1.4rem); font-style: italic; color: var(--gold-light); letter-spacing: .05em; margin-bottom: 1.6rem; opacity: 0; animation: fadeUp .9s .85s ease forwards; }
+    .hero-sub { font-size: .8rem; line-height: 1.9; color: rgba(255,255,255,.55); max-width: 440px; margin-bottom: 2.2rem; font-weight: 300; opacity: 0; animation: fadeUp .9s 1s ease forwards; }
+    .hero-btns { display: flex; gap: 1.2rem; align-items: center; justify-content: center; opacity: 0; animation: fadeUp .9s 1.15s ease forwards; }
+
+    /* ADDITION: FEW OF A KIND COLLECTION */
+    .collection { padding: 6rem 0; }
+    .col-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
+    .col-sub { font-size: .78rem; line-height: 1.9; color: var(--text-light); font-weight: 300; max-width: 320px; }
+    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 1.5rem; }
+    .pc { display: block; text-decoration: none; color: inherit; }
+    .pci { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--cream); }
+    .pci img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; display: block; }
+    .pc-info { padding: 1.1rem 0 0; border-top: 1px solid var(--border); }
+    .pc-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: .2rem; transition: color .3s; }
+    .pc-notes { font-size: .66rem; color: var(--text-light); line-height: 1.6; margin-bottom: .85rem; font-weight: 300; }
+    .pc-foot { display: flex; justify-content: space-between; align-items: center; }
+    .pc-price { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold); font-weight: 400; }
+    .pca { font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); display: flex; align-items: center; gap: .4rem; transition: color .3s; }
+    .pca::after { content: '→'; transition: transform .3s; }
+    .btn-dark { display: inline-block; position: relative; overflow: hidden; padding: .95rem 2.3rem; font-family: 'Jost', sans-serif; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--white); background: var(--charcoal); text-decoration: none; border: none; cursor: pointer; }
+    .btn-dark::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: translateX(-101%); transition: transform .4s ease; }
+    .btn-dark:hover::before { transform: translateX(0); }
+    .btn-dark:hover { color: var(--charcoal); }
+    .btn-dark span { position: relative; z-index: 1; }
+
   </style>
 </head>
 <body>
-  <!-- LOADER -->
-  <div id="loader">
-    <div class="ld-img"><img src="images/logo.jpg" alt="Bai Luxe Logo"></div>
-    <div class="ld-text">LOADING</div>
-    <div class="ld-bar"></div>
-  </div>
-
-  <!-- NAV -->
-  <nav>
-    <a href="/" class="nav-logo"><img src="images/logo.jpg" alt="Logo"><div class="nav-name">Bai <em>Luxe</em></div></a>
-    <ul class="nav-links">
-      <li><a href="#collection">Collections</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="#shop" class="nav-cta"><span>Shop Now</span></a>
-  </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg"><img src="images/hero.jpg" alt="Luxury Candle Hero"></div>
+    <div class="hero-bg">
+      <img src="images/hero.jpg" alt="Luxury Candle Hero"/>
+    </div>
     <div class="hero-overlay"></div>
     <div class="candle-glow"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">Hand-Poured Luxury</div>
+      <div class="hero-eyebrow">Luxury Hand-Poured Candles</div>
       <h1 class="hero-title">Bai Luxe Candle Co.</h1>
-      <div class="hero-tagline">Elevate Your Space</div>
-      <p class="hero-sub">Artisan scented candles crafted for ambiance, luxury, and uniqueness.</p>
+      <div class="hero-tagline">Illuminate your space with elegance</div>
+      <p class="hero-sub">Exquisite, hand-poured luxury candles crafted for ambiance and serenity. Limited edition designs and scents.</p>
       <div class="hero-btns">
-        <a href="#collection" class="btn-gold"><span>Shop Collection</span></a>
-        <a href="#about" class="btn-outline">Learn More</a>
-      </div>
-      <div class="scroll-hint">
-        <div class="sh-text">Scroll</div>
-        <div class="sh-line"></div>
+        <a href="#shop" class="btn-gold"><span>Shop Now</span></a>
+        <a href="#learn" class="btn-outline">Learn More</a>
       </div>
     </div>
   </section>
 
-  <!-- MAIN COLLECTION -->
-  <section class="collection" id="collection">
-    <div class="wrap">
-      <div class="col-head">
-        <div>
-          <div class="sec-label">Collections</div>
-          <h2 class="sec-title">Our <em>Luxury</em> Candles</h2>
-        </div>
-        <p class="col-sub">Premium candles designed to transform your home and mood.</p>
-      </div>
-      <div class="g3">
-        <!-- existing product items go here -->
-      </div>
-    </div>
-  </section>
-
-  <!-- NEW FEW OF A KIND COLLECTION -->
+  <!-- FEW OF A KIND COLLECTION -->
   <section class="collection">
     <div class="wrap">
       <div class="col-head">
@@ -80,10 +130,10 @@
 
       <div class="g3">
         <a href="#" class="pc">
-          <div class="pci"><img src="images/OIG2.jpeg" alt="White Lotus Flower Candle"/></div>
+          <div class="pci"><img src="images/OIG2.jpeg" alt="Unique Glass Vessel Candle 1"/></div>
           <div class="pc-info">
-            <h3 class="pc-name">White Lotus Flower Candle</h3>
-            <p class="pc-notes">Unique flower-shaped vessel, multi-wick, 18oz.</p>
+            <h3 class="pc-name">Oval Glass Statement Candle</h3>
+            <p class="pc-notes">Long oval multi-wick, heat-safe, 20oz.</p>
             <div class="pc-foot">
               <span class="pc-price">$40</span>
               <span class="pca">View →</span>
@@ -92,10 +142,10 @@
         </a>
 
         <a href="#" class="pc">
-          <div class="pci"><img src="images/file_00000000aeb471f8806e4d5d073eb9dc.png" alt="Luxury Vessel Collection"/></div>
+          <div class="pci"><img src="images/OIG3.jpeg" alt="Unique Glass Vessel Candle 2"/></div>
           <div class="pc-info">
-            <h3 class="pc-name">Artisan Vessel Collection</h3>
-            <p class="pc-notes">Three unique styles, multi-wick, limited edition.</p>
+            <h3 class="pc-name">Elongated Spa Candle</h3>
+            <p class="pc-notes">Three-wick, 18oz, perfect centerpiece candle.</p>
             <div class="pc-foot">
               <span class="pc-price">$40</span>
               <span class="pca">View →</span>
@@ -104,10 +154,10 @@
         </a>
 
         <a href="#" class="pc">
-          <div class="pci"><img src="images/_3a274a61-f5a6-4b8b-b90d-bdc8bdd56361.jpeg" alt="Blue Ceramic Bowl Candle"/></div>
+          <div class="pci"><img src="images/OIG4.jpeg" alt="Unique Glass Vessel Candle 3"/></div>
           <div class="pc-info">
-            <h3 class="pc-name">Blue Ceramic Bowl Candle</h3>
-            <p class="pc-notes">Cobalt blue with gold accents, dual-wick, 16oz.</p>
+            <h3 class="pc-name">Limited Edition Oval Candle</h3>
+            <p class="pc-notes">Heat-safe glass, 22oz, multi-wick.</p>
             <div class="pc-foot">
               <span class="pc-price">$40</span>
               <span class="pca">View →</span>
@@ -122,6 +172,7 @@
     </div>
   </section>
 
-  <!-- rest of the page sections, banners, footer, etc. -->
+  <!-- THE REST OF YOUR PAGE CONTENT CONTINUES HERE -->
+
 </body>
 </html>
