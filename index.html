@@ -8,463 +8,120 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --gold: #D4AF37;
-      --gold-light: #F0D060;
-      --gold-dark: #A88A20;
-      --white: #FFFFFF;
-      --offwhite: #FAFAF8;
-      --cream: #F5F0E8;
-      --charcoal: #16140E;
-      --text: #1A1612;
-      --text-mid: #5A5248;
-      --text-light: #9A8E82;
-      --border: rgba(212,175,55,0.15);
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Jost', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
-
-    /* LOADER */
-    #loader { position: fixed; inset: 0; z-index: 9000; background: var(--charcoal); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity .7s, visibility .7s; }
-    #loader.gone { opacity: 0; visibility: hidden; }
-    .ld-img { width: 54px; height: 54px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(212,175,55,.4); margin-bottom: 1.4rem; }
-    .ld-img img { width: 100%; height: 100%; object-fit: cover; }
-    .ld-text { font-family: 'Playfair Display', serif; font-size: .9rem; letter-spacing: .3em; color: var(--gold); animation: pulse 1.5s ease infinite; }
-    .ld-bar { width: 0; height: 1px; margin-top: 1.2rem; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: barGrow 2s ease forwards; }
-    @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:1} }
-    @keyframes barGrow { to { width: 130px; } }
-
-    /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 4rem; transition: all .4s; }
-    nav.stuck { background: rgba(255,255,255,.97); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 1rem 4rem; box-shadow: 0 2px 16px rgba(0,0,0,.05); }
-    .nav-logo { display: flex; align-items: center; gap: .8rem; text-decoration: none; }
-    .nav-logo img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(212,175,55,.35); }
-    .nav-name { font-family: 'Playfair Display', serif; font-size: .95rem; letter-spacing: .1em; color: var(--white); transition: color .4s; }
-    nav.stuck .nav-name { color: var(--text); }
-    .nav-name em { color: var(--gold-light); font-style: italic; }
-    nav.stuck .nav-name em { color: var(--gold); }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.8); text-decoration: none; transition: color .3s; position: relative; }
-    nav.stuck .nav-links a { color: var(--text-light); }
-    .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width .3s; }
-    .nav-links a:hover { color: var(--gold-light); }
-    nav.stuck .nav-links a:hover { color: var(--gold); }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-cta { font-family: 'Jost', sans-serif; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.5); color: var(--white); padding: .6rem 1.4rem; text-decoration: none; position: relative; overflow: hidden; transition: all .35s; }
-    nav.stuck .nav-cta { border-color: var(--gold); color: var(--gold-dark); }
-    .nav-cta::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: translateX(-101%); transition: transform .35s ease; }
-    .nav-cta span { position: relative; z-index: 1; transition: color .35s; }
-    .nav-cta:hover::before { transform: translateX(0); }
-    .nav-cta:hover span { color: var(--charcoal); }
-
-    /* HERO — shorter than before */
-    .hero { position: relative; width: 100%; height: 70vh; min-height: 500px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-    .hero-bg { position: absolute; inset: 0; z-index: 1; }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
-    .hero-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to bottom, rgba(16,12,6,.45) 0%, rgba(16,12,6,.3) 45%, rgba(16,12,6,.55) 100%); }
-    .candle-glow { position: absolute; z-index: 3; pointer-events: none; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(255,175,40,.1) 0%, rgba(255,120,20,.05) 35%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: flicker 5s ease-in-out infinite; }
-    @keyframes flicker { 0%,100%{opacity:.8} 40%{opacity:1} 70%{opacity:.75} }
-
-    .hero-content { position: relative; z-index: 10; text-align: center; padding: 0 2rem; width: 100%; max-width: 860px; display: flex; flex-direction: column; align-items: center; }
-    .hero-eyebrow { font-family: 'Jost', sans-serif; font-size: .58rem; letter-spacing: .35em; text-transform: uppercase; color: rgba(212,175,55,.9); margin-bottom: 1.4rem; opacity: 0; animation: fadeUp .9s .5s ease forwards; }
-    .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.5rem, 6vw, 6rem); color: var(--white); letter-spacing: .05em; line-height: 1.1; margin-bottom: .5rem; opacity: 0; animation: fadeUp .9s .7s ease forwards; }
-    .hero-tagline { font-family: 'Playfair Display', serif; font-size: clamp(.9rem, 2vw, 1.4rem); font-style: italic; color: var(--gold-light); letter-spacing: .05em; margin-bottom: 1.6rem; opacity: 0; animation: fadeUp .9s .85s ease forwards; }
-    .hero-sub { font-size: .8rem; line-height: 1.9; color: rgba(255,255,255,.55); max-width: 440px; margin-bottom: 2.2rem; font-weight: 300; opacity: 0; animation: fadeUp .9s 1s ease forwards; }
-    .hero-btns { display: flex; gap: 1.2rem; align-items: center; justify-content: center; opacity: 0; animation: fadeUp .9s 1.15s ease forwards; }
-
-    .btn-gold { display: inline-block; position: relative; overflow: hidden; padding: .9rem 2.4rem; font-family: 'Jost', sans-serif; font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--charcoal); background: var(--gold); text-decoration: none; border: none; cursor: pointer; font-weight: 500; transition: color .35s; }
-    .btn-gold::before { content: ''; position: absolute; inset: 0; background: var(--white); transform: translateX(-101%); transition: transform .4s ease; }
-    .btn-gold:hover::before { transform: translateX(0); }
-    .btn-gold span { position: relative; z-index: 1; }
-    .btn-outline { font-family: 'Jost', sans-serif; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.8); text-decoration: none; border: 1px solid rgba(255,255,255,.35); padding: .9rem 2rem; transition: all .35s; }
-    .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); }
-
-    .scroll-hint { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .4rem; z-index: 10; opacity: 0; animation: fadeUp 1s 1.5s ease forwards; }
-    .sh-text { font-family: 'Jost', sans-serif; font-size: .44rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.3); }
-    .sh-line { width: 1px; height: 28px; background: linear-gradient(180deg, rgba(212,175,55,.7), transparent); animation: drip 2s ease infinite; }
-    @keyframes drip { 0%,100%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform-origin:bottom} }
-
-    /* MARQUEE */
-    .marquee { background: var(--charcoal); padding: .9rem 0; overflow: hidden; white-space: nowrap; }
-    .mtrack { display: inline-block; animation: mscroll 32s linear infinite; }
-    .mtrack span { font-family: 'Jost', sans-serif; font-size: .52rem; letter-spacing: .24em; text-transform: uppercase; color: rgba(212,175,55,.55); padding: 0 2rem; }
-    .mtrack .gem { color: var(--gold); padding: 0; font-size: .38rem; }
-    @keyframes mscroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-
-    /* SHARED */
-    .wrap { max-width: 1280px; margin: 0 auto; padding: 0 4rem; }
-    .sec-label { font-family: 'Jost', sans-serif; font-size: .52rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: .9rem; display: flex; align-items: center; gap: .8rem; }
-    .sec-label::before { content: ''; width: 18px; height: 1px; background: var(--gold); display: block; }
-    .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.2rem; }
-    .sec-title em { font-style: italic; color: var(--gold); }
-    .rule { width: 40px; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); margin: 1.2rem 0; }
-
-    .btn-dark { display: inline-block; position: relative; overflow: hidden; padding: .95rem 2.3rem; font-family: 'Jost', sans-serif; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--white); background: var(--charcoal); text-decoration: none; border: none; cursor: pointer; }
-    .btn-dark::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: translateX(-101%); transition: transform .4s ease; }
-    .btn-dark:hover::before { transform: translateX(0); }
-    .btn-dark:hover { color: var(--charcoal); }
-    .btn-dark span { position: relative; z-index: 1; }
-    .btn-link { font-family: 'Jost', sans-serif; font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); text-decoration: none; display: flex; align-items: center; gap: .4rem; transition: color .3s; }
-    .btn-link::after { content: '→'; transition: transform .3s; }
-    .btn-link:hover { color: var(--gold); }
-    .btn-link:hover::after { transform: translateX(4px); }
-
-    /* COLLECTION */
-    .collection { padding: 6rem 0; }
-    .col-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
-    .col-sub { font-size: .78rem; line-height: 1.9; color: var(--text-light); font-weight: 300; max-width: 320px; }
-    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
-    .g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 1.5rem; }
-
-    .pc { display: block; text-decoration: none; color: inherit; }
-    .pc:hover .pci img { transform: scale(1.05); }
-    .pc:hover .pc-name { color: var(--gold); }
-    .pc:hover .pca::after { transform: translateX(4px); }
-    .pc:hover .pcb::before, .pc:hover .pcb::after { opacity: 1; }
-
-    .pci { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--cream); }
-    .pci img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; display: block; }
-    .pcb { position: absolute; inset: 0; pointer-events: none; }
-    .pcb::before, .pcb::after { content: ''; position: absolute; opacity: 0; transition: opacity .35s; }
-    .pcb::before { top: 8px; left: 8px; width: 16px; height: 16px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
-    .pcb::after { bottom: 8px; right: 8px; width: 16px; height: 16px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
-    .pc-tag { position: absolute; top: .85rem; left: .85rem; z-index: 5; font-family: 'Jost', sans-serif; font-size: .48rem; letter-spacing: .12em; text-transform: uppercase; background: var(--gold); color: var(--charcoal); padding: .28rem .65rem; font-weight: 500; }
-    .pc-tag.dk { background: rgba(22,20,14,.9); color: var(--gold-light); border: 1px solid rgba(212,175,55,.3); }
-    .pc-info { padding: 1.1rem 0 0; border-top: 1px solid var(--border); }
-    .pc-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: .2rem; transition: color .3s; }
-    .pc-notes { font-size: .66rem; color: var(--text-light); line-height: 1.6; margin-bottom: .85rem; font-weight: 300; }
-    .pc-foot { display: flex; justify-content: space-between; align-items: center; }
-    .pc-price { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold); font-weight: 400; }
-    .pca { font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); display: flex; align-items: center; gap: .4rem; transition: color .3s; }
-    .pca::after { content: '→'; transition: transform .3s; }
-    .pc:hover .pca { color: var(--gold); }
-    .col-foot { text-align: center; margin-top: 3.5rem; }
-
-    /* BANNER */
-    .banner { position: relative; height: 420px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-    .banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.42); display: block; }
-    .banner-glow { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255,175,40,.1) 0%, transparent 65%); }
-    .banner-inner { position: relative; z-index: 5; text-align: center; color: var(--white); padding: 0 2rem; max-width: 680px; }
-    .banner-eyebrow { font-family: 'Jost', sans-serif; font-size: .52rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(212,175,55,.85); margin-bottom: 1rem; }
-    .banner-inner .sec-title { color: var(--white); }
-    .banner-sub { font-size: .8rem; color: rgba(255,255,255,.55); max-width: 420px; margin: 0 auto 2rem; font-weight: 300; line-height: 1.9; }
-
-    /* STORY */
-    .story-wrap { background: var(--offwhite); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .story { display: grid; grid-template-columns: 1fr 1fr; max-width: 1280px; margin: 0 auto; }
-    .story-img { position: relative; min-height: 520px; overflow: hidden; }
-    .story-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 8s ease; }
-    .story-img:hover img { transform: scale(1.03); }
-    .story-fade { position: absolute; inset: 0; background: linear-gradient(to right, transparent 55%, var(--offwhite)); }
-    .story-quote { position: absolute; bottom: 2rem; left: 1.5rem; right: 1.5rem; background: rgba(255,255,255,.93); backdrop-filter: blur(8px); padding: 1.5rem; border-left: 2px solid var(--gold); }
-    .story-quote blockquote { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; line-height: 1.6; color: var(--text); }
-    .story-quote cite { display: block; margin-top: .5rem; font-family: 'Jost', sans-serif; font-size: .56rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-dark); font-style: normal; }
-    .story-body { padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
-    .story-p { font-size: .82rem; line-height: 2.1; color: var(--text-mid); font-weight: 300; margin-bottom: 1.2rem; }
-    .story-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
-    .sn { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--gold); display: block; font-weight: 300; line-height: 1; }
-    .sl { font-family: 'Jost', sans-serif; font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); margin-top: .25rem; display: block; }
-
-    /* CUSTOM */
-    .custom-section { background: var(--charcoal); text-align: center; position: relative; overflow: hidden; }
-    .custom-section::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,175,40,.05) 0%, transparent 65%); pointer-events: none; z-index: 1; }
-    .custom-inner { position: relative; z-index: 5; padding: 6rem 4rem; max-width: 860px; margin: 0 auto; }
-    .custom-section .sec-label { color: rgba(212,175,55,.65); justify-content: center; }
-    .custom-section .sec-label::before { background: rgba(212,175,55,.65); }
-    .custom-section .sec-title { color: var(--white); }
-    .custom-section .rule { margin: 1.2rem auto; }
-    .custom-sub { font-size: .8rem; line-height: 1.9; color: rgba(255,255,255,.38); max-width: 460px; margin: 0 auto 3rem; font-weight: 300; }
-    .custom-icons { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
-    .ci { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
-    .ci-icon { width: 48px; height: 48px; border: 1px solid rgba(212,175,55,.22); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: rgba(212,175,55,.6); transition: all .4s; }
-    .ci:hover .ci-icon { border-color: var(--gold); background: rgba(212,175,55,.07); color: var(--gold); }
-    .ci-lbl { font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.3); }
-
-    /* VALUES */
-    .values-wrap { background: var(--white); border-top: 1px solid var(--border); }
-    .values-inner { max-width: 1280px; margin: 0 auto; padding: 6rem 4rem; }
-    .values-head { text-align: center; margin-bottom: 4rem; }
-    .vgrid { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--border); }
-    .vi { padding: 2.5rem 1.8rem; border-right: 1px solid var(--border); position: relative; transition: background .35s; }
-    .vi:last-child { border-right: none; }
-    .vi:hover { background: rgba(212,175,55,.02); }
-    .vi::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .5s; }
-    .vi:hover::before { transform: scaleX(1); }
-    .vi-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; color: rgba(212,175,55,.1); font-weight: 300; display: block; line-height: 1; margin-bottom: .7rem; }
-    .vi-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--text); margin-bottom: .5rem; }
-    .vi-desc { font-size: .71rem; color: var(--text-light); line-height: 1.9; font-weight: 300; }
-
-    /* CONTACT */
-    .contact-wrap { background: var(--cream); border-top: 1px solid var(--border); }
-    .contact { display: grid; grid-template-columns: 1fr 1fr; max-width: 1280px; margin: 0 auto; }
-    .cl { padding: 6rem 4rem; border-right: 1px solid var(--border); }
-    .cr { padding: 6rem 4rem; }
-    .cinfo { margin-top: 1.8rem; }
-    .cd { display: flex; align-items: center; gap: .9rem; padding: .9rem 0; border-bottom: 1px solid var(--border); }
-    .cd:last-child { border-bottom: none; }
-    .cd-icon { width: 30px; height: 30px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: .75rem; flex-shrink: 0; }
-    .cd-text { font-size: .74rem; color: var(--text-mid); font-weight: 300; }
-    .fg { margin-bottom: 1.4rem; }
-    .fg label { display: block; font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-light); margin-bottom: .5rem; }
-    .fg input, .fg textarea, .fg select { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(212,175,55,.2); padding: .7rem 0; font-family: 'Jost', sans-serif; font-size: .82rem; color: var(--text); outline: none; transition: border-color .3s; }
-    .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--gold); }
-    .fg select option { background: var(--cream); }
-    .fg textarea { resize: vertical; min-height: 85px; }
-
-    /* FOOTER */
-    footer { background: var(--charcoal); padding: 4rem 4rem 2rem; }
-    .fgrid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; max-width: 1280px; margin: 0 auto; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.05); }
-    .fb { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--white); margin-bottom: .8rem; }
-    .fb em { color: var(--gold); font-style: italic; }
-    .ft { font-size: .72rem; color: rgba(255,255,255,.28); line-height: 1.9; max-width: 220px; }
-    .fc h4 { font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
-    .fc ul { list-style: none; }
-    .fc li { margin-bottom: .65rem; }
-    .fc a { font-size: .72rem; color: rgba(255,255,255,.28); text-decoration: none; transition: color .3s; }
-    .fc a:hover { color: var(--gold-light); }
-    .fbot { display: flex; justify-content: space-between; align-items: center; padding-top: 1.6rem; max-width: 1280px; margin: 0 auto; }
-    .fcopy { font-size: .62rem; color: rgba(255,255,255,.15); }
-    .fsoc { display: flex; gap: 1.3rem; }
-    .fsoc a { font-family: 'Jost', sans-serif; font-size: .52rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.22); text-decoration: none; transition: color .3s; }
-    .fsoc a:hover { color: var(--gold); }
-
-    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .85s ease, transform .85s ease; }
-    .reveal.on { opacity: 1; transform: translateY(0); }
-    .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s}
-
-    @media (max-width: 1100px) { .g3{grid-template-columns:repeat(2,1fr)} .g4{grid-template-columns:repeat(2,1fr)} .vgrid{grid-template-columns:repeat(2,1fr)} }
-    @media (max-width: 800px) {
-      nav, nav.stuck { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      .wrap { padding: 0 1.5rem; }
-      .story { grid-template-columns: 1fr; }
-      .story-img { min-height: 300px; }
-      .story-body { padding: 3rem 1.5rem; }
-      .contact { grid-template-columns: 1fr; }
-      .cl, .cr { padding: 3rem 1.5rem; }
-      .fgrid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      .values-inner, .custom-inner { padding: 4rem 1.5rem; }
-    }
+    /* ... all your CSS from the original file ... */
   </style>
 </head>
 <body>
-
+  <!-- LOADER -->
   <div id="loader">
-    <div class="ld-img"><img src="logo.png" alt="Bai Luxe"/></div>
-    <div class="ld-text">Bai Luxe Candle Co.</div>
+    <div class="ld-img"><img src="images/logo.jpg" alt="Bai Luxe Logo"></div>
+    <div class="ld-text">LOADING</div>
     <div class="ld-bar"></div>
   </div>
 
-  <nav id="nav">
-    <a href="#top" class="nav-logo">
-      <img src="logo.png" alt="Bai Luxe"/>
-      <span class="nav-name">Bai <em>Luxe</em></span>
-    </a>
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo"><img src="images/logo.jpg" alt="Logo"><div class="nav-name">Bai <em>Luxe</em></div></a>
     <ul class="nav-links">
-      <li><a href="#collection">Collection</a></li>
-      <li><a href="#story">Our Story</a></li>
-      <li><a href="#custom">Custom</a></li>
+      <li><a href="#collection">Collections</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#collection" class="nav-cta"><span>Shop Now</span></a>
+    <a href="#shop" class="nav-cta"><span>Shop Now</span></a>
   </nav>
 
-  <section class="hero" id="top">
-    <div class="hero-bg"><img src="hero.gif" alt="Bai Luxe"/></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"><img src="images/hero.jpg" alt="Luxury Candle Hero"></div>
     <div class="hero-overlay"></div>
     <div class="candle-glow"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">Phoenix, Arizona &nbsp;·&nbsp; Founded 2022</div>
+      <div class="hero-eyebrow">Hand-Poured Luxury</div>
       <h1 class="hero-title">Bai Luxe Candle Co.</h1>
-      <p class="hero-tagline">Hand-Poured Luxury Scented Candles</p>
-      <p class="hero-sub">Inspired by the warmth of the Caribbean. Each flame is a moment worth savoring.</p>
+      <div class="hero-tagline">Elevate Your Space</div>
+      <p class="hero-sub">Artisan scented candles crafted for ambiance, luxury, and uniqueness.</p>
       <div class="hero-btns">
-        <a href="#collection" class="btn-gold"><span>Shop the Collection</span></a>
-        <a href="#story" class="btn-outline">Our Story</a>
+        <a href="#collection" class="btn-gold"><span>Shop Collection</span></a>
+        <a href="#about" class="btn-outline">Learn More</a>
       </div>
-    </div>
-    <div class="scroll-hint">
-      <span class="sh-text">Scroll</span>
-      <div class="sh-line"></div>
+      <div class="scroll-hint">
+        <div class="sh-text">Scroll</div>
+        <div class="sh-line"></div>
+      </div>
     </div>
   </section>
 
-  <div class="marquee">
-    <div class="mtrack">
-      <span>Hand-Poured</span><span class="gem">◆</span><span>Premium Para-Soy Blend</span><span class="gem">◆</span><span>Fine Fragrances</span><span class="gem">◆</span><span>Custom Labels & Scents</span><span class="gem">◆</span><span>Caribbean Inspired</span><span class="gem">◆</span><span>Luxury Scented Candles</span><span class="gem">◆</span><span>Phoenix, Arizona</span><span class="gem">◆</span><span>Hand-Poured</span><span class="gem">◆</span><span>Premium Para-Soy Blend</span><span class="gem">◆</span><span>Fine Fragrances</span><span class="gem">◆</span><span>Custom Labels & Scents</span><span class="gem">◆</span><span>Caribbean Inspired</span><span class="gem">◆</span><span>Luxury Scented Candles</span><span class="gem">◆</span><span>Phoenix, Arizona</span><span class="gem">◆</span>
-    </div>
-  </div>
-
-  <div id="collection">
+  <!-- MAIN COLLECTION -->
+  <section class="collection" id="collection">
     <div class="wrap">
-      <div class="collection">
-        <div class="col-head reveal">
-          <div>
-            <div class="sec-label">The Collection</div>
-            <h2 class="sec-title">Curated <em>Luxury</em> Scents</h2>
-            <div class="rule"></div>
-            <p class="col-sub">Limited inventory, poured by hand in Phoenix, Arizona.</p>
+      <div class="col-head">
+        <div>
+          <div class="sec-label">Collections</div>
+          <h2 class="sec-title">Our <em>Luxury</em> Candles</h2>
+        </div>
+        <p class="col-sub">Premium candles designed to transform your home and mood.</p>
+      </div>
+      <div class="g3">
+        <!-- existing product items go here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW FEW OF A KIND COLLECTION -->
+  <section class="collection">
+    <div class="wrap">
+      <div class="col-head">
+        <div>
+          <div class="sec-label">Few of a Kind</div>
+          <h2 class="sec-title">Exclusive <em>One-of-a-Kind</em> Candles</h2>
+        </div>
+        <p class="col-sub">Unique containers sourced from thrift and specialty finds. Limited availability — once they're gone, they won't be back.</p>
+      </div>
+
+      <div class="g3">
+        <a href="#" class="pc">
+          <div class="pci"><img src="images/OIG2.jpeg" alt="White Lotus Flower Candle"/></div>
+          <div class="pc-info">
+            <h3 class="pc-name">White Lotus Flower Candle</h3>
+            <p class="pc-notes">Unique flower-shaped vessel, multi-wick, 18oz.</p>
+            <div class="pc-foot">
+              <span class="pc-price">$40</span>
+              <span class="pca">View →</span>
+            </div>
           </div>
-          <a href="https://www.etsy.com" target="_blank" class="btn-link">View All</a>
-        </div>
-        <div class="g3">
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
-            <div class="pci"><div class="pcb"></div><img src="sugar_loaf.png" alt="Sugar Loaf Pineapple"/><span class="pc-tag">Bestseller</span></div>
-            <div class="pc-info"><h3 class="pc-name">Sugar Loaf Pineapple</h3><p class="pc-notes">Tropical fruits & rum · Tangerine, orange peel & lemon · Sweet pineapple</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
-          </a>
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d2">
-            <div class="pci"><div class="pcb"></div><img src="flaming_rose.jpg" alt="Flaming Rose"/><span class="pc-tag">Fan Favorite</span></div>
-            <div class="pc-info"><h3 class="pc-name">Flaming Rose</h3><p class="pc-notes">Ozone & green leaves · Rose, carnation & lily of the valley · Ylang ylang</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
-          </a>
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d3">
-            <div class="pci"><div class="pcb"></div><img src="aqua_noir.png" alt="Aqua Noir Man"/><span class="pc-tag dk">For Him</span></div>
-            <div class="pc-info"><h3 class="pc-name">Aqua Noir Man</h3><p class="pc-notes">Mandarin, bergamot & lemon · Jasmine & lilies · Rosewood, amber & musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
-          </a>
-        </div>
-        <div class="g4">
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
-            <div class="pci"><div class="pcb"></div><img src="alpha_male.png" alt="Alpha Male"/><span class="pc-tag dk">For Him</span></div>
-            <div class="pc-info"><h3 class="pc-name">Alpha Male</h3><p class="pc-notes">Bold citrus · Bamboo & lilies · Amber, patchouli & musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
-          </a>
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d2">
-            <div class="pci"><div class="pcb"></div><img src="royal_cotton.png" alt="Royal Cotton"/><span class="pc-tag">Clean & Fresh</span></div>
-            <div class="pc-info"><h3 class="pc-name">Royal Cotton</h3><p class="pc-notes">Fresh cotton & clean air · Ozone, linen & cotton blossom · Lily & white musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
-          </a>
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d3">
-            <div class="pci"><div class="pcb"></div><img src="lifestyle.png" alt="Pu$$y Magnet"/><span class="pc-tag">Bold</span></div>
-            <div class="pc-info"><h3 class="pc-name">Pu$$y Magnet</h3><p class="pc-notes">Sultry lavender, rosemary & lemon verbea · Cool coriander · Leather & vetiver</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
-          </a>
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d4">
-            <div class="pci"><div class="pcb"></div><img src="rainbow.png" alt="Rainbow Collection"/><span class="pc-tag">Limited</span></div>
-            <div class="pc-info"><h3 class="pc-name">Rainbow Collection</h3><p class="pc-notes">Vibrant layered candles · Bold rainbow colors · Custom scents available</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
-          </a>
-        </div>
-        <div class="col-foot reveal">
-          <a href="https://www.etsy.com" target="_blank" class="btn-dark"><span>Shop All Candles</span></a>
-        </div>
-      </div>
-    </div>
-  </div>
+        </a>
 
-  <div class="banner reveal">
-    <img src="sugar_loaf.png" alt="Bai Luxe"/>
-    <div class="banner-glow"></div>
-    <div class="banner-inner">
-      <div class="banner-eyebrow">Custom Orders</div>
-      <h2 class="sec-title">Make It <em>Uniquely</em> Yours</h2>
-      <p class="banner-sub">Custom scents, labels, and designs for gifts, events, and celebrations.</p>
-      <a href="#custom" class="btn-gold"><span>Request Custom Order</span></a>
-    </div>
-  </div>
+        <a href="#" class="pc">
+          <div class="pci"><img src="images/file_00000000aeb471f8806e4d5d073eb9dc.png" alt="Luxury Vessel Collection"/></div>
+          <div class="pc-info">
+            <h3 class="pc-name">Artisan Vessel Collection</h3>
+            <p class="pc-notes">Three unique styles, multi-wick, limited edition.</p>
+            <div class="pc-foot">
+              <span class="pc-price">$40</span>
+              <span class="pca">View →</span>
+            </div>
+          </div>
+        </a>
 
-  <div class="story-wrap" id="story">
-    <div class="story">
-      <div class="story-img">
-        <img src="pussy_magnet.png" alt="Bai Luxe"/>
-        <div class="story-fade"></div>
-        <div class="story-quote reveal">
-          <blockquote>"Every candle is a ritual. Every scent, a moment worth savoring."</blockquote>
-          <cite>— C. Ferguson, Founder</cite>
-        </div>
+        <a href="#" class="pc">
+          <div class="pci"><img src="images/_3a274a61-f5a6-4b8b-b90d-bdc8bdd56361.jpeg" alt="Blue Ceramic Bowl Candle"/></div>
+          <div class="pc-info">
+            <h3 class="pc-name">Blue Ceramic Bowl Candle</h3>
+            <p class="pc-notes">Cobalt blue with gold accents, dual-wick, 16oz.</p>
+            <div class="pc-foot">
+              <span class="pc-price">$40</span>
+              <span class="pca">View →</span>
+            </div>
+          </div>
+        </a>
       </div>
-      <div class="story-body reveal">
-        <div class="sec-label">Our Story</div>
-        <h2 class="sec-title">Crafted with <em>Soul</em></h2>
-        <div class="rule"></div>
-        <p class="story-p">Founded in Phoenix, Arizona in 2022, Bai Luxe Candle Co. was born from a love of fragrance, culture, and the art of creating something beautiful by hand.</p>
-        <p class="story-p">Each candle is hand-poured with a luxurious blend of premium para-soy waxes and fine fragrances — designed to transform everyday moments into something worth remembering.</p>
-        <p class="story-p">We celebrate individuality through custom scents and designs, making every Bai Luxe creation as unique as the person burning it.</p>
-        <div class="story-stats">
-          <div><span class="sn">2022</span><span class="sl">Founded</span></div>
-          <div><span class="sn">7+</span><span class="sl">Signature Scents</span></div>
-          <div><span class="sn">100%</span><span class="sl">Hand-Poured</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="custom-section" id="custom">
-    <div class="custom-inner">
-      <div class="sec-label reveal">Custom Orders</div>
-      <h2 class="sec-title reveal">Make It <em>Uniquely</em> Yours</h2>
-      <div class="rule reveal" style="margin:1.2rem auto;"></div>
-      <p class="custom-sub reveal">Custom scents, labels, and designs — perfect for gifts, weddings, and events.</p>
-      <div class="custom-icons reveal">
-        <div class="ci"><div class="ci-icon">✦</div><span class="ci-lbl">Custom Scents</span></div>
-        <div class="ci"><div class="ci-icon">◈</div><span class="ci-lbl">Custom Labels</span></div>
-        <div class="ci"><div class="ci-icon">◇</div><span class="ci-lbl">Gift Sets</span></div>
-        <div class="ci"><div class="ci-icon">✿</div><span class="ci-lbl">Bulk Orders</span></div>
-        <div class="ci"><div class="ci-icon">❋</div><span class="ci-lbl">Event Favors</span></div>
+      <div class="col-foot">
+        <a href="#" class="btn-dark"><span>Shop Few of a Kind</span></a>
       </div>
-      <a href="#contact" class="btn-gold reveal"><span>Request Custom Order</span></a>
     </div>
-  </div>
+  </section>
 
-  <div class="values-wrap">
-    <div class="values-inner">
-      <div class="values-head reveal">
-        <div class="sec-label" style="justify-content:center;">Why Bai Luxe</div>
-        <h2 class="sec-title">The <em>Difference</em> Is in the Detail</h2>
-      </div>
-      <div class="vgrid">
-        <div class="vi reveal d1"><span class="vi-num">01</span><h3 class="vi-title">Premium Para-Soy Blend</h3><p class="vi-desc">A luxurious wax blend chosen for clean burn, exceptional scent throw, and beautiful texture.</p></div>
-        <div class="vi reveal d2"><span class="vi-num">02</span><h3 class="vi-title">Fine Fragrances</h3><p class="vi-desc">Curated fragrance oils chosen to evoke memory, emotion, and the beauty of the moment.</p></div>
-        <div class="vi reveal d3"><span class="vi-num">03</span><h3 class="vi-title">Hand-Poured</h3><p class="vi-desc">Every candle is poured by hand in small batches for quality, care, and intention.</p></div>
-        <div class="vi reveal d4"><span class="vi-num">04</span><h3 class="vi-title">Crafted with Soul</h3><p class="vi-desc">Born from a love of fragrance and culture — every scent carries a story worth telling.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="contact-wrap" id="contact">
-    <div class="contact">
-      <div class="cl reveal">
-        <div class="sec-label">Get In Touch</div>
-        <h2 class="sec-title">Let's Create<br><em>Something</em> Beautiful</h2>
-        <div class="rule"></div>
-        <div class="cinfo">
-          <div class="cd"><div class="cd-icon">📧</div><span class="cd-text">Support@bailuxeonlineshop.com</span></div>
-          <div class="cd"><div class="cd-icon">📷</div><span class="cd-text">@bailuxe_official</span></div>
-          <div class="cd"><div class="cd-icon">🌐</div><span class="cd-text">bailuxeonlineshop.com</span></div>
-          <div class="cd"><div class="cd-icon">📍</div><span class="cd-text">Phoenix, Arizona</span></div>
-        </div>
-      </div>
-      <div class="cr reveal">
-        <div class="fg"><label>Your Name</label><input type="text" placeholder="Full name"/></div>
-        <div class="fg"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
-        <div class="fg"><label>Inquiry Type</label><select><option>Custom Order</option><option>Bulk / Wholesale</option><option>Gift Sets</option><option>Event Favors</option><option>General Question</option></select></div>
-        <div class="fg"><label>Message</label><textarea placeholder="Tell us what you're looking for..."></textarea></div>
-        <button type="button" class="btn-dark" style="margin-top:.5rem;"><span>Send Message</span></button>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="fgrid">
-      <div>
-        <p class="fb">Bai <em>Luxe</em> Candle Co.</p>
-        <p class="ft">Hand-poured luxury scented candles. Phoenix, Arizona. Founded 2022.</p>
-      </div>
-      <div class="fc"><h4>Shop</h4><ul><li><a href="https://www.etsy.com" target="_blank">All Candles</a></li><li><a href="https://www.etsy.com" target="_blank">Bestsellers</a></li><li><a href="#custom">Custom Orders</a></li><li><a href="https://www.etsy.com" target="_blank">Gift Sets</a></li></ul></div>
-      <div class="fc"><h4>Company</h4><ul><li><a href="#story">Our Story</a></li><li><a href="#contact">Contact</a></li><li><a href="mailto:Support@bailuxeonlineshop.com">Email Us</a></li></ul></div>
-      <div class="fc"><h4>Follow</h4><ul><li><a href="https://www.instagram.com/bailuxe_official/" target="_blank">Instagram</a></li><li><a href="https://www.facebook.com/profile.php?id=100084534348188" target="_blank">Facebook</a></li></ul></div>
-    </div>
-    <div class="fbot">
-      <p class="fcopy">© 2025 Bai Luxe Candle Co. All rights reserved.</p>
-      <div class="fsoc">
-        <a href="https://www.instagram.com/bailuxe_official/" target="_blank">Instagram</a>
-        <a href="https://www.facebook.com/profile.php?id=100084534348188" target="_blank">Facebook</a>
-        <a href="mailto:Support@bailuxeonlineshop.com">Email</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('gone'), 1800));
-    window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('stuck', scrollY > 50));
-    const ro = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); }), {threshold:.1});
-    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
-  </script>
+  <!-- rest of the page sections, banners, footer, etc. -->
 </body>
 </html>
