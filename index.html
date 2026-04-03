@@ -58,7 +58,7 @@
     .nav-cta:hover::before { transform: translateX(0); }
     .nav-cta:hover span { color: var(--charcoal); }
 
-    /* HERO — shorter than before */
+    /* HERO */
     .hero { position: relative; width: 100%; height: 70vh; min-height: 500px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
     .hero-bg { position: absolute; inset: 0; z-index: 1; }
     .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
@@ -115,7 +115,7 @@
     .col-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
     .col-sub { font-size: .78rem; line-height: 1.9; color: var(--text-light); font-weight: 300; max-width: 320px; }
     .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
-    .g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 1.5rem; }
+    .g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 1.5rem; }
 
     .pc { display: block; text-decoration: none; color: inherit; }
     .pc:hover .pci img { transform: scale(1.05); }
@@ -234,7 +234,7 @@
     .reveal.on { opacity: 1; transform: translateY(0); }
     .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s}
 
-    @media (max-width: 1100px) { .g3{grid-template-columns:repeat(2,1fr)} .g4{grid-template-columns:repeat(2,1fr)} .vgrid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width: 1100px) { .g3{grid-template-columns:repeat(2,1fr)} .g2{grid-template-columns:1fr} .vgrid{grid-template-columns:repeat(2,1fr)} }
     @media (max-width: 800px) {
       nav, nav.stuck { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
@@ -319,26 +319,28 @@
             <div class="pc-info"><h3 class="pc-name">Flaming Rose</h3><p class="pc-notes">Ozone & green leaves · Rose, carnation & lily of the valley · Ylang ylang</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d3">
+            <div class="pci"><div class="pcb"></div><img src="rainbow.png" alt="Rainbow Collection"/><span class="pc-tag">Limited</span></div>
+            <div class="pc-info"><h3 class="pc-name">Rainbow Collection</h3><p class="pc-notes">Vibrant layered candles · Bold rainbow colors · Custom scents available</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+          </a>
+        </div>
+        <div class="g2">
+          <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
             <div class="pci"><div class="pcb"></div><img src="aqua_noir.png" alt="Aqua Noir Man"/><span class="pc-tag dk">For Him</span></div>
             <div class="pc-info"><h3 class="pc-name">Aqua Noir Man</h3><p class="pc-notes">Mandarin, bergamot & lemon · Jasmine & lilies · Rosewood, amber & musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
-        </div>
-        <div class="g4">
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
+          <a href="https://www.etsy.com" target="_blank" class="pc reveal d2">
             <div class="pci"><div class="pcb"></div><img src="alpha_male.png" alt="Alpha Male"/><span class="pc-tag dk">For Him</span></div>
             <div class="pc-info"><h3 class="pc-name">Alpha Male</h3><p class="pc-notes">Bold citrus · Bamboo & lilies · Amber, patchouli & musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d2">
+        </div>
+        <div class="g3">
+          <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
             <div class="pci"><div class="pcb"></div><img src="royal_cotton.png" alt="Royal Cotton"/><span class="pc-tag">Clean & Fresh</span></div>
             <div class="pc-info"><h3 class="pc-name">Royal Cotton</h3><p class="pc-notes">Fresh cotton & clean air · Ozone, linen & cotton blossom · Lily & white musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d3">
+          <a href="https://www.etsy.com" target="_blank" class="pc reveal d2">
             <div class="pci"><div class="pcb"></div><img src="lifestyle.png" alt="Pu$$y Magnet"/><span class="pc-tag">Bold</span></div>
             <div class="pc-info"><h3 class="pc-name">Pu$$y Magnet</h3><p class="pc-notes">Sultry lavender, rosemary & lemon verbea · Cool coriander · Leather & vetiver</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
-          </a>
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d4">
-            <div class="pci"><div class="pcb"></div><img src="rainbow.png" alt="Rainbow Collection"/><span class="pc-tag">Limited</span></div>
-            <div class="pc-info"><h3 class="pc-name">Rainbow Collection</h3><p class="pc-notes">Vibrant layered candles · Bold rainbow colors · Custom scents available</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
         </div>
         <div class="col-foot reveal">
@@ -368,60 +370,7 @@
           <blockquote>"Every candle is a ritual. Every scent, a moment worth savoring."</blockquote>
           <cite>— C. Ferguson, Founder</cite>
         </div>
-      </div> 
-      <section class="collection">
-  <div class="wrap">
-    <div class="col-head">
-      <div>
-        <div class="sec-label">Few of a Kind</div>
-        <h2 class="sec-title">Exclusive <em>One-of-a-Kind</em> Candles</h2>
       </div>
-      <p class="col-sub">Unique containers sourced from thrift and specialty finds. Limited availability — once they're gone, they won't be back.</p>
-    </div>
-
-    <div class="g3">
-      <a href="#" class="pc">
-        <div class="pci"><img src="images/fok1.jpg" alt="Unique Glass Vessel Candle 1"/></div>
-        <div class="pc-info">
-          <h3 class="pc-name">Oval Glass Statement Candle</h3>
-          <p class="pc-notes">Long oval multi-wick, heat-safe, 20oz.</p>
-          <div class="pc-foot">
-            <span class="pc-price">$40</span>
-            <span class="pca">View →</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="#" class="pc">
-        <div class="pci"><img src="images/fok2.jpg" alt="Unique Glass Vessel Candle 2"/></div>
-        <div class="pc-info">
-          <h3 class="pc-name">Elongated Spa Candle</h3>
-          <p class="pc-notes">Three-wick, 18oz, perfect centerpiece candle.</p>
-          <div class="pc-foot">
-            <span class="pc-price">$40</span>
-            <span class="pca">View →</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="#" class="pc">
-        <div class="pci"><img src="images/fok3.jpg" alt="Unique Glass Vessel Candle 3"/></div>
-        <div class="pc-info">
-          <h3 class="pc-name">Limited Edition Oval Candle</h3>
-          <p class="pc-notes">Heat-safe glass, 22oz, multi-wick.</p>
-          <div class="pc-foot">
-            <span class="pc-price">$40</span>
-            <span class="pca">View →</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-foot">
-      <a href="#" class="btn-dark"><span>Shop Few of a Kind</span></a>
-    </div>
-  </div>
-      </section>
       <div class="story-body reveal">
         <div class="sec-label">Our Story</div>
         <h2 class="sec-title">Crafted with <em>Soul</em></h2>
@@ -434,6 +383,61 @@
           <div><span class="sn">7+</span><span class="sl">Signature Scents</span></div>
           <div><span class="sn">100%</span><span class="sl">Hand-Poured</span></div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="collection">
+      <div class="col-head reveal">
+        <div>
+          <div class="sec-label">Few of a Kind</div>
+          <h2 class="sec-title">Exclusive <em>One-of-a-Kind</em> Candles</h2>
+          <div class="rule"></div>
+          <p class="col-sub">Unique containers sourced from thrift and specialty finds. Limited availability — once they're gone, they won't be back.</p>
+        </div>
+      </div>
+
+      <div class="g3">
+        <a href="#" class="pc reveal d1">
+          <div class="pci"><div class="pcb"></div><img src="images/OIG2.jpeg" alt="White Lotus Flower Candle"/></div>
+          <div class="pc-info">
+            <h3 class="pc-name">White Lotus Flower Candle</h3>
+            <p class="pc-notes">Unique flower-shaped vessel, multi-wick, 18oz.</p>
+            <div class="pc-foot">
+              <span class="pc-price">$40</span>
+              <span class="pca">View</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="pc reveal d2">
+          <div class="pci"><div class="pcb"></div><img src="images/file_00000000aeb471f8806e4d5d073eb9dc.png" alt="Luxury Vessel Collection"/></div>
+          <div class="pc-info">
+            <h3 class="pc-name">Artisan Vessel Collection</h3>
+            <p class="pc-notes">Three unique styles, multi-wick, limited edition.</p>
+            <div class="pc-foot">
+              <span class="pc-price">$40</span>
+              <span class="pca">View</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="pc reveal d3">
+          <div class="pci"><div class="pcb"></div><img src="images/_3a274a61-f5a6-4b8b-b90d-bdc8bdd56361.jpeg" alt="Blue Ceramic Bowl Candle"/></div>
+          <div class="pc-info">
+            <h3 class="pc-name">Blue Ceramic Bowl Candle</h3>
+            <p class="pc-notes">Cobalt blue with gold accents, dual-wick, 16oz.</p>
+            <div class="pc-foot">
+              <span class="pc-price">$40</span>
+              <span class="pca">View</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-foot reveal">
+        <a href="#" class="btn-dark"><span>Shop Few of a Kind</span></a>
       </div>
     </div>
   </div>
