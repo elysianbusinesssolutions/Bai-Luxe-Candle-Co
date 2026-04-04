@@ -114,8 +114,8 @@
     .collection { padding: 6rem 0; }
     .col-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
     .col-sub { font-size: .78rem; line-height: 1.9; color: var(--text-light); font-weight: 300; max-width: 320px; }
-    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
-    .g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 1.5rem; }
+    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+    .g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; margin-top: 2rem; }
 
     .pc { display: block; text-decoration: none; color: inherit; }
     .pc:hover .pci img { transform: scale(1.05); }
@@ -123,7 +123,7 @@
     .pc:hover .pca::after { transform: translateX(4px); }
     .pc:hover .pcb::before, .pc:hover .pcb::after { opacity: 1; }
 
-    .pci { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--cream); }
+    .pci { position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--cream); max-height: 300px; }
     .pci img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; display: block; }
     .pcb { position: absolute; inset: 0; pointer-events: none; }
     .pcb::before, .pcb::after { content: ''; position: absolute; opacity: 0; transition: opacity .35s; }
@@ -131,11 +131,11 @@
     .pcb::after { bottom: 8px; right: 8px; width: 16px; height: 16px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
     .pc-tag { position: absolute; top: .85rem; left: .85rem; z-index: 5; font-family: 'Jost', sans-serif; font-size: .48rem; letter-spacing: .12em; text-transform: uppercase; background: var(--gold); color: var(--charcoal); padding: .28rem .65rem; font-weight: 500; }
     .pc-tag.dk { background: rgba(22,20,14,.9); color: var(--gold-light); border: 1px solid rgba(212,175,55,.3); }
-    .pc-info { padding: 1.1rem 0 0; border-top: 1px solid var(--border); }
-    .pc-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: .2rem; transition: color .3s; }
-    .pc-notes { font-size: .66rem; color: var(--text-light); line-height: 1.6; margin-bottom: .85rem; font-weight: 300; }
+    .pc-info { padding: 1.1rem 0 0; border-top: 1px solid var(--border); margin-top: 0.5rem; }
+    .pc-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: .2rem; transition: color .3s; }
+    .pc-notes { font-size: .65rem; color: var(--text-light); line-height: 1.6; margin-bottom: .85rem; font-weight: 300; }
     .pc-foot { display: flex; justify-content: space-between; align-items: center; }
-    .pc-price { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold); font-weight: 400; }
+    .pc-price { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--gold); font-weight: 400; }
     .pca { font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); display: flex; align-items: center; gap: .4rem; transition: color .3s; }
     .pca::after { content: '→'; transition: transform .3s; }
     .pc:hover .pca { color: var(--gold); }
@@ -319,8 +319,8 @@
             <div class="pc-info"><h3 class="pc-name">Flaming Rose</h3><p class="pc-notes">Ozone & green leaves · Rose, carnation & lily of the valley · Ylang ylang</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d3">
-            <div class="pci"><div class="pcb"></div><img src="rainbow.png" alt="Rainbow Collection"/><span class="pc-tag">Limited</span></div>
-            <div class="pc-info"><h3 class="pc-name">Rainbow Collection</h3><p class="pc-notes">Vibrant layered candles · Bold rainbow colors · Custom scents available</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+            <div class="pci"><div class="pcb"></div><img src="royal_cotton.png" alt="Royal Cotton"/><span class="pc-tag">Clean & Fresh</span></div>
+            <div class="pc-info"><h3 class="pc-name">Royal Cotton</h3><p class="pc-notes">Fresh cotton & clean air · Ozone, linen & cotton blossom · Lily & white musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
         </div>
         <div class="g2">
@@ -333,12 +333,8 @@
             <div class="pc-info"><h3 class="pc-name">Alpha Male</h3><p class="pc-notes">Bold citrus · Bamboo & lilies · Amber, patchouli & musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
         </div>
-        <div class="g3">
+        <div class="g2">
           <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
-            <div class="pci"><div class="pcb"></div><img src="royal_cotton.png" alt="Royal Cotton"/><span class="pc-tag">Clean & Fresh</span></div>
-            <div class="pc-info"><h3 class="pc-name">Royal Cotton</h3><p class="pc-notes">Fresh cotton & clean air · Ozone, linen & cotton blossom · Lily & white musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
-          </a>
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d2">
             <div class="pci"><div class="pcb"></div><img src="lifestyle.png" alt="Pu$$y Magnet"/><span class="pc-tag">Bold</span></div>
             <div class="pc-info"><h3 class="pc-name">Pu$$y Magnet</h3><p class="pc-notes">Sultry lavender, rosemary & lemon verbea · Cool coriander · Leather & vetiver</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
           </a>
@@ -400,10 +396,10 @@
 
       <div class="g3">
         <a href="#" class="pc reveal d1">
-          <div class="pci"><div class="pcb"></div><img src="images/OIG2.jpeg" alt="Blue Ceramic Bowl Candle"/></div>
+          <div class="pci"><div class="pcb"></div><img src="images/OIG2.jpeg" alt="White Lotus Flower Candle"/></div>
           <div class="pc-info">
-            <h3 class="pc-name">Blue Ceramic Bowl Candle</h3>
-            <p class="pc-notes">Unique vessel, multi-wick, 18oz.</p>
+            <h3 class="pc-name">White Lotus Flower Candle</h3>
+            <p class="pc-notes">Unique flower-shaped vessel, multi-wick, 18oz.</p>
             <div class="pc-foot">
               <span class="pc-price">$35</span>
               <span class="pca">View</span>
@@ -424,10 +420,10 @@
         </a>
 
         <a href="#" class="pc reveal d3">
-          <div class="pci"><div class="pcb"></div><img src="images/_3a274a61-f5a6-4b8b-b90d-bdc8bdd56361.jpeg" alt="White Lotus Flower Candle"/></div>
+          <div class="pci"><div class="pcb"></div><img src="images/_3a274a61-f5a6-4b8b-b90d-bdc8bdd56361.jpeg" alt="Blue Ceramic Bowl Candle"/></div>
           <div class="pc-info">
-            <h3 class="pc-name">White Lotus Flower Candle</h3>
-            <p class="pc-notes">Customizable, multi-wick, 16oz.</p>
+            <h3 class="pc-name">Blue Ceramic Bowl Candle</h3>
+            <p class="pc-notes">Cobalt blue with gold accents, dual-wick, 16oz.</p>
             <div class="pc-foot">
               <span class="pc-price">$40</span>
               <span class="pca">View</span>
