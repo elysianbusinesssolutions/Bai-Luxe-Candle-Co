@@ -6,8 +6,8 @@
   
   <!-- SEO Meta Tags -->
   <title>Bai Luxe Candle Co. — Luxury Hand-Poured Candles Phoenix, Arizona</title>
-  <meta name="description" content="Hand-poured luxury scented candles in Phoenix, AZ. Caribbean-inspired fragrances, custom candles, and exclusive vintage vessel collections. Premium para-soy blend. Shop now."/>
-  <meta name="keywords" content="luxury candles Phoenix, hand-poured candles Arizona, custom candles Phoenix, scented candles, Caribbean candles, para-soy candles, vintage candle vessels, exclusive candles, candle gifts Phoenix"/>
+  <meta name="description" content="Hand-poured luxury scented candles in Phoenix, AZ. Caribbean-inspired fragrances, custom candles, and exclusive vintage vessel collections. Premium para-soy blend. Free shipping on orders $60+"/>
+  <meta name="keywords" content="luxury candles Phoenix, hand-poured candles Arizona, custom candles Phoenix, scented candles, Caribbean candles, para-soy candles, vintage candle vessels, exclusive candles, candle gifts Phoenix, wax melts"/>
   <meta name="author" content="Bai Luxe Candle Co."/>
   <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://bailuxeonlineshop.com/"/>
@@ -16,7 +16,7 @@
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://bailuxeonlineshop.com/"/>
   <meta property="og:title" content="Bai Luxe Candle Co. — Luxury Hand-Poured Candles"/>
-  <meta property="og:description" content="Hand-poured luxury scented candles inspired by the Caribbean. Custom scents, exclusive vintage vessels, premium para-soy blend. Phoenix, Arizona."/>
+  <meta property="og:description" content="Hand-poured luxury scented candles inspired by the Caribbean. Custom scents, exclusive vintage vessels, premium para-soy blend. Phoenix, Arizona. Free shipping $60+"/>
   <meta property="og:image" content="https://bailuxeonlineshop.com/logo.png"/>
   
   <!-- Twitter Card -->
@@ -36,7 +36,7 @@
     "image": "https://bailuxeonlineshop.com/logo.png",
     "email": "Support@bailuxeonlineshop.com",
     "address": {"@type": "PostalAddress", "addressLocality": "Phoenix", "addressRegion": "AZ", "addressCountry": "US"},
-    "priceRange": "$22-$45",
+    "priceRange": "$4-$40",
     "sameAs": ["https://www.instagram.com/bailuxe_official/", "https://www.facebook.com/profile.php?id=100084534348188"]
   }
   </script>
@@ -57,6 +57,9 @@
       --text-mid: #5A5248;
       --text-light: #9A8E82;
       --border: rgba(212,175,55,0.15);
+      --neon-pink: #FF006E;
+      --electric-blue: #00D9FF;
+      --deep-purple: #6B0CFF;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -147,10 +150,12 @@
     .btn-link:hover { color: var(--gold); }
     .btn-link:hover::after { transform: translateX(4px); }
 
+    .shipping-notice { background: var(--gold); color: var(--charcoal); padding: .7rem 2rem; text-align: center; font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 500; }
+
     /* COLLECTION */
     .collection { padding: 6rem 0; }
     .col-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
-    .col-sub { font-size: .78rem; line-height: 1.9; color: var(--text-light); font-weight: 300; max-width: 320px; }
+    .col-sub { font-size: .78rem; line-height: 1.9; color: var(--text-light); font-weight: 300; max-width: 400px; }
     .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
     .g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; margin-top: 2rem; }
 
@@ -173,6 +178,7 @@
     .pc-notes { font-size: .65rem; color: var(--text-light); line-height: 1.6; margin-bottom: .85rem; font-weight: 300; }
     .pc-foot { display: flex; justify-content: space-between; align-items: center; }
     .pc-price { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--gold); font-weight: 400; }
+    .pc-deal { font-size: .55rem; color: var(--text-mid); margin-top: .2rem; }
     .pca { font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); display: flex; align-items: center; gap: .4rem; transition: color .3s; }
     .pca::after { content: '→'; transition: transform .3s; }
     .pc:hover .pca { color: var(--gold); }
@@ -203,20 +209,65 @@
     .sn { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--gold); display: block; font-weight: 300; line-height: 1; }
     .sl { font-family: 'Jost', sans-serif; font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); margin-top: .25rem; display: block; }
 
-    /* CUSTOM */
-.custom-section { background: var(--charcoal); text-align: center; position: relative; overflow: hidden; }
-.custom-section::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,175,40,.05) 0%, transparent 65%); pointer-events: none; z-index: 1; }
-.custom-inner { position: relative; z-index: 5; padding: 6rem 4rem; max-width: 860px; margin: 0 auto; }
-.custom-section .sec-label { color: rgba(212,175,55,.65); justify-content: center; }
-.custom-section .sec-label::before { background: rgba(212,175,55,.65); }
-.custom-section .sec-title { color: var(--white); }
-.custom-section .rule { margin: 1.2rem auto; }
-.custom-sub { font-size: .8rem; line-height: 1.9; color: rgba(255,255,255,.38); max-width: 460px; margin: 0 auto 3rem; font-weight: 300; }
-.custom-icons { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
-.ci { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
-.ci-icon { width: 48px; height: 48px; border: 1px solid rgba(212,175,55,.5); background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--gold); transition: all .4s; }
-.ci:hover .ci-icon { border-color: var(--gold); background: var(--gold); color: var(--charcoal); }
-.ci-lbl { font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+    /* NEON CUSTOM SECTION */
+    .custom-section { 
+      background: linear-gradient(135deg, #1a0033 0%, #0a1128 50%, #000a1f 100%); 
+      text-align: center; 
+      position: relative; 
+      overflow: hidden; 
+    }
+    .custom-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 0, 110, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(0, 217, 255, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .custom-section::after { 
+      content: ''; 
+      position: absolute; 
+      inset: 0; 
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(107, 12, 255, 0.1) 0%, transparent 65%); 
+      pointer-events: none; 
+      z-index: 2; 
+    }
+    .custom-inner { position: relative; z-index: 5; padding: 6rem 4rem; max-width: 860px; margin: 0 auto; }
+    .custom-section .sec-label { color: var(--electric-blue); justify-content: center; }
+    .custom-section .sec-label::before { background: var(--electric-blue); box-shadow: 0 0 10px var(--electric-blue); }
+    .custom-section .sec-title { color: var(--white); text-shadow: 0 0 20px rgba(255, 0, 110, 0.5); }
+    .custom-section .sec-title em { color: var(--neon-pink); text-shadow: 0 0 20px var(--neon-pink); }
+    .custom-section .rule { margin: 1.2rem auto; background: linear-gradient(90deg, var(--neon-pink), var(--electric-blue)); box-shadow: 0 0 10px var(--neon-pink); }
+    .custom-sub { font-size: .8rem; line-height: 1.9; color: rgba(255,255,255,.7); max-width: 460px; margin: 0 auto 3rem; font-weight: 300; }
+    .custom-icons { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
+    .ci { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
+    .ci-icon { 
+      width: 48px; 
+      height: 48px; 
+      border: 2px solid var(--electric-blue); 
+      background: rgba(0, 217, 255, 0.1); 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      font-size: 1rem; 
+      color: var(--electric-blue); 
+      transition: all .4s; 
+      box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+    }
+    .ci:hover .ci-icon { 
+      border-color: var(--neon-pink); 
+      background: rgba(255, 0, 110, 0.2); 
+      color: var(--neon-pink); 
+      box-shadow: 0 0 25px var(--neon-pink), 0 0 50px rgba(255, 0, 110, 0.5);
+      transform: translateY(-5px);
+    }
+    .ci-lbl { font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.6); transition: color .3s; }
+    .ci:hover .ci-lbl { color: var(--neon-pink); }
 
     /* VALUES */
     .values-wrap { background: var(--white); border-top: 1px solid var(--border); }
@@ -260,11 +311,16 @@
     .fc li { margin-bottom: .65rem; }
     .fc a { font-size: .72rem; color: rgba(255,255,255,.28); text-decoration: none; transition: color .3s; }
     .fc a:hover { color: var(--gold-light); }
-    .fbot { display: flex; justify-content: space-between; align-items: center; padding-top: 1.6rem; max-width: 1280px; margin: 0 auto; }
+    .fbot { display: flex; justify-content: space-between; align-items: center; padding-top: 1.6rem; max-width: 1280px; margin: 0 auto; flex-wrap: wrap; gap: 1.5rem; }
     .fcopy { font-size: .62rem; color: rgba(255,255,255,.15); }
     .fsoc { display: flex; gap: 1.3rem; }
     .fsoc a { font-family: 'Jost', sans-serif; font-size: .52rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.22); text-decoration: none; transition: color .3s; }
     .fsoc a:hover { color: var(--gold); }
+
+    .disclaimers { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.05); max-width: 1280px; margin-left: auto; margin-right: auto; }
+    .disclaimer-section { margin-bottom: 1.5rem; }
+    .disclaimer-section h5 { font-family: 'Jost', sans-serif; font-size: .5rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; }
+    .disclaimer-section p { font-size: .62rem; color: rgba(255,255,255,.18); line-height: 1.7; }
 
     @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity .85s ease, transform .85s ease; }
@@ -281,6 +337,7 @@
       .story-body { padding: 3rem 1.5rem; }
       .contact { grid-template-columns: 1fr; }
       .cl, .cr { padding: 3rem 1.5rem; }
+      .cl { border-right: none; border-bottom: 1px solid var(--border); }
       .fgrid { grid-template-columns: 1fr 1fr; gap: 2rem; }
       .values-inner, .custom-inner { padding: 4rem 1.5rem; }
     }
@@ -328,6 +385,10 @@
     </div>
   </section>
 
+  <div class="shipping-notice">
+    ✦ Free Shipping on Orders $60+ ✦ Ships within 3-5 Business Days ✦
+  </div>
+
   <div class="marquee">
     <div class="mtrack">
       <span>Hand-Poured</span><span class="gem">◆</span><span>Premium Para-Soy Blend</span><span class="gem">◆</span><span>Fine Fragrances</span><span class="gem">◆</span><span>Custom Labels & Scents</span><span class="gem">◆</span><span>Caribbean Inspired</span><span class="gem">◆</span><span>Luxury Scented Candles</span><span class="gem">◆</span><span>Phoenix, Arizona</span><span class="gem">◆</span><span>Hand-Poured</span><span class="gem">◆</span><span>Premium Para-Soy Blend</span><span class="gem">◆</span><span>Fine Fragrances</span><span class="gem">◆</span><span>Custom Labels & Scents</span><span class="gem">◆</span><span>Caribbean Inspired</span><span class="gem">◆</span><span>Luxury Scented Candles</span><span class="gem">◆</span><span>Phoenix, Arizona</span><span class="gem">◆</span>
@@ -342,40 +403,113 @@
             <div class="sec-label">The Collection</div>
             <h2 class="sec-title">Curated <em>Luxury</em> Scents</h2>
             <div class="rule"></div>
-            <p class="col-sub">Limited inventory, poured by hand in Phoenix, Arizona.</p>
+            <p class="col-sub">Hand-poured in Phoenix, Arizona. Standard 5.25oz candles in stock. Larger sizes (10oz+) available upon request.</p>
           </div>
-          <a href="https://www.etsy.com" target="_blank" class="btn-link">View All</a>
+          <a href="#contact" class="btn-link">Contact to Order</a>
         </div>
+        
+        <!-- WOMEN'S SCENTS -->
         <div class="g3">
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
+          <a href="#contact" class="pc reveal d1">
             <div class="pci"><div class="pcb"></div><img src="sugar_loaf.png" alt="Sugar Loaf Pineapple"/><span class="pc-tag">Bestseller</span></div>
-            <div class="pc-info"><h3 class="pc-name">Sugar Loaf Pineapple</h3><p class="pc-notes">Tropical fruits & rum · Tangerine, orange peel & lemon · Sweet pineapple</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+            <div class="pc-info">
+              <h3 class="pc-name">Sugar Loaf Pineapple</h3>
+              <p class="pc-notes">Tropical fruits & rum · Tangerine, orange peel & lemon · Sweet pineapple</p>
+              <div class="pc-foot">
+                <div>
+                  <span class="pc-price">$13</span>
+                  <p class="pc-deal">2 for $25</p>
+                </div>
+                <span class="pca">Inquire</span>
+              </div>
+            </div>
           </a>
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d2">
+          
+          <a href="#contact" class="pc reveal d2">
             <div class="pci"><div class="pcb"></div><img src="flaming_rose.jpg" alt="Flaming Rose"/><span class="pc-tag">Fan Favorite</span></div>
-            <div class="pc-info"><h3 class="pc-name">Flaming Rose</h3><p class="pc-notes">Ozone & green leaves · Rose, carnation & lily of the valley · Ylang ylang</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+            <div class="pc-info">
+              <h3 class="pc-name">Flaming Rose</h3>
+              <p class="pc-notes">Ozone & green leaves · Rose, carnation & lily of the valley · Ylang ylang</p>
+              <div class="pc-foot">
+                <div>
+                  <span class="pc-price">$13</span>
+                  <p class="pc-deal">2 for $25</p>
+                </div>
+                <span class="pca">Inquire</span>
+              </div>
+            </div>
           </a>
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d3">
+          
+          <a href="#contact" class="pc reveal d3">
             <div class="pci"><div class="pcb"></div><img src="royal_cotton.png" alt="Royal Cotton"/><span class="pc-tag">Clean & Fresh</span></div>
-            <div class="pc-info"><h3 class="pc-name">Royal Cotton</h3><p class="pc-notes">Fresh cotton & clean air · Ozone, linen & cotton blossom · Lily & white musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+            <div class="pc-info">
+              <h3 class="pc-name">Royal Cotton</h3>
+              <p class="pc-notes">Fresh cotton & clean air · Ozone, linen & cotton blossom · Lily & white musk</p>
+              <div class="pc-foot">
+                <div>
+                  <span class="pc-price">$13</span>
+                  <p class="pc-deal">2 for $25</p>
+                </div>
+                <span class="pca">Inquire</span>
+              </div>
+            </div>
           </a>
         </div>
-        <div class="g3">
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
+        
+        <!-- MEN'S SCENTS -->
+        <div class="g3" style="margin-top: 2rem;">
+          <a href="#contact" class="pc reveal d1">
             <div class="pci"><div class="pcb"></div><img src="aqua_noir.png" alt="Aqua Noir Man"/><span class="pc-tag dk">For Him</span></div>
-            <div class="pc-info"><h3 class="pc-name">Aqua Noir Man</h3><p class="pc-notes">Mandarin, bergamot & lemon · Jasmine & lilies · Rosewood, amber & musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+            <div class="pc-info">
+              <h3 class="pc-name">Aqua Noir Man</h3>
+              <p class="pc-notes">Mandarin, bergamot & lemon · Jasmine & lilies · Rosewood, amber & musk</p>
+              <div class="pc-foot">
+                <div>
+                  <span class="pc-price">$16.50</span>
+                  <p class="pc-deal">2 for $30</p>
+                </div>
+                <span class="pca">Inquire</span>
+              </div>
+            </div>
           </a>
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d2">
+          
+          <a href="#contact" class="pc reveal d2">
             <div class="pci"><div class="pcb"></div><img src="alpha_male.png" alt="Alpha Male"/><span class="pc-tag dk">For Him</span></div>
-            <div class="pc-info"><h3 class="pc-name">Alpha Male</h3><p class="pc-notes">Bold citrus · Bamboo & lilies · Amber, patchouli & musk</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+            <div class="pc-info">
+              <h3 class="pc-name">Alpha Male</h3>
+              <p class="pc-notes">Bold citrus · Bamboo & lilies · Amber, patchouli & musk</p>
+              <div class="pc-foot">
+                <div>
+                  <span class="pc-price">$16.50</span>
+                  <p class="pc-deal">2 for $30</p>
+                </div>
+                <span class="pca">Inquire</span>
+              </div>
+            </div>
           </a>
-          <a href="https://www.etsy.com" target="_blank" class="pc reveal d1">
+          
+          <a href="#contact" class="pc reveal d3">
             <div class="pci"><div class="pcb"></div><img src="lifestyle.png" alt="Pu$$y Magnet"/><span class="pc-tag">Bold</span></div>
-            <div class="pc-info"><h3 class="pc-name">Pu$$y Magnet</h3><p class="pc-notes">Sultry lavender, rosemary & lemon verbea · Cool coriander · Leather & vetiver</p><div class="pc-foot"><span class="pc-price">$22</span><span class="pca">Shop</span></div></div>
+            <div class="pc-info">
+              <h3 class="pc-name">Pu$$y Magnet</h3>
+              <p class="pc-notes">Sultry lavender, rosemary & lemon verbena · Cool coriander · Leather & vetiver</p>
+              <div class="pc-foot">
+                <div>
+                  <span class="pc-price">$16.50</span>
+                  <p class="pc-deal">2 for $30</p>
+                </div>
+                <span class="pca">Inquire</span>
+              </div>
+            </div>
           </a>
         </div>
-        <div class="col-foot reveal">
-          <a href="https://www.etsy.com" target="_blank" class="btn-dark"><span>Shop All Candles</span></a>
+
+        <!-- WAX MELTS -->
+        <div style="margin-top: 3rem; text-align: center; padding: 2rem; background: var(--cream); border-radius: 8px;" class="reveal">
+          <div class="sec-label" style="justify-content: center; margin-bottom: 1rem;">Scent Samples</div>
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: .5rem;">Wax Melt Sample Pack</h3>
+          <p style="font-size: .8rem; color: var(--text-mid); margin-bottom: 1rem;">Try before you buy! 6 wax melt squares in any scent - $4</p>
+          <a href="#contact" class="btn-dark"><span>Order Samples</span></a>
         </div>
       </div>
     </div>
@@ -407,57 +541,54 @@
     </div>
   </div>
 
+  <!-- FEW OF A KIND SECTION -->
   <div class="wrap">
     <div class="collection">
       <div class="col-head reveal">
         <div>
           <div class="sec-label">Few of a Kind</div>
-          <h2 class="sec-title">Exclusive <em>Few-of-a-Kind</em> Candles</h2>
+          <h2 class="sec-title">Exclusive <em>Vessels</em></h2>
           <div class="rule"></div>
-          <p class="col-sub">Unique containers sourced from specialty finds. Limited availability — once they're gone, they won't be back. These special Vessels may vary in size, color, shape, weight and design. These candles can be customized requires special ordering </p>
+          <p class="col-sub">One-of-a-kind and limited quantity candles in unique vintage vessels. Each piece is hand-selected — once sold, exact replicas are not available. Vessel appearance may vary.</p>
         </div>
       </div>
 
       <div class="g3">
-        <a href="#" class="pc reveal d1">
+        <a href="#contact" class="pc reveal d1">
           <div class="pci"><div class="pcb"></div><img src="images/lotus.jpeg" alt="White Lotus Flower Candle"/></div>
           <div class="pc-info">
             <h3 class="pc-name">White Lotus Flower Candle</h3>
-            <p class="pc-notes">Unique flower-shaped vessel, multi-wick, 18oz.</p>
+            <p class="pc-notes">Unique flower-shaped vessel · Multi-wick · 18oz</p>
             <div class="pc-foot">
               <span class="pc-price">$35</span>
-              <span class="pca">View</span>
+              <span class="pca">Contact</span>
             </div>
           </div>
         </a>
 
-        <a href="#" class="pc reveal d2">
+        <a href="#contact" class="pc reveal d2">
           <div class="pci"><div class="pcb"></div><img src="images/file_00000000aeb471f8806e4d5d073eb9dc.png" alt="Luxury Vessel Collection"/></div>
           <div class="pc-info">
             <h3 class="pc-name">Artisan Vessel Collection</h3>
-            <p class="pc-notes">Three unique styles, multi-wick, limited edition.</p>
+            <p class="pc-notes">Three unique styles · Multi-wick · Limited edition</p>
             <div class="pc-foot">
               <span class="pc-price">$40</span>
-              <span class="pca">View</span>
+              <span class="pca">Contact</span>
             </div>
           </div>
         </a>
 
-        <a href="#" class="pc reveal d3">
+        <a href="#contact" class="pc reveal d3">
           <div class="pci"><div class="pcb"></div><img src="images/OIG2.jpeg" alt="Blue Ceramic Bowl Candle"/></div>
           <div class="pc-info">
             <h3 class="pc-name">Blue Ceramic Bowl Candle</h3>
-            <p class="pc-notes">Cobalt blue with gold accents, dual-wick, 16oz.</p>
+            <p class="pc-notes">Cobalt blue with gold accents · Dual-wick · 16oz</p>
             <div class="pc-foot">
               <span class="pc-price">$40</span>
-              <span class="pca">View</span>
+              <span class="pca">Contact</span>
             </div>
           </div>
         </a>
-      </div>
-
-      <div class="col-foot reveal">
-        <a href="#" class="btn-dark"><span>Shop Few of a Kind</span></a>
       </div>
     </div>
   </div>
@@ -467,13 +598,13 @@
       <div class="sec-label reveal">Custom Orders</div>
       <h2 class="sec-title reveal">Make It <em>Uniquely</em> Yours</h2>
       <div class="rule reveal" style="margin:1.2rem auto;"></div>
-      <p class="custom-sub reveal">Custom scents, labels, and designs — perfect for gifts, weddings, and events.</p>
+      <p class="custom-sub reveal">Custom scents, labels, vessels, and bulk orders. Timeline varies based on complexity. Contact us for availability and pricing.</p>
       <div class="custom-icons reveal">
         <div class="ci"><div class="ci-icon">✦</div><span class="ci-lbl">Custom Scents</span></div>
         <div class="ci"><div class="ci-icon">◈</div><span class="ci-lbl">Custom Labels</span></div>
         <div class="ci"><div class="ci-icon">◇</div><span class="ci-lbl">Gift Sets</span></div>
         <div class="ci"><div class="ci-icon">✿</div><span class="ci-lbl">Bulk Orders</span></div>
-        <div class="ci"><div class="ci-icon">❋</div><span class="ci-lbl">Event Favors</span></div>
+        <div class="ci"><div class="ci-icon">❋</div><span class="ci-lbl">Custom Vessels</span></div>
       </div>
       <a href="#contact" class="btn-gold reveal"><span>Request Custom Order</span></a>
     </div>
@@ -487,9 +618,9 @@
       </div>
       <div class="vgrid">
         <div class="vi reveal d1"><span class="vi-num">01</span><h3 class="vi-title">Premium Para-Soy Blend</h3><p class="vi-desc">A luxurious wax blend chosen for clean burn, exceptional scent throw, and beautiful texture.</p></div>
-        <div class="vi reveal d2"><span class="vi-num">02</span><h3 class="vi-title">Fine Fragrances</h3><p class="vi-desc">Curated fragrance oils chosen for health and safety. CandleScience Clean Scents and Clean Scents+ are manufactured without organ or acute toxins, phthalates, and ingredients on the California Prop 65 list..</p></div>
+        <div class="vi reveal d2"><span class="vi-num">02</span><h3 class="vi-title">Fine Fragrances</h3><p class="vi-desc">Curated fragrance oils chosen for health and safety. CandleScience Clean Scents are manufactured without organ or acute toxins, phthalates, and Prop 65 ingredients.</p></div>
         <div class="vi reveal d3"><span class="vi-num">03</span><h3 class="vi-title">Hand-Poured</h3><p class="vi-desc">Every candle is poured by hand in small batches for quality, care, and intention.</p></div>
-        <div class="vi reveal d4"><span class="vi-num">04</span><h3 class="vi-title">Crafted with Soul</h3><p class="vi-desc">Born from a love of fragrance and culture — every scent carries a story worth telling with up to 10% frangrance load and slow burning wicks for long lasting use.</p></div>
+        <div class="vi reveal d4"><span class="vi-num">04</span><h3 class="vi-title">Crafted with Soul</h3><p class="vi-desc">Born from a love of fragrance and culture with up to 10% fragrance load and slow-burning wicks for lasting enjoyment.</p></div>
       </div>
     </div>
   </div>
@@ -502,17 +633,41 @@
         <div class="rule"></div>
         <div class="cinfo">
           <div class="cd"><div class="cd-icon">📧</div><span class="cd-text">Support@bailuxeonlineshop.com</span></div>
-          <div class="cd"><div class="cd-icon">📷</div><span class="cd-text">@bailuxe_official</span></div>
+          <div class="cd"><div class="cd-icon">📷</div><span class="cd-text">@bailuxe_official (Instagram & Facebook)</span></div>
           <div class="cd"><div class="cd-icon">🌐</div><span class="cd-text">bailuxeonlineshop.com</span></div>
           <div class="cd"><div class="cd-icon">📍</div><span class="cd-text">Phoenix, Arizona</span></div>
         </div>
+        <p style="margin-top: 1.5rem; font-size: .72rem; color: var(--text-light); font-style: italic;">We respond to email and social media messages within 24 hours</p>
       </div>
       <div class="cr reveal">
-        <div class="fg"><label>Your Name</label><input type="text" placeholder="Full name"/></div>
-        <div class="fg"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
-        <div class="fg"><label>Inquiry Type</label><select><option>Custom Order</option><option>Bulk / Wholesale</option><option>Gift Sets</option><option>Event Favors</option><option>General Question</option></select></div>
-        <div class="fg"><label>Message</label><textarea placeholder="Tell us what you're looking for..."></textarea></div>
-        <button type="button" class="btn-dark" style="margin-top:.5rem;"><span>Send Message</span></button>
+        <form action="https://formspree.io/f/mdaynvad" method="POST">
+          <div class="fg">
+            <label>Your Name</label>
+            <input type="text" name="name" placeholder="Full name" required/>
+          </div>
+          <div class="fg">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="your@email.com" required/>
+          </div>
+          <div class="fg">
+            <label>Inquiry Type</label>
+            <select name="inquiry">
+              <option>Standard Candle Order</option>
+              <option>Wax Melt Samples</option>
+              <option>Custom Scent Request</option>
+              <option>Exclusive Vessel Inquiry</option>
+              <option>Bulk / Wholesale</option>
+              <option>Gift Sets</option>
+              <option>Event Favors</option>
+              <option>General Question</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Message</label>
+            <textarea name="message" placeholder="Tell us what you're looking for..." required></textarea>
+          </div>
+          <button type="submit" class="btn-dark" style="margin-top:.5rem;"><span>Send Message</span></button>
+        </form>
       </div>
     </div>
   </div>
@@ -523,10 +678,28 @@
         <p class="fb">Bai <em>Luxe</em> Candle Co.</p>
         <p class="ft">Hand-poured luxury scented candles. Phoenix, Arizona. Founded 2022.</p>
       </div>
-      <div class="fc"><h4>Shop</h4><ul><li><a href="https://www.etsy.com" target="_blank">All Candles</a></li><li><a href="https://www.etsy.com" target="_blank">Bestsellers</a></li><li><a href="#custom">Custom Orders</a></li><li><a href="https://www.etsy.com" target="_blank">Gift Sets</a></li></ul></div>
+      <div class="fc"><h4>Shop</h4><ul><li><a href="#collection">All Candles</a></li><li><a href="#collection">Wax Melts</a></li><li><a href="#custom">Custom Orders</a></li><li><a href="#contact">Contact</a></li></ul></div>
       <div class="fc"><h4>Company</h4><ul><li><a href="#story">Our Story</a></li><li><a href="#contact">Contact</a></li><li><a href="mailto:Support@bailuxeonlineshop.com">Email Us</a></li></ul></div>
       <div class="fc"><h4>Follow</h4><ul><li><a href="https://www.instagram.com/bailuxe_official/" target="_blank">Instagram</a></li><li><a href="https://www.facebook.com/profile.php?id=100084534348188" target="_blank">Facebook</a></li></ul></div>
     </div>
+
+    <div class="disclaimers">
+      <div class="disclaimer-section">
+        <h5>Candle Safety</h5>
+        <p>Always burn candles within sight. Keep away from flammable materials, children, and pets. Trim wick to 1/4" before each use. Burn on heat-resistant surface. Discontinue use when 1/2" of wax remains. Never burn longer than 4 hours at a time.</p>
+      </div>
+      
+      <div class="disclaimer-section">
+        <h5>Refund & Return Policy</h5>
+        <p>We stand behind our products. If you're not satisfied with your purchase, please contact us within 7 days of delivery. Refunds are evaluated on a case-by-case basis for unused products in original condition. Custom orders, personalized items, and wax melts are non-refundable unless defective. Shipping costs are non-refundable.</p>
+      </div>
+      
+      <div class="disclaimer-section">
+        <h5>Product Disclaimer</h5>
+        <p>Vessel appearance may vary slightly from photos. Vintage and exclusive vessels are one-of-a-kind — once sold, exact replicas are not available. Burn times are approximate and may vary based on usage, wick trimming, and burning conditions. Colors and scent intensity may vary between batches as each candle is hand-poured.</p>
+      </div>
+    </div>
+
     <div class="fbot">
       <p class="fcopy">© 2025 Bai Luxe Candle Co. All rights reserved.</p>
       <div class="fsoc">
